@@ -1,0 +1,80 @@
+name: Update World Cup Data
+
+on:
+  schedule:
+    # 每天 UTC 02:00 运行 (北京时间 10:00)
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: '更新原因'
+        required: false
+        default: '手动触发数据更新'
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: |
+        npm install axios cheerio
+
+    - name: Run data update script
+      run: |
+        echo "🔄 开始更新世界杯数据..."
+        node scripts/update-data.js
+
+    - name: Check for changes
+      id: check_changes
+      run: |
+        if git diff --quiet js/data.js; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+          echo "✅ 数据无变化，无需更新"
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+          echo "📝 检测到数据变化"
+        fi
+
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.changed == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add js/data.js
+        git commit -m "🤖 自动更新: 世界杯数据 $(date +'%Y-%m-%d %H:%M')"
+        git push
+        echo "✅ 数据已更新并推送"
+
+    - name: Trigger Pages rebuild
+      if: steps.check_changes.outputs.changed == 'true'
+      run: |
+        echo "🌐 触发 GitHub Pages 重新部署..."
+        # Pages 会在推送后自动重新部署
+
+    - name: Summary
+      run: |
+        echo "## 数据更新结果" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        if [ "${{ steps.check_changes.outputs.changed }}" == "true" ]; then
+          echo "✅ 数据已更新并成功推送" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**更新时间**: $(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**变更文件**: js/data.js" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "ℹ️ 数据无变化，跳过更新" >> $GITHUB_STEP_SUMMARY
+        fi
