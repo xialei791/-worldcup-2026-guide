@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>番茄钟</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* 浏览器版本额外样式 */
+    .window-controls {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 8px;
+    }
+    .window-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+    }
+    .window-btn.minimize { background: #ffbd2e; }
+    .window-btn.maximize { background: #28ca42; }
+    .window-btn.close { background: #ff5f56; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🍅 番茄钟</h1>
+    </div>
+
+    <div class="mode-switcher">
+      <button class="mode-btn active" data-mode="pomodoro">专注</button>
+      <button class="mode-btn" data-mode="shortBreak">短休息</button>
+      <button class="mode-btn" data-mode="longBreak">长休息</button>
+    </div>
+
+    <div class="timer-display">
+      <div class="time">25:00</div>
+      <div class="status">准备开始专注</div>
+    </div>
+
+    <div class="progress-ring">
+      <svg width="200" height="200">
+        <circle class="progress-ring-bg" cx="100" cy="100" r="90"></circle>
+        <circle class="progress-ring-fill" cx="100" cy="100" r="90"></circle>
+      </svg>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-primary" id="startBtn">开始</button>
+      <button class="btn btn-secondary" id="pauseBtn" style="display: none;">暂停</button>
+      <button class="btn btn-secondary" id="resetBtn">重置</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-value" id="completedCount">0</span>
+        <span class="stat-label">完成番茄</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="totalFocusTime">0</span>
+        <span class="stat-label">专注分钟</span>
+      </div>
+    </div>
+
+    <div class="settings">
+      <div class="setting-item">
+        <label>专注时长 (分钟)</label>
+        <input type="number" id="pomodoroTime" value="25" min="1" max="60">
+      </div>
+      <div class="setting-item">
+        <label>短休息 (分钟)</label>
+        <input type="number" id="shortBreakTime" value="5" min="1" max="30">
+      </div>
+      <div class="setting-item">
+        <label>长休息 (分钟)</label>
+        <input type="number" id="longBreakTime" value="15" min="1" max="60">
+      </div>
+    </div>
+
+    <div class="task-input">
+      <input type="text" id="currentTask" placeholder="当前任务...">
+    </div>
+  </div>
+
+  <script>
+    // DOM 元素
+    const timeDisplay = document.querySelector('.time');
+    const statusDisplay = document.querySelector('.status');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const modeBtns = document.querySelectorAll('.mode-btn');
+    const progressRing = document.querySelector('.progress-ring-fill');
+    const completedCountEl = document.getElementById('completedCount');
+    const totalFocusTimeEl = document.getElementById('totalFocusTime');
+    const currentTaskInput = document.getElementById('currentTask');
+
+    // 设置输入
+    const pomodoroInput = document.getElementById('pomodoroTime');
+    const shortBreakInput = document.getElementById('shortBreakTime');
+    const longBreakInput = document.getElementById('longBreakTime');
+
+    // 状态
+    let timer = null;
+    let timeLeft = 25 * 60;
+    let totalTime = 25 * 60;
+    let isRunning = false;
+    let currentMode = 'pomodoro';
+    let completedPomodoros = 0;
+    let totalFocusMinutes = 0;
+
+    // 配置
+    const modeConfig = {
+      pomodoro: { time: 25, label: '专注中...', status: '准备开始专注' },
+      shortBreak: { time: 5, label: '短休息中...', status: '准备短休息' },
+      longBreak: { time: 15, label: '长休息中...', status: '准备长休息' }
+    };
+
+    // 进度环周长
+    const CIRCUMFERENCE = 2 * Math.PI * 90;
+    progressRing.style.strokeDasharray = `${CIRCUMFERENCE} ${CIRCUMFERENCE}`;
+
+    // 格式化时间
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    // 更新显示
+    function updateDisplay() {
+      timeDisplay.textContent = formatTime(timeLeft);
+      updateProgress();
+      updateTitle();
+    }
+
+    // 更新页面标题
+    function updateTitle() {
+      document.title = `${formatTime(timeLeft)} - 番茄钟`;
+    }
+
+    // 更新进度环
+    function updateProgress() {
+      const progress = timeLeft / totalTime;
+      const offset = CIRCUMFERENCE - (progress * CIRCUMFERENCE);
+      progressRing.style.strokeDashoffset = offset;
+    }
+
+    // 切换模式
+    function switchMode(mode) {
+      currentMode = mode;
+      const config = modeConfig[mode];
+      totalTime = config.time * 60;
+      timeLeft = totalTime;
+
+      // 更新 UI
+      modeBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mode === mode);
+      });
+
+      // 更新背景色
+      document.body.className = `mode-${mode}`;
+
+      // 更新状态文本
+      statusDisplay.textContent = isRunning ? config.label : config.status;
+
+      updateDisplay();
+      resetTimer();
+    }
+
+    // 开始计时
+    function startTimer() {
+      if (isRunning) return;
+
+      isRunning = true;
+      document.querySelector('.timer-display').classList.add('running');
+      startBtn.style.display = 'none';
+      pauseBtn.style.display = 'block';
+      statusDisplay.textContent = modeConfig[currentMode].label;
+
+      // 请求通知权限
+      if ('Notification' in window && Notification.permission === 'default') {
+        Notification.requestPermission();
+      }
+
+      timer = setInterval(() => {
+        timeLeft--;
+        updateDisplay();
+
+        if (timeLeft <= 0) {
+          onTimerComplete();
+        }
+      }, 1000);
+    }
+
+    // 暂停计时
+    function pauseTimer() {
+      if (!isRunning) return;
+
+      isRunning = false;
+      clearInterval(timer);
+      document.querySelector('.timer-display').classList.remove('running');
+      startBtn.style.display = 'block';
+      pauseBtn.style.display = 'none';
+      startBtn.textContent = '继续';
+      statusDisplay.textContent = '已暂停';
+    }
+
+    // 重置计时
+    function resetTimer() {
+      isRunning = false;
+      clearInterval(timer);
+      document.querySelector('.timer-display').classList.remove('running');
+      startBtn.style.display = 'block';
+      pauseBtn.style.display = 'none';
+      startBtn.textContent = '开始';
+
+      const config = modeConfig[currentMode];
+      statusDisplay.textContent = config.status;
+
+      timeLeft = totalTime;
+      updateDisplay();
+    }
+
+    // 计时完成
+    function onTimerComplete() {
+      pauseTimer();
+      playSound();
+
+      // 发送浏览器通知
+      const taskName = currentTaskInput.value || '番茄钟';
+      let title, body;
+
+      if (currentMode === 'pomodoro') {
+        completedPomodoros++;
+        totalFocusMinutes += modeConfig.pomodoro.time;
+        completedCountEl.textContent = completedPomodoros;
+        totalFocusTimeEl.textContent = totalFocusMinutes;
+
+        title = '🎉 专注完成！';
+        body = `任务"${taskName}"已完成，休息一下吧！`;
+
+        // 自动切换到短休息
+        if (completedPomodoros % 4 === 0) {
+          setTimeout(() => switchMode('longBreak'), 2000);
+        } else {
+          setTimeout(() => switchMode('shortBreak'), 2000);
+        }
+      } else {
+        title = '⏰ 休息结束！';
+        body = '休息结束，准备开始新的专注吧！';
+        setTimeout(() => switchMode('pomodoro'), 2000);
+      }
+
+      // 显示通知
+      if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification(title, { body, icon: '🍅' });
+      }
+
+      statusDisplay.textContent = '已完成';
+    }
+
+    // 播放提示音
+    function playSound() {
+      try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.value = 800;
+        oscillator.type = 'sine';
+
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.5);
+
+        const oscillator2 = audioContext.createOscillator();
+        const gainNode2 = audioContext.createGain();
+        oscillator2.connect(gainNode2);
+        gainNode2.connect(audioContext.destination);
+        oscillator2.frequency.value = 600;
+        oscillator2.type = 'sine';
+        gainNode2.gain.setValueAtTime(0.3, audioContext.currentTime + 0.3);
+        gainNode2.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.8);
+        oscillator2.start(audioContext.currentTime + 0.3);
+        oscillator2.stop(audioContext.currentTime + 0.8);
+      } catch (e) {
+        console.log('Audio play failed:', e);
+      }
+    }
+
+    // 更新设置
+    function updateSettings() {
+      modeConfig.pomodoro.time = parseInt(pomodoroInput.value) || 25;
+      modeConfig.shortBreak.time = parseInt(shortBreakInput.value) || 5;
+      modeConfig.longBreak.time = parseInt(longBreakInput.value) || 15;
+
+      if (!isRunning) {
+        const config = modeConfig[currentMode];
+        totalTime = config.time * 60;
+        timeLeft = totalTime;
+        updateDisplay();
+      }
+    }
+
+    // 事件监听
+    startBtn.addEventListener('click', startTimer);
+    pauseBtn.addEventListener('click', pauseTimer);
+    resetBtn.addEventListener('click', resetTimer);
+
+    modeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchMode(btn.dataset.mode);
+      });
+    });
+
+    [pomodoroInput, shortBreakInput, longBreakInput].forEach(input => {
+      input.addEventListener('change', updateSettings);
+    });
+
+    // 键盘快捷键
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        if (isRunning) {
+          pauseTimer();
+        } else {
+          startTimer();
+        }
+      } else if (e.code === 'KeyR' && e.ctrlKey) {
+        e.preventDefault();
+        resetTimer();
+      }
+    });
+
+    // 初始化
+    updateDisplay();
+
+    // 从本地存储加载数据
+    const savedStats = localStorage.getItem('pomodoroStats');
+    if (savedStats) {
+      const stats = JSON.parse(savedStats);
+      completedPomodoros = stats.completedPomodoros || 0;
+      totalFocusMinutes = stats.totalFocusMinutes || 0;
+      completedCountEl.textContent = completedPomodoros;
+      totalFocusTimeEl.textContent = totalFocusMinutes;
+    }
+
+    // 保存统计数据
+    window.addEventListener('beforeunload', () => {
+      localStorage.setItem('pomodoroStats', JSON.stringify({
+        completedPomodoros,
+        totalFocusMinutes
+      }));
+    });
+
+    // 请求通知权限
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+  </script>
+</body>
+</html>

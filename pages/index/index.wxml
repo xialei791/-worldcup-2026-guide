@@ -1,0 +1,183 @@
+<!-- 首页 -->
+<view class="container">
+  <!-- 倒计时横幅 -->
+  <view class="countdown-banner">
+    <view class="countdown-bg"></view>
+    <view class="countdown-content">
+      <text class="countdown-label">2026 FIFA世界杯</text>
+      <text class="countdown-subtitle">美国 · 加拿大 · 墨西哥</text>
+      <view class="countdown-timer">
+        <view class="time-item">
+          <text class="time-num">{{countdown.days}}</text>
+          <text class="time-unit">天</text>
+        </view>
+        <text class="time-separator">:</text>
+        <view class="time-item">
+          <text class="time-num">{{countdown.hours}}</text>
+          <text class="time-unit">时</text>
+        </view>
+        <text class="time-separator">:</text>
+        <view class="time-item">
+          <text class="time-num">{{countdown.minutes}}</text>
+          <text class="time-unit">分</text>
+        </view>
+        <text class="time-separator">:</text>
+        <view class="time-item">
+          <text class="time-num">{{countdown.seconds}}</text>
+          <text class="time-unit">秒</text>
+        </view>
+      </view>
+      <text class="countdown-date">2026年6月11日 - 7月19日</text>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="quick-menu">
+    <view class="menu-item" bindtap="goToSchedule">
+      <view class="menu-icon schedule">
+        <text class="iconfont">📅</text>
+      </view>
+      <text class="menu-text">赛程</text>
+    </view>
+    <view class="menu-item" bindtap="goToTeams">
+      <view class="menu-icon teams">
+        <text class="iconfont">⚽</text>
+      </view>
+      <text class="menu-text">球队</text>
+    </view>
+    <view class="menu-item" bindtap="goToStadiums">
+      <view class="menu-icon stadiums">
+        <text class="iconfont">🏟️</text>
+      </view>
+      <text class="menu-text">球场</text>
+    </view>
+    <view class="menu-item" bindtap="goToNews">
+      <view class="menu-icon news">
+        <text class="iconfont">📰</text>
+      </view>
+      <text class="menu-text">资讯</text>
+    </view>
+  </view>
+
+  <!-- 今日赛事 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">今日赛事</text>
+      <text class="more" bindtap="goToSchedule">查看更多 ></text>
+    </view>
+    <view class="match-list">
+      <block wx:if="{{todayMatches.length > 0}}">
+        <view class="match-item" wx:for="{{todayMatches}}" wx:key="id" bindtap="goToMatchDetail" data-id="{{item.id}}">
+          <view class="match-time">
+            <text class="time">{{item.time}}</text>
+            <text class="group">{{item.group}}</text>
+          </view>
+          <view class="match-teams">
+            <view class="team">
+              <image class="team-flag" src="{{item.homeFlag}}" mode="aspectFit"/>
+              <text class="team-name">{{item.homeTeam}}</text>
+            </view>
+            <view class="vs">
+              <text wx:if="{{item.status === 'finished'}}" class="score">{{item.homeScore}} - {{item.awayScore}}</text>
+              <text wx:elif="{{item.status === 'live'}}" class="live-tag">进行中</text>
+              <text wx:else class="vs-text">VS</text>
+            </view>
+            <view class="team">
+              <image class="team-flag" src="{{item.awayFlag}}" mode="aspectFit"/>
+              <text class="team-name">{{item.awayTeam}}</text>
+            </view>
+          </view>
+          <view class="match-stadium">
+            <text class="stadium">{{item.stadium}}</text>
+          </view>
+        </view>
+      </block>
+      <view wx:else class="no-match">
+        <text>今日暂无比赛</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 小组积分榜 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">小组积分榜</text>
+      <text class="more" bindtap="goToTeams">查看全部 ></text>
+    </view>
+    <scroll-view scroll-x class="group-tabs">
+      <view class="tab-item {{currentGroup === item ? 'active' : ''}}"
+            wx:for="{{groups}}"
+            wx:key="*this"
+            data-group="{{item}}"
+            bindtap="switchGroup">
+        {{item}}
+      </view>
+    </scroll-view>
+    <view class="standings-table">
+      <view class="table-header">
+        <text class="col-rank">排名</text>
+        <text class="col-team">球队</text>
+        <text class="col-mp">赛</text>
+        <text class="col-w">胜</text>
+        <text class="col-d">平</text>
+        <text class="col-l">负</text>
+        <text class="col-pts">分</text>
+      </view>
+      <view class="table-row {{index < 2 ? 'qualified' : ''}}" wx:for="{{groupStandings}}" wx:key="team">
+        <text class="col-rank">{{index + 1}}</text>
+        <view class="col-team">
+          <image class="team-flag-small" src="{{item.flag}}" mode="aspectFit"/>
+          <text>{{item.team}}</text>
+        </view>
+        <text class="col-mp">{{item.mp}}</text>
+        <text class="col-w">{{item.w}}</text>
+        <text class="col-d">{{item.d}}</text>
+        <text class="col-l">{{item.l}}</text>
+        <text class="col-pts">{{item.pts}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 最新资讯 -->
+  <view class="card">
+    <view class="card-header">
+      <text class="card-title">最新资讯</text>
+      <text class="more" bindtap="goToNews">查看更多 ></text>
+    </view>
+    <view class="news-list">
+      <view class="news-item" wx:for="{{latestNews}}" wx:key="id" bindtap="goToNewsDetail" data-id="{{item.id}}">
+        <image class="news-image" src="{{item.image}}" mode="aspectFill"/>
+        <view class="news-content">
+          <text class="news-title ellipsis-2">{{item.title}}</text>
+          <view class="news-meta">
+            <text class="news-category">{{item.category}}</text>
+            <text class="news-time">{{item.time}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 世界杯数据概览 -->
+  <view class="card stats-card">
+    <text class="card-title">赛事数据</text>
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-num">48</text>
+        <text class="stat-label">参赛球队</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">104</text>
+        <text class="stat-label">比赛场次</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">3</text>
+        <text class="stat-label">主办国家</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">16</text>
+        <text class="stat-label">比赛球场</text>
+      </view>
+    </view>
+  </view>
+</view>

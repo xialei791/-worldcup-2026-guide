@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>番茄钟</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🍅 番茄钟</h1>
+    </div>
+
+    <div class="mode-switcher">
+      <button class="mode-btn active" data-mode="pomodoro">专注</button>
+      <button class="mode-btn" data-mode="shortBreak">短休息</button>
+      <button class="mode-btn" data-mode="longBreak">长休息</button>
+    </div>
+
+    <div class="timer-display">
+      <div class="time">25:00</div>
+      <div class="status">准备开始专注</div>
+    </div>
+
+    <div class="progress-ring">
+      <svg width="200" height="200">
+        <circle class="progress-ring-bg" cx="100" cy="100" r="90"></circle>
+        <circle class="progress-ring-fill" cx="100" cy="100" r="90"></circle>
+      </svg>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-primary" id="startBtn">开始</button>
+      <button class="btn btn-secondary" id="pauseBtn" style="display: none;">暂停</button>
+      <button class="btn btn-secondary" id="resetBtn">重置</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-value" id="completedCount">0</span>
+        <span class="stat-label">完成番茄</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="totalFocusTime">0</span>
+        <span class="stat-label">专注分钟</span>
+      </div>
+    </div>
+
+    <div class="settings">
+      <div class="setting-item">
+        <label>专注时长 (分钟)</label>
+        <input type="number" id="pomodoroTime" value="25" min="1" max="60">
+      </div>
+      <div class="setting-item">
+        <label>短休息 (分钟)</label>
+        <input type="number" id="shortBreakTime" value="5" min="1" max="30">
+      </div>
+      <div class="setting-item">
+        <label>长休息 (分钟)</label>
+        <input type="number" id="longBreakTime" value="15" min="1" max="60">
+      </div>
+    </div>
+
+    <div class="task-input">
+      <input type="text" id="currentTask" placeholder="当前任务...">
+    </div>
+  </div>
+
+  <audio id="timerSound" preload="auto">
+    <source src="assets/notification.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

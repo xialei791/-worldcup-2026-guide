@@ -1,0 +1,434 @@
+/* 首页样式 */
+
+/* 倒计时横幅 */
+.countdown-banner {
+  position: relative;
+  height: 360rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+}
+
+.countdown-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1a5f2a 0%, #0d3d18 100%);
+}
+
+.countdown-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+  background-size: 80rpx 80rpx;
+  opacity: 0.3;
+}
+
+.countdown-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  padding: 40rpx;
+}
+
+.countdown-label {
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+  text-shadow: 0 2rpx 4rpx rgba(0,0,0,0.2);
+}
+
+.countdown-subtitle {
+  font-size: 24rpx;
+  opacity: 0.9;
+  margin-bottom: 32rpx;
+}
+
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.time-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.15);
+  border-radius: 12rpx;
+  padding: 16rpx 24rpx;
+  min-width: 80rpx;
+}
+
+.time-num {
+  font-size: 48rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.time-unit {
+  font-size: 20rpx;
+  opacity: 0.8;
+  margin-top: 4rpx;
+}
+
+.time-separator {
+  font-size: 36rpx;
+  font-weight: 700;
+  margin: 0 16rpx;
+  opacity: 0.8;
+}
+
+.countdown-date {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+/* 快捷入口 */
+.quick-menu {
+  display: flex;
+  justify-content: space-around;
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 32rpx 20rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-icon {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12rpx;
+  font-size: 44rpx;
+}
+
+.menu-icon.schedule {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+}
+
+.menu-icon.teams {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+}
+
+.menu-icon.stadiums {
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+}
+
+.menu-icon.news {
+  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+}
+
+.menu-text {
+  font-size: 26rpx;
+  color: var(--text-color);
+}
+
+/* 卡片头部 */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.more {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+/* 比赛列表 */
+.match-list {
+  padding-top: 8rpx;
+}
+
+.match-item {
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.match-item:last-child {
+  margin-bottom: 0;
+}
+
+.match-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.match-time .time {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.match-time .group {
+  font-size: 22rpx;
+  color: var(--text-light);
+  background: #e9ecef;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.match-teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.team-flag {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  margin-bottom: 8rpx;
+  border: 2rpx solid #e9ecef;
+}
+
+.team-name {
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
+.vs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 32rpx;
+}
+
+.score {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.vs-text {
+  font-size: 28rpx;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.live-tag {
+  font-size: 22rpx;
+  color: #ffffff;
+  background: #ff4d4f;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  animation: pulse 1.5s infinite;
+}
+
+.match-stadium {
+  text-align: center;
+}
+
+.stadium {
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+.no-match {
+  text-align: center;
+  padding: 48rpx;
+  color: var(--text-light);
+  font-size: 28rpx;
+}
+
+/* 小组标签 */
+.group-tabs {
+  white-space: nowrap;
+  margin-bottom: 20rpx;
+}
+
+.tab-item {
+  display: inline-block;
+  padding: 12rpx 32rpx;
+  font-size: 26rpx;
+  color: var(--text-light);
+  border-radius: 32rpx;
+  margin-right: 12rpx;
+  background: #f0f0f0;
+}
+
+.tab-item.active {
+  background: var(--primary-color);
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* 积分榜表格 */
+.standings-table {
+  font-size: 24rpx;
+}
+
+.table-header {
+  display: flex;
+  padding: 16rpx 0;
+  border-bottom: 2rpx solid var(--border-color);
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.table-row {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid var(--border-color);
+  align-items: center;
+}
+
+.table-row.qualified {
+  background: rgba(26, 95, 42, 0.05);
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.col-rank {
+  width: 60rpx;
+  text-align: center;
+  font-weight: 600;
+}
+
+.col-team {
+  flex: 2;
+  display: flex;
+  align-items: center;
+}
+
+.team-flag-small {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+  border: 1rpx solid #e9ecef;
+}
+
+.col-mp, .col-w, .col-d, .col-l {
+  flex: 1;
+  text-align: center;
+}
+
+.col-pts {
+  flex: 1;
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* 资讯列表 */
+.news-list {
+  padding-top: 8rpx;
+}
+
+.news-item {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid var(--border-color);
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-image {
+  width: 200rpx;
+  height: 140rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.news-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.news-title {
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.news-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.news-category {
+  font-size: 22rpx;
+  color: var(--primary-color);
+  background: rgba(26, 95, 42, 0.1);
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.news-time {
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+/* 数据统计 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+  padding-top: 16rpx;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24rpx 0;
+}
+
+.stat-num {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: var(--text-light);
+}

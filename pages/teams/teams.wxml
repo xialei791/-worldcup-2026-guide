@@ -1,0 +1,92 @@
+<!-- 球队页面 -->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input">
+      <text class="search-icon">🔍</text>
+      <input type="text" placeholder="搜索球队" bindinput="onSearch" />
+    </view>
+  </view>
+
+  <!-- 大洲筛选 -->
+  <scroll-view scroll-x class="continent-tabs">
+    <view class="continent-item {{currentContinent === item ? 'active' : ''}}"
+          wx:for="{{continents}}"
+          wx:key="*this"
+          data-continent="{{item}}"
+          bindtap="switchContinent">
+      {{item}}
+    </view>
+  </scroll-view>
+
+  <!-- 球队列表 -->
+  <view class="teams-grid">
+    <view class="team-card" wx:for="{{teams}}" wx:key="id" bindtap="goToTeamDetail" data-id="{{item.id}}">
+      <image class="team-flag" src="{{item.flag}}" mode="aspectFit"/>
+      <text class="team-name">{{item.name}}</text>
+      <text class="team-group">{{item.group}}</text>
+      <view class="team-fifa">FIFA排名: {{item.fifaRank}}</view>
+    </view>
+  </view>
+
+  <!-- 球队详情弹窗 -->
+  <view class="team-modal" wx:if="{{showModal}}" bindtap="closeModal">
+    <view class="modal-content" catchtap="preventClose">
+      <view class="modal-header">
+        <image class="modal-flag" src="{{selectedTeam.flag}}" mode="aspectFit"/>
+        <text class="modal-name">{{selectedTeam.name}}</text>
+        <text class="modal-ename">{{selectedTeam.englishName}}</text>
+      </view>
+
+      <view class="modal-body">
+        <view class="info-section">
+          <text class="section-title">基本信息</text>
+          <view class="info-row">
+            <text class="info-label">所属大洲</text>
+            <text class="info-value">{{selectedTeam.continent}}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">FIFA排名</text>
+            <text class="info-value">第 {{selectedTeam.fifaRank}} 位</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">参赛次数</text>
+            <text class="info-value">{{selectedTeam.appearances}} 次</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">最好成绩</text>
+            <text class="info-value">{{selectedTeam.bestResult}}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">所属小组</text>
+            <text class="info-value">{{selectedTeam.group}}</text>
+          </view>
+        </view>
+
+        <view class="info-section">
+          <text class="section-title">当家球星</text>
+          <view class="star-list">
+            <view class="star-item" wx:for="{{selectedTeam.stars}}" wx:key="name">
+              <image class="star-avatar" src="{{item.photo}}" mode="aspectFill"/>
+              <text class="star-name">{{item.name}}</text>
+              <text class="star-position">{{item.position}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="info-section">
+          <text class="section-title">近期战绩</text>
+          <view class="record-list">
+            <view class="record-item" wx:for="{{selectedTeam.records}}" wx:key="*this">
+              <text class="record-result {{item === '胜' ? 'win' : item === '平' ? 'draw' : 'lose'}}">{{item}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="modal-footer">
+        <button class="btn-primary" bindtap="goToTeamMatches">查看赛程</button>
+      </view>
+    </view>
+  </view>
+</view>
