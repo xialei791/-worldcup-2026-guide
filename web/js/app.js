@@ -14,18 +14,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ==================== 倒计时/状态 ====================
 function initCountdown() {
-    // 2026年世界杯已开幕，显示比赛进行中的状态
+    // 2026年世界杯开幕日
     const countdownContainer = document.querySelector('.countdown-container');
     if (countdownContainer) {
         countdownContainer.innerHTML = `
             <div class="worldcup-live-status">
-                <div class="live-badge">● 2026世界杯正在进行中</div>
-                <div class="today-date">今天是：2026年6月11日（开幕日）</div>
+                <div class="live-badge">🏆 2026世界杯开幕日</div>
+                <div class="today-date">今天是：2026年6月11日</div>
                 <div class="today-match-info">
-                    <div class="match-result">
-                        <span class="flag">🇲🇽</span> 墨西哥 2-1 美国 <span class="flag">🇺🇸</span>
-                    </div>
-                    <div class="match-status-text">揭幕战已结束</div>
+                    <div class="match-status-text">揭幕战即将开始</div>
+                    <div class="match-countdown">21:00 墨西哥 vs 美国</div>
                 </div>
             </div>
         `;

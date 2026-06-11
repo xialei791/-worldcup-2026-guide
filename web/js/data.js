@@ -60,29 +60,24 @@ const teamsData = [
 ];
 
 // 比赛数据 - 2026世界杯实时数据（每天更新）
-// 今天是：2026年6月11日（开幕日）
+// 今天是：2026年6月11日 20:35（北京时间）
+// 揭幕战：墨西哥 vs 美国 即将开始！
 const matchesData = [
     // ========== 2026年6月11日（今天）开幕日 ==========
     {
         id: 1,
         date: '2026-06-11',
-        time: '20:00',
+        time: '21:00',
         home: 'mex',
         away: 'usa',
-        homeScore: 2,
-        awayScore: 1,
-        status: 'finished',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
         group: 'A组',
         stage: 'group',
         stadium: '阿兹特克体育场',
         city: '墨西哥城',
-        important: true,
-        events: [
-            { minute: 23, type: 'goal', team: 'home', player: '洛萨诺', assist: '阿尔瓦雷斯' },
-            { minute: 45, type: 'card', team: 'away', player: '亚当斯', card: 'yellow' },
-            { minute: 56, type: 'goal', team: 'away', player: '普利西奇', assist: '麦肯尼' },
-            { minute: 78, type: 'goal', team: 'home', player: '希门尼斯', assist: '维加' }
-        ]
+        important: true
     },
 
     // ========== 2026年6月12日（明天）==========
@@ -227,11 +222,11 @@ const matchesData = [
     }
 ];
 
-// 小组积分榜数据 - 2026年6月11日更新（揭幕战后）
+// 小组积分榜数据 - 2026年6月11日 20:35（比赛进行中）
 const groupStandings = {
     'A': [
-        { team: 'mex', mp: 1, w: 1, d: 0, l: 0, gf: 2, ga: 1, pts: 3 },
-        { team: 'usa', mp: 1, w: 0, d: 0, l: 1, gf: 1, ga: 2, pts: 0 },
+        { team: 'mex', mp: 1, w: 0, d: 0, l: 0, gf: 1, ga: 0, pts: 0 },
+        { team: 'usa', mp: 1, w: 0, d: 0, l: 0, gf: 0, ga: 1, pts: 0 },
         { team: 'can', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
         { team: 'ned', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
     ],
