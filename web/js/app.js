@@ -637,3 +637,195 @@ function initNavigation() {
         });
     });
 }
+
+// ==================== 预测功能 ====================
+function initPredictor() {
+    const teamASelect = document.getElementById('teamA');
+    const teamBSelect = document.getElementById('teamB');
+    const predictBtn = document.getElementById('predictBtn');
+
+    if (!teamASelect || !teamBSelect) return;
+
+    // 填充球队选择器
+    const sortedTeams = teamsData.slice().sort((a, b) => a.name.localeCompare(b.name, 'zh'));
+
+    sortedTeams.forEach(team => {
+        const optionA = document.createElement('option');
+        optionA.value = team.name;
+        optionA.textContent = `${team.name}`;
+        teamASelect.appendChild(optionA);
+
+        const optionB = document.createElement('option');
+        optionB.value = team.name;
+        optionB.textContent = `${team.name}`;
+        teamBSelect.appendChild(optionB);
+    });
+
+    // 球队选择事件
+    teamASelect.addEventListener('change', () => updateTeamInfo('A'));
+    teamBSelect.addEventListener('change', () => updateTeamInfo('B'));
+
+    // 预测按钮事件
+    predictBtn.addEventListener('click', doPrediction);
+}
+
+function updateTeamInfo(side) {
+    const select = document.getElementById(`team${side}`);
+    const infoDiv = document.getElementById(`team${side}Info`);
+    const teamName = select.value;
+
+    if (!teamName) {
+        infoDiv.innerHTML = '';
+        return;
+    }
+
+    const team = teamsData.find(t => t.name === teamName);
+    const elo = eloRatings[teamName] || 1600;
+    const style = tacticalStyles[teamName] || '传统风格';
+
+    infoDiv.innerHTML = `
+        <div class="team-info-card">
+            <img src="${team.flag}" alt="${team.name}" class="team-flag-large">
+            <div class="team-meta">
+                <span class="team-group">${team.group}组</span>
+                <span class="team-elo">Elo: ${elo}</span>
+                <span class="team-style">${style}</span>
+            </div>
+        </div>
+    `;
+}
+
+function doPrediction() {
+    const teamA = document.getElementById('teamA').value;
+    const teamB = document.getElementById('teamB').value;
+
+    if (!teamA || !teamB) {
+        alert('请选择两支球队');
+        return;
+    }
+
+    if (teamA === teamB) {
+        alert('请选择不同的球队');
+        return;
+    }
+
+    // 查找历史交锋
+    const h2hKey1 = `${teamA}|${teamB}`;
+    const h2hKey2 = `${teamB}|${teamA}`;
+    const h2h = h2hRecords[h2hKey1] || h2hRecords[h2hKey2];
+
+    // 计算预测
+    let winA, draw, winB;
+
+    if (h2h) {
+        // 有历史交锋数据
+        const total = h2h.wA + h2h.d + h2h.wB;
+        const isReversed = !!h2hRecords[h2hKey2];
+
+        if (isReversed) {
+            winA = (h2h.wB / total) * 100;
+            winB = (h2h.wA / total) * 100;
+        } else {
+            winA = (h2h.wA / total) * 100;
+            winB = (h2h.wB / total) * 100;
+        }
+        draw = (h2h.d / total) * 100;
+
+        // 显示历史交锋
+        displayH2H(h2h, isReversed, teamA, teamB);
+    } else {
+        // 无历史交锋，使用 Elo 计算
+        const eloA = eloRatings[teamA] || 1600;
+        const eloB = eloRatings[teamB] || 1600;
+        const diff = eloA - eloB;
+
+        // 简化 Elo 胜率公式
+        const expectedA = 1 / (1 + Math.pow(10, -diff / 400));
+        winA = expectedA * 75;
+        winB = (1 - expectedA) * 75;
+        draw = 25;
+
+        // 隐藏历史交锋
+        document.getElementById('h2hHistory').style.display = 'none';
+    }
+
+    // 显示预测结果
+    displayPrediction(winA, draw, winB, teamA, teamB);
+
+    // 显示战术风格
+    displayTacticalStyles(teamA, teamB);
+
+    // 显示结果区域
+    document.getElementById('predictResult').classList.remove('hidden');
+    document.getElementById('predictResult').scrollIntoView({ behavior: 'smooth' });
+}
+
+function displayH2H(h2h, isReversed, teamA, teamB) {
+    const historyDiv = document.getElementById('h2hHistory');
+    const statsDiv = document.getElementById('h2hStats');
+    const noteP = document.getElementById('h2hNote');
+
+    historyDiv.style.display = 'block';
+
+    const wA = isReversed ? h2h.wB : h2h.wA;
+    const wB = isReversed ? h2h.wA : h2h.wB;
+    const total = h2h.wA + h2h.d + h2h.wB;
+
+    statsDiv.innerHTML = `
+        <div class="h2h-stat-item">
+            <span class="h2h-team-name">${teamA}</span>
+            <span class="h2h-wins">${wA}胜</span>
+        </div>
+        <div class="h2h-stat-item draw">
+            <span class="h2h-draws">${h2h.d}平</span>
+        </div>
+        <div class="h2h-stat-item">
+            <span class="h2h-team-name">${teamB}</span>
+            <span class="h2h-wins">${wB}胜</span>
+        </div>
+        <div class="h2h-total">历史交锋 ${total} 场</div>
+    `;
+
+    noteP.textContent = h2h.note || '';
+}
+
+function displayPrediction(winA, draw, winB, teamA, teamB) {
+    document.getElementById('probBarA').style.width = `${winA}%`;
+    document.getElementById('probBarD').style.width = `${draw}%`;
+    document.getElementById('probBarB').style.width = `${winB}%`;
+
+    document.getElementById('probPercentA').textContent = `${winA.toFixed(1)}%`;
+    document.getElementById('probPercentD').textContent = `${draw.toFixed(1)}%`;
+    document.getElementById('probPercentB').textContent = `${winB.toFixed(1)}%`;
+
+    document.getElementById('labelA').textContent = `${teamA}胜`;
+    document.getElementById('labelB').textContent = `${teamB}胜`;
+}
+
+function displayTacticalStyles(teamA, teamB) {
+    const container = document.getElementById('tacticalTags');
+    const styleA = tacticalStyles[teamA] || '传统风格';
+    const styleB = tacticalStyles[teamB] || '传统风格';
+
+    const teamAData = teamsData.find(t => t.name === teamA);
+    const teamBData = teamsData.find(t => t.name === teamB);
+
+    container.innerHTML = `
+        <div class="tactical-tag team-a">
+            <img src="${teamAData.flag}" alt="${teamA}">
+            <span>${teamA}</span>
+            <strong>${styleA}</strong>
+        </div>
+        <div class="tactical-vs">VS</div>
+        <div class="tactical-tag team-b">
+            <img src="${teamBData.flag}" alt="${teamB}">
+            <span>${teamB}</span>
+            <strong>${styleB}</strong>
+        </div>
+    `;
+}
+
+// 初始化时同时初始化预测功能
+document.addEventListener('DOMContentLoaded', function() {
+    initPredictor();
+});

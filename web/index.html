@@ -6,6 +6,7 @@
     <title>2026世界杯观赛指南 | FIFA World Cup 2026</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/music-player.css">
+    <link rel="stylesheet" href="css/predict.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -30,6 +31,7 @@
                 <li><a href="#matches">赛程</a></li>
                 <li><a href="#standings">积分榜</a></li>
                 <li><a href="#teams">球队</a></li>
+                <li><a href="#predict">预测</a></li>
             </ul>
             <div class="music-toggle" id="musicToggle">
                 <i class="fas fa-music"></i>
@@ -228,6 +230,88 @@
             </div>
             <div class="teams-grid" id="teamsGrid">
                 <!-- 动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 预测区域 -->
+    <section id="predict" class="predict-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> 对战预测</h2>
+            </div>
+
+            <div class="predict-card">
+                <div class="predict-intro">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>基于历史交锋记录和 Elo 评分的简化版预测</p>
+                </div>
+
+                <div class="team-selectors">
+                    <div class="team-select-box">
+                        <label>选择主队</label>
+                        <select id="teamA" class="team-select">
+                            <option value="">请选择球队</option>
+                        </select>
+                        <div class="team-info-display" id="teamAInfo"></div>
+                    </div>
+
+                    <div class="vs-divider">
+                        <span>VS</span>
+                    </div>
+
+                    <div class="team-select-box">
+                        <label>选择客队</label>
+                        <select id="teamB" class="team-select">
+                            <option value="">请选择球队</option>
+                        </select>
+                        <div class="team-info-display" id="teamBInfo"></div>
+                    </div>
+                </div>
+
+                <button class="predict-btn" id="predictBtn">
+                    <i class="fas fa-calculator"></i> 开始预测
+                </button>
+
+                <div class="predict-result hidden" id="predictResult">
+                    <div class="result-header">
+                        <h3>预测结果</h3>
+                    </div>
+
+                    <div class="win-probability">
+                        <div class="prob-bar">
+                            <div class="prob-team prob-team-a" id="probBarA">
+                                <span class="prob-percent" id="probPercentA">--</span>
+                            </div>
+                            <div class="prob-draw" id="probBarD">
+                                <span class="prob-percent" id="probPercentD">--</span>
+                            </div>
+                            <div class="prob-team prob-team-b" id="probBarB">
+                                <span class="prob-percent" id="probPercentB">--</span>
+                            </div>
+                        </div>
+                        <div class="prob-labels">
+                            <span id="labelA">主队胜</span>
+                            <span>平局</span>
+                            <span id="labelB">客队胜</span>
+                        </div>
+                    </div>
+
+                    <div class="h2h-history" id="h2hHistory">
+                        <h4><i class="fas fa-history"></i> 历史交锋</h4>
+                        <div class="h2h-stats" id="h2hStats">
+                            <!-- 动态生成 -->
+                        </div>
+                        <p class="h2h-note" id="h2hNote"></p>
+                    </div>
+
+                    <div class="tactical-analysis" id="tacticalAnalysis">
+                        <h4><i class="fas fa-chess"></i> 战术风格</h4>
+                        <div class="tactical-tags" id="tacticalTags">
+                            <!-- 动态生成 -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
