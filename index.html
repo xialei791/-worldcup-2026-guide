@@ -1,76 +1,309 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>番茄钟</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026世界杯观赛指南 | FIFA World Cup 2026</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/music-player.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>🍅 番茄钟</h1>
+    <!-- 背景动画 -->
+    <div class="bg-animation">
+        <div class="football">⚽</div>
+        <div class="football">⚽</div>
+        <div class="football">⚽</div>
     </div>
 
-    <div class="mode-switcher">
-      <button class="mode-btn active" data-mode="pomodoro">专注</button>
-      <button class="mode-btn" data-mode="shortBreak">短休息</button>
-      <button class="mode-btn" data-mode="longBreak">长休息</button>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-futbol"></i>
+                <span>2026世界杯观赛指南</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">首页</a></li>
+                <li><a href="#calendar">日历</a></li>
+                <li><a href="#matches">赛程</a></li>
+                <li><a href="#standings">积分榜</a></li>
+                <li><a href="#teams">球队</a></li>
+            </ul>
+            <div class="music-toggle" id="musicToggle">
+                <i class="fas fa-music"></i>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页区域 -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">2026 FIFA WORLD CUP</h1>
+            <p class="hero-subtitle">美国 · 加拿大 · 墨西哥 联合举办</p>
+
+            <!-- 倒计时 -->
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <div class="countdown-item">
+                        <span class="countdown-num" id="days">000</span>
+                        <span class="countdown-label">天</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-num" id="hours">00</span>
+                        <span class="countdown-label">时</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-num" id="minutes">00</span>
+                        <span class="countdown-label">分</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-num" id="seconds">00</span>
+                        <span class="countdown-label">秒</span>
+                    </div>
+                </div>
+                <p class="countdown-date">2026年6月11日 - 7月19日</p>
+            </div>
+
+            <!-- 快捷入口 -->
+            <div class="quick-links">
+                <a href="#calendar" class="quick-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>赛事日历</span>
+                </a>
+                <a href="#matches" class="quick-card">
+                    <i class="fas fa-list"></i>
+                    <span>全部赛程</span>
+                </a>
+                <a href="#standings" class="quick-card">
+                    <i class="fas fa-trophy"></i>
+                    <span>积分榜</span>
+                </a>
+                <a href="#teams" class="quick-card">
+                    <i class="fas fa-users"></i>
+                    <span>球队</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 今日赛事 -->
+    <section class="today-matches">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-fire"></i> 今日焦点战</h2>
+                <a href="#matches" class="view-all">查看全部 <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="matches-grid" id="todayMatches">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 日历区域 -->
+    <section id="calendar" class="calendar-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-calendar"></i> 赛事日历</h2>
+                <div class="calendar-nav">
+                    <button class="nav-btn" id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                    <span class="current-month" id="currentMonth">2026年6月</span>
+                    <button class="nav-btn" id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="calendar-wrapper">
+                <div class="calendar-header">
+                    <div class="weekday">日</div>
+                    <div class="weekday">一</div>
+                    <div class="weekday">二</div>
+                    <div class="weekday">三</div>
+                    <div class="weekday">四</div>
+                    <div class="weekday">五</div>
+                    <div class="weekday">六</div>
+                </div>
+                <div class="calendar-body" id="calendarBody">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+            <div class="calendar-legend">
+                <div class="legend-item">
+                    <span class="dot today"></span>
+                    <span>今天</span>
+                </div>
+                <div class="legend-item">
+                    <span class="dot match"></span>
+                    <span>有比赛</span>
+                </div>
+                <div class="legend-item">
+                    <span class="dot important"></span>
+                    <span>焦点战</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 积分榜区域 -->
+    <section id="standings" class="standings-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-trophy"></i> 积分榜</h2>
+                <div class="standings-tabs">
+                    <button class="tab-btn active" data-tab="groups">小组</button>
+                    <button class="tab-btn" data-tab="overall">总榜</button>
+                </div>
+            </div>
+
+            <!-- 小组积分榜 -->
+            <div class="standings-content" id="groupsStandings">
+                <div class="group-selector">
+                    <button class="group-btn active" data-group="A">A组</button>
+                    <button class="group-btn" data-group="B">B组</button>
+                    <button class="group-btn" data-group="C">C组</button>
+                    <button class="group-btn" data-group="D">D组</button>
+                    <button class="group-btn" data-group="E">E组</button>
+                    <button class="group-btn" data-group="F">F组</button>
+                    <button class="group-btn" data-group="G">G组</button>
+                    <button class="group-btn" data-group="H">H组</button>
+                </div>
+                <div class="standings-table" id="groupTable">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+
+            <!-- 总积分榜 -->
+            <div class="standings-content hidden" id="overallStandings">
+                <div class="standings-table" id="overallTable">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 赛程区域 -->
+    <section id="matches" class="matches-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-futbol"></i> 全部赛程</h2>
+                <div class="stage-filter">
+                    <select id="stageFilter">
+                        <option value="all">全部阶段</option>
+                        <option value="group">小组赛</option>
+                        <option value="round16">1/8决赛</option>
+                        <option value="quarter">1/4决赛</option>
+                        <option value="semi">半决赛</option>
+                        <option value="final">决赛</option>
+                    </select>
+                </div>
+            </div>
+            <div class="matches-list" id="matchesList">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 球队区域 -->
+    <section id="teams" class="teams-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> 参赛球队</h2>
+                <div class="teams-stats">
+                    <div class="stat-box">
+                        <span class="stat-num">48</span>
+                        <span class="stat-label">参赛球队</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num">104</span>
+                        <span class="stat-label">比赛场次</span>
+                    </div>
+                </div>
+            </div>
+            <div class="teams-grid" id="teamsGrid">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 比赛详情模态框 -->
+    <div class="modal" id="matchModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>比赛详情</h3>
+                <button class="close-btn" id="closeModal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- 动态生成 -->
+            </div>
+        </div>
     </div>
 
-    <div class="timer-display">
-      <div class="time">25:00</div>
-      <div class="status">准备开始专注</div>
+    <!-- 音乐播放器 -->
+    <div class="music-player" id="musicPlayer">
+        <div class="player-mini" id="playerMini">
+            <div class="album-art">
+                <img src="https://via.placeholder.com/60x60/1a5f2a/fff?text=WC" alt="专辑封面" id="albumArt">
+            </div>
+            <div class="song-info">
+                <span class="song-title" id="songTitle">The Cup of Life</span>
+                <span class="song-artist" id="songArtist">1998 法国世界杯</span>
+            </div>
+            <div class="player-controls">
+                <button class="control-btn" id="prevBtn"><i class="fas fa-step-backward"></i></button>
+                <button class="control-btn play-btn" id="playBtn"><i class="fas fa-play"></i></button>
+                <button class="control-btn" id="nextBtn"><i class="fas fa-step-forward"></i></button>
+            </div>
+            <button class="expand-btn" id="expandBtn"><i class="fas fa-chevron-up"></i></button>
+        </div>
+
+        <div class="player-full hidden" id="playerFull">
+            <div class="full-header">
+                <button class="collapse-btn" id="collapseBtn"><i class="fas fa-chevron-down"></i></button>
+                <span class="now-playing">正在播放</span>
+            </div>
+            <div class="full-art">
+                <img src="https://via.placeholder.com/250x250/1a5f2a/fff?text=WC" alt="专辑封面" id="fullAlbumArt">
+            </div>
+            <div class="full-info">
+                <h3 class="full-title" id="fullTitle">The Cup of Life</h3>
+                <p class="full-artist" id="fullArtist">Ricky Martin - 1998 法国世界杯</p>
+            </div>
+            <div class="progress-container">
+                <span class="time" id="currentTime">0:00</span>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="time" id="totalTime">3:45</span>
+            </div>
+            <div class="full-controls">
+                <button class="control-btn" id="shuffleBtn"><i class="fas fa-random"></i></button>
+                <button class="control-btn" id="prevBtnFull"><i class="fas fa-step-backward"></i></button>
+                <button class="control-btn play-btn-large" id="playBtnFull"><i class="fas fa-play"></i></button>
+                <button class="control-btn" id="nextBtnFull"><i class="fas fa-step-forward"></i></button>
+                <button class="control-btn" id="repeatBtn"><i class="fas fa-redo"></i></button>
+            </div>
+            <div class="playlist" id="playlist">
+                <!-- 动态生成 -->
+            </div>
+        </div>
     </div>
 
-    <div class="progress-ring">
-      <svg width="200" height="200">
-        <circle class="progress-ring-bg" cx="100" cy="100" r="90"></circle>
-        <circle class="progress-ring-fill" cx="100" cy="100" r="90"></circle>
-      </svg>
-    </div>
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>2026 FIFA World Cup Guide | 世界杯观赛指南</p>
+            <p class="copyright">© 2026 All Rights Reserved. 仅供学习交流使用</p>
+        </div>
+    </footer>
 
-    <div class="controls">
-      <button class="btn btn-primary" id="startBtn">开始</button>
-      <button class="btn btn-secondary" id="pauseBtn" style="display: none;">暂停</button>
-      <button class="btn btn-secondary" id="resetBtn">重置</button>
-    </div>
-
-    <div class="stats">
-      <div class="stat-item">
-        <span class="stat-value" id="completedCount">0</span>
-        <span class="stat-label">完成番茄</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-value" id="totalFocusTime">0</span>
-        <span class="stat-label">专注分钟</span>
-      </div>
-    </div>
-
-    <div class="settings">
-      <div class="setting-item">
-        <label>专注时长 (分钟)</label>
-        <input type="number" id="pomodoroTime" value="25" min="1" max="60">
-      </div>
-      <div class="setting-item">
-        <label>短休息 (分钟)</label>
-        <input type="number" id="shortBreakTime" value="5" min="1" max="30">
-      </div>
-      <div class="setting-item">
-        <label>长休息 (分钟)</label>
-        <input type="number" id="longBreakTime" value="15" min="1" max="60">
-      </div>
-    </div>
-
-    <div class="task-input">
-      <input type="text" id="currentTask" placeholder="当前任务...">
-    </div>
-  </div>
-
-  <audio id="timerSound" preload="auto">
-    <source src="assets/notification.mp3" type="audio/mpeg">
-  </audio>
-
-  <script src="renderer.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
