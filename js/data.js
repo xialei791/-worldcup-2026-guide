@@ -530,7 +530,7 @@ function formatDate(dateStr) {
 
 function getStatusText(status, minute) {
     switch(status) {
-        case 'live': return minute + '' 直播中';
+        case 'live': return minute + "' 直播中";
         case 'finished': return '已结束';
         default: return '未开始';
     }
