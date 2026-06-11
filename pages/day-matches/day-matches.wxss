@@ -1,0 +1,306 @@
+/* 某日所有比赛页面样式 */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f0f7f0 0%, #e8f5e9 100%);
+  padding-bottom: 40rpx;
+}
+
+/* 日期头部 */
+.date-header {
+  background: linear-gradient(135deg, #1a5f2a 0%, #2e7d32 100%);
+  padding: 40rpx 30rpx;
+  text-align: center;
+}
+
+.date-title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 10rpx;
+}
+
+.match-count {
+  font-size: 28rpx;
+  color: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.2);
+  padding: 6rpx 20rpx;
+  border-radius: 30rpx;
+}
+
+/* 焦点战区域 */
+.highlight-section {
+  margin: 30rpx;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.star {
+  font-size: 36rpx;
+}
+
+.highlight-card {
+  background: linear-gradient(135deg, #1a5f2a 0%, #2e7d32 100%);
+  border-radius: 24rpx;
+  padding: 40rpx;
+  color: #fff;
+  box-shadow: 0 8rpx 30rpx rgba(26,95,42,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.match-status {
+  text-align: center;
+  font-size: 28rpx;
+  margin-bottom: 30rpx;
+  padding: 10rpx 20rpx;
+  background: rgba(255,255,255,0.2);
+  border-radius: 30rpx;
+  display: inline-block;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.match-status.live {
+  background: #ff4444;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.teams-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.team-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.team-flag-large {
+  width: 100rpx;
+  height: 70rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 4rpx 15rpx rgba(0,0,0,0.3);
+}
+
+.team-name-large {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.score-section {
+  text-align: center;
+}
+
+.score-large {
+  font-size: 56rpx;
+  font-weight: bold;
+}
+
+.vs-large {
+  font-size: 40rpx;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.match-info {
+  display: flex;
+  justify-content: center;
+  gap: 30rpx;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.match-info text {
+  font-size: 24rpx;
+  opacity: 0.9;
+  background: rgba(255,255,255,0.15);
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+/* 所有比赛 */
+.all-matches {
+  margin: 0 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-left: 20rpx;
+  border-left: 6rpx solid #1a5f2a;
+}
+
+.match-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.match-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 15rpx rgba(0,0,0,0.08);
+  border-left: 6rpx solid #ddd;
+}
+
+.match-card.live {
+  border-left-color: #ff4444;
+}
+
+.match-card.finished {
+  border-left-color: #4caf50;
+}
+
+.match-card.upcoming {
+  border-left-color: #2196f3;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.match-time {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.status-tag {
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.status-tag.live {
+  background: #ffebee;
+  color: #ff4444;
+}
+
+.status-tag.finished {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+
+.status-tag.upcoming {
+  background: #e3f2fd;
+  color: #2196f3;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.team-row {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.team-flag {
+  width: 50rpx;
+  height: 35rpx;
+  border-radius: 6rpx;
+}
+
+.team-name {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.score {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #1a5f2a;
+  min-width: 80rpx;
+  text-align: right;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.group {
+  font-size: 24rpx;
+  color: #666;
+  background: #f5f5f5;
+  padding: 4rpx 16rpx;
+  border-radius: 12rpx;
+}
+
+.venue {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #999;
+}

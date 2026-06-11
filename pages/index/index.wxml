@@ -7,24 +7,24 @@
       <text class="countdown-label">2026 FIFA世界杯</text>
       <text class="countdown-subtitle">美国 · 加拿大 · 墨西哥</text>
       <view class="countdown-timer">
-        <view class="time-item">
-          <text class="time-num">{{countdown.days}}</text>
-          <text class="time-unit">天</text>
+        <view class="time-item" wx:for="{{countdown.days}}" wx:key="index">
+          <text class="time-num">{{item}}</text>
+          <text class="time-unit" wx:if="{{index === 0}}">天</text>
         </view>
         <text class="time-separator">:</text>
-        <view class="time-item">
-          <text class="time-num">{{countdown.hours}}</text>
-          <text class="time-unit">时</text>
+        <view class="time-item" wx:for="{{countdown.hours}}" wx:key="index">
+          <text class="time-num">{{item}}</text>
+          <text class="time-unit" wx:if="{{index === 0}}">时</text>
         </view>
         <text class="time-separator">:</text>
-        <view class="time-item">
-          <text class="time-num">{{countdown.minutes}}</text>
-          <text class="time-unit">分</text>
+        <view class="time-item" wx:for="{{countdown.minutes}}" wx:key="index">
+          <text class="time-num">{{item}}</text>
+          <text class="time-unit" wx:if="{{index === 0}}">分</text>
         </view>
         <text class="time-separator">:</text>
-        <view class="time-item">
-          <text class="time-num">{{countdown.seconds}}</text>
-          <text class="time-unit">秒</text>
+        <view class="time-item" wx:for="{{countdown.seconds}}" wx:key="index">
+          <text class="time-num">{{item}}</text>
+          <text class="time-unit" wx:if="{{index === 0}}">秒</text>
         </view>
       </view>
       <text class="countdown-date">2026年6月11日 - 7月19日</text>
@@ -38,6 +38,12 @@
         <text class="iconfont">📅</text>
       </view>
       <text class="menu-text">赛程</text>
+    </view>
+    <view class="menu-item" bindtap="goToCalendar">
+      <view class="menu-icon calendar">
+        <text class="iconfont">🗓️</text>
+      </view>
+      <text class="menu-text">日历</text>
     </view>
     <view class="menu-item" bindtap="goToTeams">
       <view class="menu-icon teams">
@@ -60,17 +66,23 @@
   </view>
 
   <!-- 今日赛事 -->
-  <view class="card">
+  <view class="card animate-fade-in">
     <view class="card-header">
-      <text class="card-title">今日赛事</text>
+      <view class="title-section">
+        <text class="card-title">🔥 今日赛事</text>
+        <text class="live-indicator" wx:if="{{todayMatches.some(item => item.status === 'live')}}">
+          <text class="live-dot"></text> 进行中
+        </text>
+      </view>
       <text class="more" bindtap="goToSchedule">查看更多 ></text>
     </view>
     <view class="match-list">
       <block wx:if="{{todayMatches.length > 0}}">
-        <view class="match-item" wx:for="{{todayMatches}}" wx:key="id" bindtap="goToMatchDetail" data-id="{{item.id}}">
-          <view class="match-time">
-            <text class="time">{{item.time}}</text>
-            <text class="group">{{item.group}}</text>
+        <view class="match-item {{item.status}}" wx:for="{{todayMatches}}" wx:key="id" bindtap="goToMatchDetail" data-id="{{item.id}}" style="animation-delay: {{index * 100}}ms">
+          <view class="match-status-bar {{item.status}}">
+            <text wx:if="{{item.status === 'finished'}}">已结束</text>
+            <text wx:elif="{{item.status === 'live'}}">{{item.minute}}' 直播中</text>
+            <text wx:else>{{item.time}}</text>
           </view>
           <view class="match-teams">
             <view class="team">
@@ -79,7 +91,7 @@
             </view>
             <view class="vs">
               <text wx:if="{{item.status === 'finished'}}" class="score">{{item.homeScore}} - {{item.awayScore}}</text>
-              <text wx:elif="{{item.status === 'live'}}" class="live-tag">进行中</text>
+              <text wx:elif="{{item.status === 'live'}}" class="score live-score">{{item.homeScore}} - {{item.awayScore}}</text>
               <text wx:else class="vs-text">VS</text>
             </view>
             <view class="team">
@@ -88,52 +100,117 @@
             </view>
           </view>
           <view class="match-stadium">
-            <text class="stadium">{{item.stadium}}</text>
+            <text class="stadium">🏟️ {{item.stadium}}</text>
           </view>
         </view>
       </block>
       <view wx:else class="no-match">
+        <text class="no-match-icon">📅</text>
         <text>今日暂无比赛</text>
       </view>
     </view>
   </view>
 
-  <!-- 小组积分榜 -->
-  <view class="card">
+  <!-- 积分榜 - 带高级动画 -->
+  <view class="card standings-card">
     <view class="card-header">
-      <text class="card-title">小组积分榜</text>
-      <text class="more" bindtap="goToTeams">查看全部 ></text>
+      <text class="card-title">🏆 积分榜</text>
     </view>
-    <scroll-view scroll-x class="group-tabs">
-      <view class="tab-item {{currentGroup === item ? 'active' : ''}}"
-            wx:for="{{groups}}"
-            wx:key="*this"
-            data-group="{{item}}"
-            bindtap="switchGroup">
-        {{item}}
+
+    <!-- 标签切换 -->
+    <view class="standing-tabs">
+      <view class="standing-tab {{activeStandingTab === 'groups' ? 'active' : ''}}" bindtap="switchStandingTab" data-tab="groups">
+        <text>小组积分榜</text>
       </view>
-    </scroll-view>
-    <view class="standings-table">
-      <view class="table-header">
-        <text class="col-rank">排名</text>
-        <text class="col-team">球队</text>
-        <text class="col-mp">赛</text>
-        <text class="col-w">胜</text>
-        <text class="col-d">平</text>
-        <text class="col-l">负</text>
-        <text class="col-pts">分</text>
+      <view class="standing-tab {{activeStandingTab === 'overall' ? 'active' : ''}}" bindtap="switchStandingTab" data-tab="overall">
+        <text>总积分榜</text>
       </view>
-      <view class="table-row {{index < 2 ? 'qualified' : ''}}" wx:for="{{groupStandings}}" wx:key="team">
-        <text class="col-rank">{{index + 1}}</text>
-        <view class="col-team">
-          <image class="team-flag-small" src="{{item.flag}}" mode="aspectFit"/>
-          <text>{{item.team}}</text>
+    </view>
+
+    <!-- 小组积分榜 -->
+    <view class="standings-content" wx:if="{{activeStandingTab === 'groups'}}">
+      <scroll-view scroll-x class="group-tabs">
+        <view class="tab-item {{currentGroup === item ? 'active' : ''}}"
+              wx:for="{{groups}}"
+              wx:key="*this"
+              data-group="{{item}}"
+              bindtap="switchGroup">
+          {{item}}
         </view>
-        <text class="col-mp">{{item.mp}}</text>
-        <text class="col-w">{{item.w}}</text>
-        <text class="col-d">{{item.d}}</text>
-        <text class="col-l">{{item.l}}</text>
-        <text class="col-pts">{{item.pts}}</text>
+      </scroll-view>
+
+      <view class="standings-table">
+        <view class="table-header">
+          <text class="col-rank">排名</text>
+          <text class="col-team">球队</text>
+          <text class="col-gf">进</text>
+          <text class="col-ga">失</text>
+          <text class="col-pts">分</text>
+        </view>
+        <view class="table-row {{index < 2 ? 'qualified' : ''}} {{isAnimating ? 'animating' : ''}}"
+              wx:for="{{groupStandings}}"
+              wx:key="team"
+              style="animation-delay: {{index * 150}}ms">
+          <view class="col-rank">
+            <text class="rank-num rank-{{index + 1}}">{{index + 1}}</text>
+          </view>
+          <view class="col-team">
+            <image class="team-flag-small" src="{{item.flag}}" mode="aspectFit"/>
+            <text class="team-name-text">{{item.team}}</text>
+          </view>
+          <text class="col-gf">{{item.gf}}</text>
+          <text class="col-ga">{{item.ga}}</text>
+          <view class="col-pts">
+            <text class="pts-num">{{item.pts}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="table-legend">
+        <view class="legend-item">
+          <view class="legend-box qualified"></view>
+          <text>晋级</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-box eliminated"></view>
+          <text>淘汰</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 总积分榜 -->
+    <view class="standings-content overall" wx:if="{{activeStandingTab === 'overall'}}">
+      <view class="overall-table">
+        <view class="overall-header">
+          <text class="col-rank">排名</text>
+          <text class="col-team">球队</text>
+          <text class="col-group">组</text>
+          <text class="col-mp">赛</text>
+          <text class="col-pts">积分</text>
+        </view>
+        <view class="overall-row {{index < 3 ? 'top3' : ''}} {{index >= 3 && index < 8 ? 'qualified' : ''}}"
+              wx:for="{{overallStandings}}"
+              wx:key="team"
+              style="animation-delay: {{index * 80}}ms">
+          <view class="col-rank">
+            <view class="rank-badge rank-{{item.rank}}">
+              <text>{{item.rank}}</text>
+            </view>
+          </view>
+          <view class="col-team">
+            <image class="team-flag-small" src="{{item.flag}}" mode="aspectFit"/>
+            <view class="team-info">
+              <text class="team-name-text">{{item.team}}</text>
+              <text class="team-record">{{item.w}}胜 {{item.d}}平 {{item.l}}负</text>
+            </view>
+          </view>
+          <text class="col-group">{{item.group}}</text>
+          <text class="col-mp">{{item.mp}}</text>
+          <view class="col-pts">
+            <text class="pts-num-large">{{item.pts}}</text>
+            <text class="pts-label">分</text>
+          </view>
+        </view>
       </view>
     </view>
   </view>
@@ -141,16 +218,18 @@
   <!-- 最新资讯 -->
   <view class="card">
     <view class="card-header">
-      <text class="card-title">最新资讯</text>
+      <text class="card-title">📰 最新资讯</text>
       <text class="more" bindtap="goToNews">查看更多 ></text>
     </view>
     <view class="news-list">
-      <view class="news-item" wx:for="{{latestNews}}" wx:key="id" bindtap="goToNewsDetail" data-id="{{item.id}}">
-        <image class="news-image" src="{{item.image}}" mode="aspectFill"/>
+      <view class="news-item" wx:for="{{latestNews}}" wx:key="id" bindtap="goToNewsDetail" data-id="{{item.id}}" style="animation-delay: {{index * 100}}ms">
+        <view class="news-image-wrap">
+          <image class="news-image" src="{{item.image}}" mode="aspectFill"/>
+          <view class="news-category-tag">{{item.category}}</view>
+        </view>
         <view class="news-content">
-          <text class="news-title ellipsis-2">{{item.title}}</text>
+          <text class="news-title">{{item.title}}</text>
           <view class="news-meta">
-            <text class="news-category">{{item.category}}</text>
             <text class="news-time">{{item.time}}</text>
           </view>
         </view>
@@ -160,24 +239,38 @@
 
   <!-- 世界杯数据概览 -->
   <view class="card stats-card">
-    <text class="card-title">赛事数据</text>
+    <text class="card-title">📊 赛事数据</text>
     <view class="stats-grid">
       <view class="stat-item">
+        <view class="stat-icon teams-icon">🏆</view>
         <text class="stat-num">48</text>
         <text class="stat-label">参赛球队</text>
       </view>
       <view class="stat-item">
+        <view class="stat-icon matches-icon">⚽</view>
         <text class="stat-num">104</text>
         <text class="stat-label">比赛场次</text>
       </view>
       <view class="stat-item">
+        <view class="stat-icon hosts-icon">🌎</view>
         <text class="stat-num">3</text>
         <text class="stat-label">主办国家</text>
       </view>
       <view class="stat-item">
+        <view class="stat-icon stadiums-icon">🏟️</view>
         <text class="stat-num">16</text>
         <text class="stat-label">比赛球场</text>
       </view>
     </view>
   </view>
+
+  <!-- 背景装饰 -->
+  <view class="bg-decoration">
+    <view class="football football-1">⚽</view>
+    <view class="football football-2">⚽</view>
+    <view class="football football-3">⚽</view>
+  </view>
+
+  <!-- 音乐播放器 -->
+  <music-player autoplay="{{false}}" volume="{{0.5}}"></music-player>
 </view>

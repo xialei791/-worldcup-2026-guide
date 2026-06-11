@@ -1,0 +1,570 @@
+/* 比赛详情页样式 */
+.container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-bottom: 100rpx;
+}
+
+/* 比分头部 */
+.score-header {
+  background: linear-gradient(135deg, #1a5f2a 0%, #2e7d32 100%);
+  padding: 40rpx 30rpx;
+  color: #fff;
+}
+
+.match-info-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.match-group {
+  font-size: 28rpx;
+  background: rgba(255,255,255,0.2);
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.match-status {
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 12rpx;
+  background: rgba(255,255,255,0.3);
+}
+
+.match-status.live {
+  background: #ff4444;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.score-board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.team-flag-large {
+  width: 100rpx;
+  height: 70rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 4rpx 15rpx rgba(0,0,0,0.3);
+}
+
+.team-name-large {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.score-display {
+  text-align: center;
+}
+
+.score-numbers {
+  font-size: 72rpx;
+  font-weight: bold;
+  display: block;
+}
+
+.match-time {
+  font-size: 28rpx;
+  opacity: 0.8;
+}
+
+.match-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20rpx;
+  font-size: 24rpx;
+  opacity: 0.9;
+  padding-top: 20rpx;
+  border-top: 1rpx solid rgba(255,255,255,0.2);
+}
+
+/* 标签导航 */
+.tab-nav {
+  display: flex;
+  background: #fff;
+  border-bottom: 1rpx solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab-item {
+  flex: 1;
+  padding: 30rpx 0;
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #1a5f2a;
+  font-weight: bold;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  right: 30%;
+  height: 4rpx;
+  background: #1a5f2a;
+  border-radius: 2rpx;
+}
+
+/* 内容区域 */
+.tab-content {
+  padding: 20rpx;
+}
+
+/* 分区标题 */
+.section {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.icon {
+  font-size: 36rpx;
+}
+
+/* 进球榜 */
+.goals-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 30rpx;
+}
+
+.team-goals {
+  flex: 1;
+  text-align: center;
+}
+
+.team-goals-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1a5f2a;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15rpx;
+  padding: 15rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  margin-bottom: 10rpx;
+}
+
+.goal-minute {
+  font-size: 24rpx;
+  color: #666;
+  min-width: 50rpx;
+}
+
+.goal-player {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.goal-assist {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.no-goal {
+  padding: 30rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+
+/* 助攻榜 */
+.assists-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 30rpx;
+}
+
+.team-assists {
+  flex: 1;
+}
+
+.assist-item {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  padding: 20rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  margin-bottom: 10rpx;
+}
+
+.assist-count {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #ff9800;
+  min-width: 80rpx;
+}
+
+.assist-player {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.no-assist {
+  padding: 30rpx;
+  text-align: center;
+  color: #999;
+  font-size: 26rpx;
+}
+
+/* 关键统计 */
+.key-stats {
+  padding: 20rpx;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.stat-value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  min-width: 100rpx;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.stat-bar {
+  height: 12rpx;
+  background: #e0e0e0;
+  border-radius: 6rpx;
+  overflow: hidden;
+  margin-top: 10rpx;
+}
+
+.stat-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+  transition: width 1s ease;
+}
+
+.stat-fill.home {
+  background: linear-gradient(90deg, #1a5f2a, #4caf50);
+}
+
+/* 阵容页 */
+.lineup-section {
+  display: flex;
+  gap: 20rpx;
+}
+
+.team-column {
+  flex: 1;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.team-header {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+  padding: 25rpx;
+  background: #f5f5f5;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.team-header .team-flag {
+  width: 40rpx;
+  height: 30rpx;
+  border-radius: 4rpx;
+}
+
+.player-list {
+  padding: 15rpx;
+}
+
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+  padding: 15rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  margin-bottom: 10rpx;
+}
+
+.player-number {
+  width: 50rpx;
+  height: 50rpx;
+  background: #1a5f2a;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.player-info {
+  flex: 1;
+}
+
+.player-name {
+  font-size: 26rpx;
+  color: #333;
+  font-weight: 500;
+  display: block;
+}
+
+.player-position {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.player-stats {
+  display: flex;
+  gap: 5rpx;
+}
+
+.stat-badge {
+  font-size: 20rpx;
+  padding: 2rpx 8rpx;
+  border-radius: 8rpx;
+}
+
+.stat-badge.goal {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+
+.stat-badge.assist {
+  background: #fff3e0;
+  color: #ff9800;
+}
+
+.player-rating {
+  width: 60rpx;
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1a5f2a;
+  background: #e8f5e9;
+  padding: 8rpx;
+  border-radius: 10rpx;
+}
+
+/* 统计页 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  text-align: center;
+}
+
+.stat-title {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.stat-numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.stat-numbers .num {
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.stat-numbers .num.home {
+  color: #1a5f2a;
+}
+
+.stat-numbers .num.away {
+  color: #333;
+}
+
+.stat-numbers .vs {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.stat-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.stat-team {
+  text-align: left;
+}
+
+.stat-team .stat-num {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-right: 10rpx;
+}
+
+.stat-bar-mini {
+  height: 10rpx;
+  background: #e0e0e0;
+  border-radius: 5rpx;
+  overflow: hidden;
+  margin-top: 5rpx;
+}
+
+.stat-bar-mini .stat-fill {
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+}
+
+.pass-accuracy {
+  margin-top: 15rpx;
+  padding-top: 15rpx;
+  border-top: 1rpx solid #f0f0f0;
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 时间线 */
+.timeline {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 20rpx;
+  padding: 20rpx 0;
+  border-left: 4rpx solid #e0e0e0;
+  padding-left: 30rpx;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -12rpx;
+  top: 25rpx;
+  width: 20rpx;
+  height: 20rpx;
+  background: #ddd;
+  border-radius: 50%;
+}
+
+.timeline-item.goal::before {
+  background: #4caf50;
+}
+
+.timeline-item.card::before {
+  background: #ffc107;
+}
+
+.time-marker {
+  min-width: 80rpx;
+}
+
+.minute {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #666;
+}
+
+.event-content {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.event-icon {
+  font-size: 36rpx;
+}
+
+.event-text {
+  font-size: 26rpx;
+  color: #333;
+}
+
+/* 音乐按钮 */
+.music-btn {
+  position: fixed;
+  right: 30rpx;
+  bottom: 150rpx;
+  width: 100rpx;
+  height: 100rpx;
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(255,152,0,0.4);
+  animation: musicPulse 2s infinite;
+}
+
+@keyframes musicPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.music-icon {
+  font-size: 48rpx;
+}

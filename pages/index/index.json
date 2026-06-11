@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "music-player": "/components/music-player/music-player"
+  },
   "enablePullDownRefresh": true,
   "backgroundColor": "#f5f5f5"
 }

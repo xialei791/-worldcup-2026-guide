@@ -1,0 +1,309 @@
+<!-- 比赛详情页 -->
+<view class="container">
+  <!-- 比分头部 -->
+  <view class="score-header">
+    <view class="match-info-bar">
+      <text class="match-group">{{matchInfo.group}}</text>
+      <text class="match-status {{matchInfo.status}}">
+        <text wx:if="{{matchInfo.status === 'live'}}">进行中</text>
+        <text wx:elif="{{matchInfo.status === 'finished'}}">已结束</text>
+        <text wx:else>未开始</text>
+      </text>
+    </view>
+
+    <view class="score-board">
+      <view class="team home">
+        <image class="team-flag-large" src="{{matchInfo.homeFlag}}" mode="aspectFit"/>
+        <text class="team-name-large">{{matchInfo.homeTeam}}</text>
+      </view>
+
+      <view class="score-display">
+        <text class="score-numbers">{{matchInfo.homeScore}} - {{matchInfo.awayScore}}</text>
+        <text class="match-time" wx:if="{{matchInfo.status === 'upcoming'}}">{{matchInfo.time}}</text>
+      </view>
+
+      <view class="team away">
+        <image class="team-flag-large" src="{{matchInfo.awayFlag}}" mode="aspectFit"/>
+        <text class="team-name-large">{{matchInfo.awayTeam}}</text>
+      </view>
+    </view>
+
+    <view class="match-meta">
+      <text>📅 {{matchInfo.date}} {{matchInfo.time}}</text>
+      <text>🏟️ {{matchInfo.stadium}}</text>
+      <text>👥 {{matchInfo.attendance}}人</text>
+      <text>🌤️ {{matchInfo.weather}}</text>
+    </view>
+  </view>
+
+  <!-- 标签导航 -->
+  <view class="tab-nav">
+    <view class="tab-item {{activeTab === 'overview' ? 'active' : ''}}" bindtap="switchTab" data-tab="overview">
+      <text>概览</text>
+    </view>
+    <view class="tab-item {{activeTab === 'lineup' ? 'active' : ''}}" bindtap="switchTab" data-tab="lineup">
+      <text>阵容</text>
+    </view>
+    <view class="tab-item {{activeTab === 'stats' ? 'active' : ''}}" bindtap="switchTab" data-tab="stats">
+      <text>统计</text>
+    </view>
+    <view class="tab-item {{activeTab === 'events' ? 'active' : ''}}" bindtap="switchTab" data-tab="events">
+      <text>事件</text>
+    </view>
+  </view>
+
+  <!-- 概览页 -->
+  <view class="tab-content" wx:if="{{activeTab === 'overview'}}">
+    <!-- 进球榜 -->
+    <view class="section">
+      <view class="section-title">
+        <text class="icon">⚽</text>
+        <text>进球榜</text>
+      </view>
+
+      <view class="goals-section">
+        <view class="team-goals">
+          <text class="team-goals-title">{{matchInfo.homeTeam}}</text>
+          <view class="goal-item" wx:for="{{homeGoals}}" wx:key="index">
+            <text class="goal-minute">{{item.minute}}'</text>
+            <text class="goal-player">{{item.player}}</text>
+            <text class="goal-assist" wx:if="{{item.assist}}">({{item.assist}})</text>
+          </view>
+          <view class="no-goal" wx:if="{{homeGoals.length === 0}}">
+            <text>无进球</text>
+          </view>
+        </view>
+
+        <view class="team-goals">
+          <text class="team-goals-title">{{matchInfo.awayTeam}}</text>
+          <view class="goal-item" wx:for="{{awayGoals}}" wx:key="index">
+            <text class="goal-minute">{{item.minute}}'</text>
+            <text class="goal-player">{{item.player}}</text>
+            <text class="goal-assist" wx:if="{{item.assist}}">({{item.assist}})</text>
+          </view>
+          <view class="no-goal" wx:if="{{awayGoals.length === 0}}">
+            <text>无进球</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 助攻榜 -->
+    <view class="section">
+      <view class="section-title">
+        <text class="icon">🅰️</text>
+        <text>助攻榜</text>
+      </view>
+
+      <view class="assists-section">
+        <view class="team-assists">
+          <view class="assist-item" wx:for="{{homeAssists}}" wx:key="player">
+            <text class="assist-count">{{item.count}}次</text>
+            <text class="assist-player">{{item.player}}</text>
+          </view>
+          <view class="no-assist" wx:if="{{homeAssists.length === 0}}">
+            <text>无助攻</text>
+          </view>
+        </view>
+
+        <view class="team-assists">
+          <view class="assist-item" wx:for="{{awayAssists}}" wx:key="player">
+            <text class="assist-count">{{item.count}}次</text>
+            <text class="assist-player">{{item.player}}</text>
+          </view>
+          <view class="no-assist" wx:if="{{awayAssists.length === 0}}">
+            <text>无助攻</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 关键统计 -->
+    <view class="section">
+      <view class="section-title">
+        <text class="icon">📊</text>
+        <text>关键数据</text>
+      </view>
+
+      <view class="key-stats">
+        <view class="stat-row">
+          <text class="stat-value">{{statistics.possession.home}}%</text>
+          <text class="stat-label">控球率</text>
+          <text class="stat-value">{{statistics.possession.away}}%</text>
+        </view>
+        <view class="stat-bar">
+          <view class="stat-fill home" style="width: {{statistics.possession.home}}%"></view>
+        </view>
+
+        <view class="stat-row">
+          <text class="stat-value">{{statistics.shots.home}}</text>
+          <text class="stat-label">射门</text>
+          <text class="stat-value">{{statistics.shots.away}}</text>
+        </view>
+
+        <view class="stat-row">
+          <text class="stat-value">{{statistics.shotsOnTarget.home}}</text>
+          <text class="stat-label">射正</text>
+          <text class="stat-value">{{statistics.shotsOnTarget.away}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 阵容页 -->
+  <view class="tab-content" wx:if="{{activeTab === 'lineup'}}">
+    <view class="lineup-section">
+      <view class="team-column">
+        <view class="team-header">
+          <image class="team-flag" src="{{matchInfo.homeFlag}}" mode="aspectFit"/>
+          <text>{{matchInfo.homeTeam}}</text>
+        </view>
+        <view class="player-list">
+          <view class="player-card" wx:for="{{homePlayers}}" wx:key="number">
+            <view class="player-number">{{item.number}}</view>
+            <view class="player-info">
+              <text class="player-name">{{item.name}}</text>
+              <text class="player-position">{{item.position}}</text>
+            </view>
+            <view class="player-stats">
+              <text class="stat-badge goal" wx:if="{{item.goals > 0}}">{{item.goals}}⚽</text>
+              <text class="stat-badge assist" wx:if="{{item.assists > 0}}">{{item.assists}}🅰️</text>
+              <text class="stat-badge yellow" wx:if="{{item.yellow > 0}}">🟨</text>
+              <text class="stat-badge red" wx:if="{{item.red > 0}}">🟥</text>
+            </view>
+            <view class="player-rating">{{item.rating}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="team-column">
+        <view class="team-header">
+          <image class="team-flag" src="{{matchInfo.awayFlag}}" mode="aspectFit"/>
+          <text>{{matchInfo.awayTeam}}</text>
+        </view>
+        <view class="player-list">
+          <view class="player-card" wx:for="{{awayPlayers}}" wx:key="number">
+            <view class="player-number">{{item.number}}</view>
+            <view class="player-info">
+              <text class="player-name">{{item.name}}</text>
+              <text class="player-position">{{item.position}}</text>
+            </view>
+            <view class="player-stats">
+              <text class="stat-badge goal" wx:if="{{item.goals > 0}}">{{item.goals}}⚽</text>
+              <text class="stat-badge assist" wx:if="{{item.assists > 0}}">{{item.assists}}🅰️</text>
+              <text class="stat-badge yellow" wx:if="{{item.yellow > 0}}">🟨</text>
+              <text class="stat-badge red" wx:if="{{item.red > 0}}">🟥</text>
+            </view>
+            <view class="player-rating">{{item.rating}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 统计页 -->
+  <view class="tab-content" wx:if="{{activeTab === 'stats'}}">
+    <view class="stats-grid">
+      <view class="stat-card">
+        <text class="stat-title">控球率</text>
+        <view class="stat-comparison">
+          <view class="stat-team home">
+            <text class="stat-num">{{statistics.possession.home}}%</text>
+            <view class="stat-bar-mini">
+              <view class="stat-fill" style="width: {{statistics.possession.home}}%"></view>
+            </view>
+          </view>
+          <view class="stat-team away">
+            <text class="stat-num">{{statistics.possession.away}}%</text>
+            <view class="stat-bar-mini">
+              <view class="stat-fill" style="width: {{statistics.possession.away}}%"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="stat-card">
+        <text class="stat-title">射门</text>
+        <view class="stat-numbers">
+          <text class="num home">{{statistics.shots.home}}</text>
+          <text class="vs">vs</text>
+          <text class="num away">{{statistics.shots.away}}</text>
+        </view>
+      </view>
+
+      <view class="stat-card">
+        <text class="stat-title">射正</text>
+        <view class="stat-numbers">
+          <text class="num home">{{statistics.shotsOnTarget.home}}</text>
+          <text class="vs">vs</text>
+          <text class="num away">{{statistics.shotsOnTarget.away}}</text>
+        </view>
+      </view>
+
+      <view class="stat-card">
+        <text class="stat-title">角球</text>
+        <view class="stat-numbers">
+          <text class="num home">{{statistics.corners.home}}</text>
+          <text class="vs">vs</text>
+          <text class="num away">{{statistics.corners.away}}</text>
+        </view>
+      </view>
+
+      <view class="stat-card">
+        <text class="stat-title">犯规</text>
+        <view class="stat-numbers">
+          <text class="num home">{{statistics.fouls.home}}</text>
+          <text class="vs">vs</text>
+          <text class="num away">{{statistics.fouls.away}}</text>
+        </view>
+      </view>
+
+      <view class="stat-card">
+        <text class="stat-title">黄牌</text>
+        <view class="stat-numbers">
+          <text class="num home">{{statistics.yellowCards.home}}</text>
+          <text class="vs">vs</text>
+          <text class="num away">{{statistics.yellowCards.away}}</text>
+        </view>
+      </view>
+
+      <view class="stat-card">
+        <text class="stat-title">传球</text>
+        <view class="stat-numbers">
+          <text class="num home">{{statistics.passes.home}}</text>
+          <text class="vs">vs</text>
+          <text class="num away">{{statistics.passes.away}}</text>
+        </view>
+        <view class="pass-accuracy">
+          <text>成功率: {{statistics.passAccuracy.home}}% vs {{statistics.passAccuracy.away}}%</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 事件页 -->
+  <view class="tab-content" wx:if="{{activeTab === 'events'}}">
+    <view class="timeline">
+      <view class="timeline-item {{item.type}}" wx:for="{{timeline}}" wx:key="index">
+        <view class="time-marker">
+          <text class="minute">{{item.minute}}'</text>
+        </view>
+        <view class="event-content">
+          <view class="event-icon">
+            <text wx:if="{{item.type === 'goal'}}">⚽</text>
+            <text wx:elif="{{item.type === 'card'}}">🟨</text>
+            <text wx:elif="{{item.type === 'substitution'}}">🔄</text>
+            <text wx:elif="{{item.type === 'start' || item.type === 'half'}}">▶️</text>
+            <text wx:elif="{{item.type === 'end'}}">⏹️</text>
+          </view>
+          <text class="event-text">{{item.text}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 音乐播放器按钮 -->
+  <view class="music-btn" bindtap="toggleMusicPlayer">
+    <text class="music-icon">🎵</text>
+  </view>
+</view>

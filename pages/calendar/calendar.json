@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "赛事日历",
+  "navigationBarBackgroundColor": "#1a5f2a",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {},
+  "enablePullDownRefresh": true
+}

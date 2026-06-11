@@ -1,0 +1,104 @@
+<!-- 音乐播放器组件 -->
+<view class="music-player">
+  <!-- 迷你播放器按钮 -->
+  <view class="mini-player {{isPlaying ? 'playing' : ''}}" bindtap="togglePlayer" wx:if="{{!showPlayer}}">
+    <view class="album-cover">
+      <image src="{{playlist[currentIndex].cover}}" mode="aspectFill"/>
+    </view>
+    <view class="mini-info">
+      <text class="mini-title">{{playlist[currentIndex].title}}</text>
+      <text class="mini-artist">{{playlist[currentIndex].year}}</text>
+    </view>
+    <view class="mini-control" catchtap="togglePlay">
+      <text class="play-icon">{{isPlaying ? '⏸️' : '▶️'}}</text>
+    </view>
+  </view>
+
+  <!-- 全屏播放器 -->
+  <view class="full-player" wx:if="{{showPlayer}}">
+    <!-- 背景模糊 -->
+    <view class="player-bg">
+      <image src="{{playlist[currentIndex].cover}}" mode="aspectFill"/>
+    </view>
+
+    <!-- 播放器头部 -->
+    <view class="player-header">
+      <text class="back-btn" bindtap="togglePlayer">↓</text>
+      <view class="header-title">
+        <text class="playing-from">正在播放</text>
+        <text class="playlist-name">世界杯历年主题曲</text>
+      </view>
+      <text class="more-btn">⋮</text>
+    </view>
+
+    <!-- 唱片区域 -->
+    <view class="vinyl-area">
+      <view class="vinyl-container {{isPlaying ? 'rotating' : ''}}">
+        <view class="vinyl">
+          <image src="{{playlist[currentIndex].cover}}" mode="aspectFill"/>
+        </view>
+      </view>
+    </view>
+
+    <!-- 歌曲信息 -->
+    <view class="song-info">
+      <text class="song-title">{{playlist[currentIndex].title}}</text>
+      <text class="song-artist">{{playlist[currentIndex].artist}}</text>
+      <text class="song-year">{{playlist[currentIndex].year}}</text>
+    </view>
+
+    <!-- 进度条 -->
+    <view class="progress-area">
+      <text class="time">{{currentTime}}</text>
+      <slider class="progress-slider" value="{{progress}}" max="100" block-size="12" activeColor="#1a5f2a" backgroundColor="rgba(255,255,255,0.3)" bindchange="onProgressChange"/>
+      <text class="time">{{duration}}</text>
+    </view>
+
+    <!-- 控制按钮 -->
+    <view class="controls">
+      <view class="control-btn mode-btn" bindtap="switchPlayMode">
+        <text wx:if="{{playMode === 'loop'}}">🔁</text>
+        <text wx:if="{{playMode === 'single'}}">🔂</text>
+        <text wx:if="{{playMode === 'random'}}">🔀</text>
+      </view>
+
+      <view class="control-btn" bindtap="prevSong">
+        <text>⏮️</text>
+      </view>
+
+      <view class="control-btn play-btn" bindtap="togglePlay">
+        <text>{{isPlaying ? '⏸️' : '▶️'}}</text>
+      </view>
+
+      <view class="control-btn" bindtap="nextSong">
+        <text>⏭️</text>
+      </view>
+
+      <view class="control-btn playlist-btn" bindtap="togglePlayer">
+        <text>📋</text>
+      </view>
+    </view>
+
+    <!-- 播放列表 -->
+    <view class="playlist-section">
+      <view class="playlist-header">
+        <text class="playlist-title">播放列表 ({{playlist.length}}首)</text>
+      </view>
+      <scroll-view scroll-y class="playlist-scroll">
+        <view class="playlist-item {{currentIndex === index ? 'active' : ''}}" wx:for="{{playlist}}" wx:key="id" bindtap="selectSong" data-index="{{index}}">
+          <view class="item-number">
+            <text wx:if="{{currentIndex !== index}}">{{index + 1}}</text>
+            <text wx:else class="playing-icon">🎵</text>
+          </view>
+          <view class="item-info">
+            <text class="item-title">{{item.title}}</text>
+            <text class="item-artist">{{item.year}}</text>
+          </view>
+          <view class="item-status" wx:if="{{currentIndex === index}}">
+            <text class="wave">♪</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

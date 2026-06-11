@@ -6,7 +6,10 @@
     "pages/matches/matches",
     "pages/stadiums/stadiums",
     "pages/news/news",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/calendar/calendar",
+    "pages/day-matches/day-matches",
+    "pages/match-detail/match-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -28,6 +31,12 @@
         "selectedIconPath": "images/home-active.png"
       },
       {
+        "pagePath": "pages/calendar/calendar",
+        "text": "日历",
+        "iconPath": "images/calendar.png",
+        "selectedIconPath": "images/calendar-active.png"
+      },
+      {
         "pagePath": "pages/schedule/schedule",
         "text": "赛程",
         "iconPath": "images/schedule.png",
@@ -38,12 +47,6 @@
         "text": "球队",
         "iconPath": "images/teams.png",
         "selectedIconPath": "images/teams-active.png"
-      },
-      {
-        "pagePath": "pages/news/news",
-        "text": "资讯",
-        "iconPath": "images/news.png",
-        "selectedIconPath": "images/news-active.png"
       }
     ]
   },

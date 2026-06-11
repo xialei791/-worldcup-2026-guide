@@ -1,0 +1,109 @@
+<!-- 日历页面 -->
+<view class="container">
+  <!-- 日历头部 -->
+  <view class="calendar-header">
+    <view class="month-nav" bindtap="changeMonth" data-direction="prev">
+      <text class="nav-arrow">‹</text>
+    </view>
+    <text class="current-month">{{currentYear}}年{{currentMonth}}月</text>
+    <view class="month-nav" bindtap="changeMonth" data-direction="next">
+      <text class="nav-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 星期标题 -->
+  <view class="week-header">
+    <text class="week-day" wx:for="{{weekDays}}" wx:key="*this">{{item}}</text>
+  </view>
+
+  <!-- 日历网格 -->
+  <view class="calendar-grid">
+    <view
+      class="day-cell {{item.type}} {{item.isToday ? 'today' : ''}} {{item.isInTournament ? 'in-tournament' : ''}} {{selectedDate === item.date ? 'selected' : ''}}"
+      wx:for="{{daysInMonth}}"
+      wx:key="index"
+      bindtap="selectDate"
+      data-date="{{item.date}}">
+
+      <block wx:if="{{item.type === 'day'}}">
+        <text class="day-num">{{item.day}}</text>
+        <view class="match-dots" wx:if="{{item.matchCount > 0}}">
+          <view class="dot important" wx:if="{{item.hasImportant}}"></view>
+          <view class="dot regular" wx:for="{{item.matchCount > 3 ? 3 : item.matchCount}}" wx:key="index" wx:if="{{!item.hasImportant || index > 0}}"></view>
+        </view>
+        <text class="match-count" wx:if="{{item.matchCount > 0}}">{{item.matchCount}}场</text>
+      </block>
+    </view>
+  </view>
+
+  <!-- 选中日期详情 -->
+  <view class="date-detail" wx:if="{{selectedDate}}">
+    <view class="detail-header">
+      <view class="date-info">
+        <text class="selected-date">{{selectedDate}}</text>
+        <text class="match-total" wx:if="{{selectedDateMatches.length > 0}}">共{{selectedDateMatches.length}}场比赛</text>
+        <text class="match-total no-match" wx:else>当日无比赛</text>
+      </view>
+      <text class="view-all" bindtap="viewDayMatches" wx:if="{{selectedDateMatches.length > 0}}">查看全部 ></text>
+    </view>
+
+    <!-- 今日推荐 -->
+    <view class="recommend-section" wx:if="{{importantMatch}}">
+      <view class="recommend-title">
+        <text class="star">⭐</text>
+        <text>今日焦点战</text>
+      </view>
+      <view class="recommend-match" bindtap="goToMatchDetail" data-id="{{importantMatch.id}}">
+        <view class="match-time">{{importantMatch.time}}</view>
+        <view class="match-teams-row">
+          <view class="team-info">
+            <image class="team-flag" src="{{importantMatch.homeFlag}}" mode="aspectFit"/>
+            <text class="team-name">{{importantMatch.homeTeam}}</text>
+          </view>
+          <text class="vs">VS</text>
+          <view class="team-info">
+            <image class="team-flag" src="{{importantMatch.awayFlag}}" mode="aspectFit"/>
+            <text class="team-name">{{importantMatch.awayTeam}}</text>
+          </view>
+        </view>
+        <view class="match-group">{{importantMatch.group}}</view>
+      </view>
+    </view>
+
+    <!-- 其他比赛列表 -->
+    <view class="other-matches" wx:if="{{selectedDateMatches.length > 1}}">
+      <text class="section-title">其他比赛</text>
+      <view class="match-item" wx:for="{{selectedDateMatches}}" wx:key="id" wx:if="{{item.id !== importantMatch.id}}" bindtap="goToMatchDetail" data-id="{{item.id}}">
+        <text class="item-time">{{item.time}}</text>
+        <view class="item-teams">
+          <image class="small-flag" src="{{item.homeFlag}}" mode="aspectFit"/>
+          <text class="small-name">{{item.homeTeam}}</text>
+          <text class="small-vs">vs</text>
+          <image class="small-flag" src="{{item.awayFlag}}" mode="aspectFit"/>
+          <text class="small-name">{{item.awayTeam}}</text>
+        </view>
+        <text class="item-group">{{item.group}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 图例 -->
+  <view class="calendar-legend">
+    <view class="legend-item">
+      <view class="legend-dot today"></view>
+      <text>今天</text>
+    </view>
+    <view class="legend-item">
+      <view class="legend-dot in-tournament"></view>
+      <text>赛事期间</text>
+    </view>
+    <view class="legend-item">
+      <view class="legend-dot has-match"></view>
+      <text>有比赛</text>
+    </view>
+    <view class="legend-item">
+      <view class="legend-dot important"></view>
+      <text>焦点战</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,96 @@
+<!-- 某日所有比赛页面 -->
+<view class="container">
+  <!-- 日期标题 -->
+  <view class="date-header">
+    <text class="date-title">{{formattedDate}}</text>
+    <text class="match-count" wx:if="{{matches.length > 0}}">共{{matches.length}}场比赛</text>
+  </view>
+
+  <!-- 焦点战 -->
+  <view class="highlight-section" wx:if="{{importantMatch}}">
+    <view class="section-label">
+      <text class="star">⭐</text>
+      <text>今日焦点战</text>
+    </view>
+    <view class="highlight-card" bindtap="goToMatchDetail" data-id="{{importantMatch.id}}">
+      <view class="match-status {{importantMatch.status}}">
+        <text wx:if="{{importantMatch.status === 'live'}}">进行中 {{importantMatch.minute}}'</text>
+        <text wx:elif="{{importantMatch.status === 'finished'}}">已结束</text>
+        <text wx:else>未开始</text>
+      </view>
+
+      <view class="teams-section">
+        <view class="team-block">
+          <image class="team-flag-large" src="{{importantMatch.homeFlag}}" mode="aspectFit"/>
+          <text class="team-name-large">{{importantMatch.homeTeam}}</text>
+        </view>
+
+        <view class="score-section">
+          <block wx:if="{{importantMatch.status !== 'upcoming'}}">
+            <text class="score-large">{{importantMatch.homeScore}} - {{importantMatch.awayScore}}</text>
+          </block>
+          <block wx:else>
+            <text class="vs-large">VS</text>
+            <text class="match-time">{{importantMatch.time}}</text>
+          </block>
+        </view>
+
+        <view class="team-block">
+          <image class="team-flag-large" src="{{importantMatch.awayFlag}}" mode="aspectFit"/>
+          <text class="team-name-large">{{importantMatch.awayTeam}}</text>
+        </view>
+      </view>
+
+      <view class="match-info">
+        <text class="stadium">🏟️ {{importantMatch.stadium}}</text>
+        <text class="city">📍 {{importantMatch.city}}</text>
+        <text class="group">{{importantMatch.group}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 所有比赛列表 -->
+  <view class="all-matches">
+    <view class="section-title">
+      <text>全部比赛</text>
+    </view>
+
+    <view class="match-list">
+      <view class="match-card {{item.status}}" wx:for="{{matches}}" wx:key="id" bindtap="goToMatchDetail" data-id="{{item.id}}">
+        <view class="card-header">
+          <text class="match-time">{{item.time}}</text>
+          <view class="status-tag {{item.status}}">
+            <text wx:if="{{item.status === 'live'}}">● 进行中 {{item.minute}}'</text>
+            <text wx:elif="{{item.status === 'finished'}}">已结束</text>
+            <text wx:else>未开始</text>
+          </view>
+        </view>
+
+        <view class="card-body">
+          <view class="team-row">
+            <image class="team-flag" src="{{item.homeFlag}}" mode="aspectFit"/>
+            <text class="team-name">{{item.homeTeam}}</text>
+            <text class="score" wx:if="{{item.status !== 'upcoming'}}">{{item.homeScore}}</text>
+          </view>
+
+          <view class="team-row">
+            <image class="team-flag" src="{{item.awayFlag}}" mode="aspectFit"/>
+            <text class="team-name">{{item.awayTeam}}</text>
+            <text class="score" wx:if="{{item.status !== 'upcoming'}}">{{item.awayScore}}</text>
+          </view>
+        </view>
+
+        <view class="card-footer">
+          <text class="group">{{item.group}}</text>
+          <text class="venue">{{item.stadium}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 无比赛提示 -->
+  <view class="empty-state" wx:if="{{matches.length === 0}}">
+    <text class="empty-icon">📅</text>
+    <text class="empty-text">该日暂无比赛</text>
+  </view>
+</view>
