@@ -464,11 +464,91 @@ function renderPlaylist() {
 }
 
 function togglePlay() {
+    const song = musicPlaylist[currentSongIndex];
+
+    // 检查是否有音频URL
+    if (!song.url || song.url === '') {
+        // 显示提示信息
+        showMusicNotification('🎵 提示：请在 data.js 中添加音频链接后播放');
+        return;
+    }
+
     isPlaying = !isPlaying;
     updatePlayerUI();
 
     const musicToggle = document.getElementById('musicToggle');
     musicToggle.classList.toggle('playing', isPlaying);
+
+    // 实际播放音频（如果有URL）
+    if (isPlaying) {
+        playAudio(song.url);
+    } else {
+        pauseAudio();
+    }
+}
+
+// 音频播放控制
+let currentAudio = null;
+
+function playAudio(url) {
+    if (currentAudio) {
+        currentAudio.pause();
+    }
+    currentAudio = new Audio(url);
+    currentAudio.play().catch(err => {
+        console.log('音频播放失败:', err);
+        showMusicNotification('❌ 音频加载失败，请检查链接是否有效');
+        isPlaying = false;
+        updatePlayerUI();
+    });
+
+    // 播放结束自动下一首
+    currentAudio.onended = () => {
+        if (isRepeat) {
+            playAudio(url);
+        } else {
+            nextSong();
+        }
+    };
+}
+
+function pauseAudio() {
+    if (currentAudio) {
+        currentAudio.pause();
+    }
+}
+
+// 显示音乐提示
+function showMusicNotification(message) {
+    // 创建提示元素
+    let notif = document.getElementById('musicNotification');
+    if (!notif) {
+        notif = document.createElement('div');
+        notif.id = 'musicNotification';
+        notif.style.cssText = `
+            position: fixed;
+            bottom: 150px;
+            right: 20px;
+            background: rgba(26, 95, 42, 0.95);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-size: 14px;
+            z-index: 10000;
+            max-width: 300px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease-out;
+        `;
+        document.body.appendChild(notif);
+    }
+
+    notif.textContent = message;
+    notif.style.display = 'block';
+
+    // 3秒后自动隐藏
+    setTimeout(() => {
+        notif.style.display = 'none';
+    }, 3000);
 }
 
 function prevSong() {

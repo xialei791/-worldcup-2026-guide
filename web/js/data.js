@@ -86,14 +86,15 @@ const teamsData = [
     { id: 'pan', name: '巴拿马', flag: 'https://flagcdn.com/w80/pa.png', group: 'L', conf: 'CONCACAF' }
 ];
 
-// 比赛数据 - 2026年6月11日-12日开幕日赛程
+// 比赛数据 - 基于FIFA官方赛程
 // 时间已转换为北京时间（UTC+8）
+// 数据来源：FIFA 2026 World Cup Official Schedule
 const matchesData = [
-    // ========== 2026年6月11日（周四）==========
+    // ========== 2026年6月12日（周五）开幕日 ==========
     {
         id: 1,
         date: '2026-06-12',
-        time: '03:00',
+        time: '04:00',
         home: 'mex',
         away: 'rsa',
         homeScore: null,
@@ -106,11 +107,26 @@ const matchesData = [
         important: true,
         note: '开幕式+揭幕战'
     },
-
-    // ========== 2026年6月12日（周五）==========
     {
         id: 2,
         date: '2026-06-12',
+        time: '11:00',
+        home: 'kor',
+        away: 'cze',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'A组',
+        stage: 'group',
+        stadium: '阿克伦体育场',
+        city: '瓜达拉哈拉',
+        important: false
+    },
+
+    // ========== 2026年6月13日（周六）==========
+    {
+        id: 3,
+        date: '2026-06-13',
         time: '06:00',
         home: 'can',
         away: 'bih',
@@ -124,8 +140,8 @@ const matchesData = [
         important: false
     },
     {
-        id: 3,
-        date: '2026-06-12',
+        id: 4,
+        date: '2026-06-13',
         time: '09:00',
         home: 'bra',
         away: 'mar',
@@ -134,14 +150,46 @@ const matchesData = [
         status: 'upcoming',
         group: 'C组',
         stage: 'group',
+        stadium: '大都会人寿体育场',
+        city: '新泽西',
+        important: true
+    },
+
+    // ========== 2026年6月14日（周日）==========
+    {
+        id: 5,
+        date: '2026-06-14',
+        time: '01:00',
+        home: 'ger',
+        away: 'cuw',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'E组',
+        stage: 'group',
+        stadium: 'NRG体育场',
+        city: '休斯顿',
+        important: false
+    },
+    {
+        id: 6,
+        date: '2026-06-14',
+        time: '04:00',
+        home: 'ned',
+        away: 'jpn',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'F组',
+        stage: 'group',
         stadium: 'AT&T体育场',
-        city: '达拉斯',
+        city: '阿灵顿',
         important: true
     },
     {
-        id: 4,
-        date: '2026-06-13',
-        time: '03:00',
+        id: 7,
+        date: '2026-06-14',
+        time: '09:00',
         home: 'usa',
         away: 'par',
         homeScore: null,
@@ -153,41 +201,26 @@ const matchesData = [
         city: '洛杉矶',
         important: true
     },
+
+    // ========== 2026年6月15日（周一）==========
     {
-        id: 5,
-        date: '2026-06-13',
-        time: '06:00',
-        home: 'ger',
-        away: 'cuw',
+        id: 8,
+        date: '2026-06-15',
+        time: '00:00',
+        home: 'esp',
+        away: 'cpv',
         homeScore: null,
         awayScore: null,
         status: 'upcoming',
-        group: 'E组',
+        group: 'H组',
         stage: 'group',
-        stadium: '大都会人寿体育场',
-        city: '纽约',
+        stadium: '梅赛德斯-奔驰体育场',
+        city: '亚特兰大',
         important: false
     },
     {
-        id: 6,
-        date: '2026-06-13',
-        time: '09:00',
-        home: 'ned',
-        away: 'jpn',
-        homeScore: null,
-        awayScore: null,
-        status: 'upcoming',
-        group: 'F组',
-        stage: 'group',
-        stadium: '硬石体育场',
-        city: '迈阿密',
-        important: true
-    },
-
-    // ========== 2026年6月14日（周日）==========
-    {
-        id: 7,
-        date: '2026-06-14',
+        id: 9,
+        date: '2026-06-15',
         time: '03:00',
         home: 'bel',
         away: 'egy',
@@ -196,29 +229,14 @@ const matchesData = [
         status: 'upcoming',
         group: 'G组',
         stage: 'group',
-        stadium: '吉列体育场',
-        city: '波士顿',
+        stadium: '流明球场',
+        city: '西雅图',
         important: true
     },
     {
-        id: 8,
-        date: '2026-06-14',
+        id: 10,
+        date: '2026-06-15',
         time: '06:00',
-        home: 'esp',
-        away: 'cpv',
-        homeScore: null,
-        awayScore: null,
-        status: 'upcoming',
-        group: 'H组',
-        stage: 'group',
-        stadium: '流明球场',
-        city: '西雅图',
-        important: false
-    },
-    {
-        id: 9,
-        date: '2026-06-14',
-        time: '09:00',
         home: 'fra',
         away: 'sen',
         homeScore: null,
@@ -226,15 +244,15 @@ const matchesData = [
         status: 'upcoming',
         group: 'I组',
         stage: 'group',
-        stadium: '索菲体育场',
-        city: '洛杉矶',
+        stadium: '大都会人寿体育场',
+        city: '新泽西',
         important: true
     },
 
-    // ========== 2026年6月15日（周一）==========
+    // ========== 2026年6月16日（周二）==========
     {
-        id: 10,
-        date: '2026-06-15',
+        id: 11,
+        date: '2026-06-16',
         time: '03:00',
         home: 'arg',
         away: 'alg',
@@ -243,14 +261,29 @@ const matchesData = [
         status: 'upcoming',
         group: 'J组',
         stage: 'group',
-        stadium: 'NRG体育场',
-        city: '休斯顿',
+        stadium: '箭头体育场',
+        city: '堪萨斯城',
         important: true
     },
     {
-        id: 11,
-        date: '2026-06-15',
+        id: 12,
+        date: '2026-06-16',
         time: '06:00',
+        home: 'eng',
+        away: 'cro',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'L组',
+        stage: 'group',
+        stadium: 'AT&T体育场',
+        city: '阿灵顿',
+        important: true
+    },
+    {
+        id: 13,
+        date: '2026-06-16',
+        time: '09:00',
         home: 'por',
         away: 'cod',
         homeScore: null,
@@ -260,21 +293,6 @@ const matchesData = [
         stage: 'group',
         stadium: '梅赛德斯-奔驰体育场',
         city: '亚特兰大',
-        important: true
-    },
-    {
-        id: 12,
-        date: '2026-06-15',
-        time: '09:00',
-        home: 'eng',
-        away: 'cro',
-        homeScore: null,
-        awayScore: null,
-        status: 'upcoming',
-        group: 'L组',
-        stage: 'group',
-        stadium: '林肯金融球场',
-        city: '费城',
         important: true
     }
 ];
@@ -370,14 +388,82 @@ const overallStandings = [
 // 比赛详情数据（示例）
 const matchDetails = {};
 
-// 音乐播放列表
+// 音乐播放列表 - 历年世界杯主题曲
+// 使用说明：将音频文件上传到网盘或服务器，复制直链地址填入 url 字段
+// 支持格式：MP3、WAV、OGG 等浏览器支持的音频格式
 const musicPlaylist = [
-    { id: 1, title: 'The Cup of Life', artist: 'Ricky Martin', year: '1998 法国世界杯', cover: 'https://via.placeholder.com/300x300/ff6b35/fff?text=1998', url: '' },
-    { id: 2, title: 'The Time of Our Lives', artist: 'Il Divo & Toni Braxton', year: '2006 德国世界杯', cover: 'https://via.placeholder.com/300x300/4a90e2/fff?text=2006', url: '' },
-    { id: 3, title: 'Waka Waka', artist: 'Shakira', year: '2010 南非世界杯', cover: 'https://via.placeholder.com/300x300/f5a623/fff?text=2010', url: '' },
-    { id: 4, title: 'We Are One', artist: 'Pitbull ft. Jennifer Lopez', year: '2014 巴西世界杯', cover: 'https://via.placeholder.com/300x300/7ed321/fff?text=2014', url: '' },
-    { id: 5, title: 'Live It Up', artist: 'Nicky Jam', year: '2018 俄罗斯世界杯', cover: 'https://via.placeholder.com/300x300/9013fe/fff?text=2018', url: '' },
-    { id: 6, title: 'Hayya Hayya', artist: 'Trinidad Cardona', year: '2022 卡塔尔世界杯', cover: 'https://via.placeholder.com/300x300/1a5f2a/fff?text=2022', url: '' }
+    {
+        id: 1,
+        title: 'The Cup of Life',
+        artist: 'Ricky Martin',
+        year: '1998 法国世界杯',
+        cover: 'https://upload.wikimedia.org/wikipedia/en/8/8c/Ricky_Martin_-_The_Cup_of_Life.jpg',
+        url: '', // 示例: 'https://your-server.com/music/1998.mp3'
+        duration: '4:27'
+    },
+    {
+        id: 2,
+        title: 'The Time of Our Lives',
+        artist: 'Il Divo & Toni Braxton',
+        year: '2006 德国世界杯',
+        cover: 'https://upload.wikimedia.org/wikipedia/en/9/9f/Time_of_Our_Lives.jpg',
+        url: '',
+        duration: '3:18'
+    },
+    {
+        id: 3,
+        title: 'Waka Waka (This Time for Africa)',
+        artist: 'Shakira',
+        year: '2010 南非世界杯',
+        cover: 'https://upload.wikimedia.org/wikipedia/en/5/5d/Waka_Waka_%28This_Time_for_Africa%29.jpg',
+        url: '',
+        duration: '3:22'
+    },
+    {
+        id: 4,
+        title: 'We Are One (Ole Ola)',
+        artist: 'Pitbull ft. Jennifer Lopez & Claudia Leitte',
+        year: '2014 巴西世界杯',
+        cover: 'https://upload.wikimedia.org/wikipedia/en/5/5b/We_Are_One_%28Ole_Ola%29.jpg',
+        url: '',
+        duration: '3:42'
+    },
+    {
+        id: 5,
+        title: 'Live It Up',
+        artist: 'Nicky Jam ft. Will Smith & Era Istrefi',
+        year: '2018 俄罗斯世界杯',
+        cover: 'https://upload.wikimedia.org/wikipedia/en/e/e3/Live_It_Up_%28Official_2018_FIFA_World_Cup_Song%29.jpg',
+        url: '',
+        duration: '3:27'
+    },
+    {
+        id: 6,
+        title: 'Hayya Hayya (Better Together)',
+        artist: 'Trinidad Cardona, Davido & Aisha',
+        year: '2022 卡塔尔世界杯',
+        cover: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Hayya_Hayya_-_Better_Together.jpg',
+        url: '',
+        duration: '3:34'
+    },
+    {
+        id: 7,
+        title: 'Gloryland',
+        artist: 'Daryl Hall',
+        year: '1994 美国世界杯',
+        cover: 'https://via.placeholder.com/300x300/2196F3/fff?text=1994',
+        url: '',
+        duration: '4:10'
+    },
+    {
+        id: 8,
+        title: 'Un'estate Italiana',
+        artist: 'Gianna Nannini & Edoardo Bennato',
+        year: '1990 意大利世界杯',
+        cover: 'https://via.placeholder.com/300x300/4CAF50/fff?text=1990',
+        url: '',
+        duration: '4:00'
+    }
 ];
 
 // 获取球队信息
