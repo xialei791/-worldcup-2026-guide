@@ -14,16 +14,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ==================== 倒计时/状态 ====================
 function initCountdown() {
-    // 2026年世界杯开幕日
+    // 2026年世界杯开幕日 - 北京时间6月12日
     const countdownContainer = document.querySelector('.countdown-container');
     if (countdownContainer) {
         countdownContainer.innerHTML = `
             <div class="worldcup-live-status">
                 <div class="live-badge">🏆 2026世界杯开幕日</div>
-                <div class="today-date">今天是：2026年6月11日</div>
+                <div class="today-date">今天是：2026年6月12日（北京时间）</div>
                 <div class="today-match-info">
-                    <div class="match-status-text">揭幕战即将开始</div>
-                    <div class="match-countdown">21:00 墨西哥 vs 美国</div>
+                    <div class="match-status-text">揭幕战今晚开打！</div>
+                    <div class="match-countdown">03:00 墨西哥 🇲🇽 vs 🇿🇦 南非</div>
+                    <div class="match-note">📍 墨西哥城阿兹特克体育场</div>
                 </div>
             </div>
         `;
@@ -32,7 +33,7 @@ function initCountdown() {
 
 // ==================== 今日赛事 ====================
 function initTodayMatches() {
-    const today = '2026-06-11'; // 今天：2026年6月11日（开幕日）
+    const today = '2026-06-12'; // 今天：2026年6月12日（北京时间，揭幕战即将开始）
     const todayMatches = matchesData.filter(m => m.date === today);
     const container = document.getElementById('todayMatches');
 
@@ -123,7 +124,7 @@ function renderCalendar(year, month) {
         const dayMatches = matchesData.filter(m => m.date === dateStr);
         const hasMatch = dayMatches.length > 0;
         const hasImportant = dayMatches.some(m => m.important);
-        const isToday = dateStr === '2026-06-11'; // 今天：2026年6月11日（开幕日）
+        const isToday = dateStr === '2026-06-12'; // 今天：2026年6月12日（北京时间）
 
         let classes = 'calendar-day';
         if (isToday) classes += ' today';

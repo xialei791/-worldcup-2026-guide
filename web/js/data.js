@@ -1,75 +1,101 @@
-// 2026世界杯数据
+// 2026世界杯数据 - 基于FIFA官方信息
+// 更新时间：2026年6月11日
+// 注意：部分小组名单可能还有变动，以FIFA最终公布为准
 
 const worldCupData = {
     startDate: '2026-06-11',
-    endDate: '2026-07-19',
+    endDate: '2026-07-20',
     teams: 48,
     matches: 104,
     hostCountries: ['美国', '加拿大', '墨西哥']
 };
 
-// 球队数据 - 48支参赛球队
+// 48支参赛球队 - 基于2025年12月抽签结果
+// 注：部分小组还有待定名额
 const teamsData = [
     // A组
     { id: 'mex', name: '墨西哥', flag: 'https://flagcdn.com/w80/mx.png', group: 'A', conf: 'CONCACAF' },
-    { id: 'usa', name: '美国', flag: 'https://flagcdn.com/w80/us.png', group: 'A', conf: 'CONCACAF' },
-    { id: 'can', name: '加拿大', flag: 'https://flagcdn.com/w80/ca.png', group: 'A', conf: 'CONCACAF' },
-    { id: 'ned', name: '荷兰', flag: 'https://flagcdn.com/w80/nl.png', group: 'A', conf: 'UEFA' },
+    { id: 'rsa', name: '南非', flag: 'https://flagcdn.com/w80/za.png', group: 'A', conf: 'CAF' },
+    { id: 'kor', name: '韩国', flag: 'https://flagcdn.com/w80/kr.png', group: 'A', conf: 'AFC' },
+    { id: 'cze', name: '捷克', flag: 'https://flagcdn.com/w80/cz.png', group: 'A', conf: 'UEFA' },
 
     // B组
-    { id: 'bra', name: '巴西', flag: 'https://flagcdn.com/w80/br.png', group: 'B', conf: 'CONMEBOL' },
-    { id: 'arg', name: '阿根廷', flag: 'https://flagcdn.com/w80/ar.png', group: 'B', conf: 'CONMEBOL' },
-    { id: 'eng', name: '英格兰', flag: 'https://flagcdn.com/w80/gb-eng.png', group: 'B', conf: 'UEFA' },
-    { id: 'fra', name: '法国', flag: 'https://flagcdn.com/w80/fr.png', group: 'B', conf: 'UEFA' },
+    { id: 'can', name: '加拿大', flag: 'https://flagcdn.com/w80/ca.png', group: 'B', conf: 'CONCACAF' },
+    { id: 'bih', name: '波黑', flag: 'https://flagcdn.com/w80/ba.png', group: 'B', conf: 'UEFA' },
+    { id: 'qat', name: '卡塔尔', flag: 'https://flagcdn.com/w80/qa.png', group: 'B', conf: 'AFC' },
+    { id: 'sui', name: '瑞士', flag: 'https://flagcdn.com/w80/ch.png', group: 'B', conf: 'UEFA' },
 
     // C组
-    { id: 'esp', name: '西班牙', flag: 'https://flagcdn.com/w80/es.png', group: 'C', conf: 'UEFA' },
-    { id: 'ger', name: '德国', flag: 'https://flagcdn.com/w80/de.png', group: 'C', conf: 'UEFA' },
-    { id: 'por', name: '葡萄牙', flag: 'https://flagcdn.com/w80/pt.png', group: 'C', conf: 'UEFA' },
-    { id: 'jpn', name: '日本', flag: 'https://flagcdn.com/w80/jp.png', group: 'C', conf: 'AFC' },
+    { id: 'bra', name: '巴西', flag: 'https://flagcdn.com/w80/br.png', group: 'C', conf: 'CONMEBOL' },
+    { id: 'mar', name: '摩洛哥', flag: 'https://flagcdn.com/w80/ma.png', group: 'C', conf: 'CAF' },
+    { id: 'hai', name: '海地', flag: 'https://flagcdn.com/w80/ht.png', group: 'C', conf: 'CONCACAF' },
+    { id: 'sco', name: '苏格兰', flag: 'https://flagcdn.com/w80/gb-sct.png', group: 'C', conf: 'UEFA' },
 
     // D组
-    { id: 'kor', name: '韩国', flag: 'https://flagcdn.com/w80/kr.png', group: 'D', conf: 'AFC' },
+    { id: 'usa', name: '美国', flag: 'https://flagcdn.com/w80/us.png', group: 'D', conf: 'CONCACAF' },
+    { id: 'par', name: '巴拉圭', flag: 'https://flagcdn.com/w80/py.png', group: 'D', conf: 'CONMEBOL' },
     { id: 'aus', name: '澳大利亚', flag: 'https://flagcdn.com/w80/au.png', group: 'D', conf: 'AFC' },
-    { id: 'mar', name: '摩洛哥', flag: 'https://flagcdn.com/w80/ma.png', group: 'D', conf: 'CAF' },
-    { id: 'cmr', name: '喀麦隆', flag: 'https://flagcdn.com/w80/cm.png', group: 'D', conf: 'CAF' },
+    { id: 'tur', name: '土耳其', flag: 'https://flagcdn.com/w80/tr.png', group: 'D', conf: 'UEFA' },
 
     // E组
-    { id: 'ita', name: '意大利', flag: 'https://flagcdn.com/w80/it.png', group: 'E', conf: 'UEFA' },
-    { id: 'uru', name: '乌拉圭', flag: 'https://flagcdn.com/w80/uy.png', group: 'E', conf: 'CONMEBOL' },
-    { id: 'cro', name: '克罗地亚', flag: 'https://flagcdn.com/w80/hr.png', group: 'E', conf: 'UEFA' },
-    { id: 'sui', name: '瑞士', flag: 'https://flagcdn.com/w80/ch.png', group: 'E', conf: 'UEFA' },
+    { id: 'ger', name: '德国', flag: 'https://flagcdn.com/w80/de.png', group: 'E', conf: 'UEFA' },
+    { id: 'cuw', name: '库拉索', flag: 'https://flagcdn.com/w80/cw.png', group: 'E', conf: 'CONCACAF' },
+    { id: 'civ', name: '科特迪瓦', flag: 'https://flagcdn.com/w80/ci.png', group: 'E', conf: 'CAF' },
+    { id: 'ecu', name: '厄瓜多尔', flag: 'https://flagcdn.com/w80/ec.png', group: 'E', conf: 'CONMEBOL' },
 
     // F组
-    { id: 'bel', name: '比利时', flag: 'https://flagcdn.com/w80/be.png', group: 'F', conf: 'UEFA' },
-    { id: 'den', name: '丹麦', flag: 'https://flagcdn.com/w80/dk.png', group: 'F', conf: 'UEFA' },
-    { id: 'srb', name: '塞尔维亚', flag: 'https://flagcdn.com/w80/rs.png', group: 'F', conf: 'UEFA' },
-    { id: 'gha', name: '加纳', flag: 'https://flagcdn.com/w80/gh.png', group: 'F', conf: 'CAF' },
+    { id: 'ned', name: '荷兰', flag: 'https://flagcdn.com/w80/nl.png', group: 'F', conf: 'UEFA' },
+    { id: 'jpn', name: '日本', flag: 'https://flagcdn.com/w80/jp.png', group: 'F', conf: 'AFC' },
+    { id: 'swe', name: '瑞典', flag: 'https://flagcdn.com/w80/se.png', group: 'F', conf: 'UEFA' },
+    { id: 'tun', name: '突尼斯', flag: 'https://flagcdn.com/w80/tn.png', group: 'F', conf: 'CAF' },
 
     // G组
+    { id: 'bel', name: '比利时', flag: 'https://flagcdn.com/w80/be.png', group: 'G', conf: 'UEFA' },
+    { id: 'egy', name: '埃及', flag: 'https://flagcdn.com/w80/eg.png', group: 'G', conf: 'CAF' },
     { id: 'irn', name: '伊朗', flag: 'https://flagcdn.com/w80/ir.png', group: 'G', conf: 'AFC' },
-    { id: 'ecu', name: '厄瓜多尔', flag: 'https://flagcdn.com/w80/ec.png', group: 'G', conf: 'CONMEBOL' },
-    { id: 'wal', name: '威尔士', flag: 'https://flagcdn.com/w80/gb-wls.png', group: 'G', conf: 'UEFA' },
-    { id: 'qat', name: '卡塔尔', flag: 'https://flagcdn.com/w80/qa.png', group: 'G', conf: 'AFC' },
+    { id: 'nzl', name: '新西兰', flag: 'https://flagcdn.com/w80/nz.png', group: 'G', conf: 'OFC' },
 
     // H组
-    { id: 'sen', name: '塞内加尔', flag: 'https://flagcdn.com/w80/sn.png', group: 'H', conf: 'CAF' },
-    { id: 'tun', name: '突尼斯', flag: 'https://flagcdn.com/w80/tn.png', group: 'H', conf: 'CAF' },
-    { id: 'pol', name: '波兰', flag: 'https://flagcdn.com/w80/pl.png', group: 'H', conf: 'UEFA' },
-    { id: 'ksa', name: '沙特阿拉伯', flag: 'https://flagcdn.com/w80/sa.png', group: 'H', conf: 'AFC' }
+    { id: 'esp', name: '西班牙', flag: 'https://flagcdn.com/w80/es.png', group: 'H', conf: 'UEFA' },
+    { id: 'cpv', name: '佛得角', flag: 'https://flagcdn.com/w80/cv.png', group: 'H', conf: 'CAF' },
+    { id: 'ksa', name: '沙特阿拉伯', flag: 'https://flagcdn.com/w80/sa.png', group: 'H', conf: 'AFC' },
+    { id: 'uru', name: '乌拉圭', flag: 'https://flagcdn.com/w80/uy.png', group: 'H', conf: 'CONMEBOL' },
+
+    // I组
+    { id: 'fra', name: '法国', flag: 'https://flagcdn.com/w80/fr.png', group: 'I', conf: 'UEFA' },
+    { id: 'sen', name: '塞内加尔', flag: 'https://flagcdn.com/w80/sn.png', group: 'I', conf: 'CAF' },
+    { id: 'irq', name: '伊拉克', flag: 'https://flagcdn.com/w80/iq.png', group: 'I', conf: 'AFC' },
+    { id: 'nor', name: '挪威', flag: 'https://flagcdn.com/w80/no.png', group: 'I', conf: 'UEFA' },
+
+    // J组
+    { id: 'arg', name: '阿根廷', flag: 'https://flagcdn.com/w80/ar.png', group: 'J', conf: 'CONMEBOL' },
+    { id: 'alg', name: '阿尔及利亚', flag: 'https://flagcdn.com/w80/dz.png', group: 'J', conf: 'CAF' },
+    { id: 'aut', name: '奥地利', flag: 'https://flagcdn.com/w80/at.png', group: 'J', conf: 'UEFA' },
+    { id: 'jor', name: '约旦', flag: 'https://flagcdn.com/w80/jo.png', group: 'J', conf: 'AFC' },
+
+    // K组
+    { id: 'por', name: '葡萄牙', flag: 'https://flagcdn.com/w80/pt.png', group: 'K', conf: 'UEFA' },
+    { id: 'cod', name: '刚果(金)', flag: 'https://flagcdn.com/w80/cd.png', group: 'K', conf: 'CAF' },
+    { id: 'uzb', name: '乌兹别克斯坦', flag: 'https://flagcdn.com/w80/uz.png', group: 'K', conf: 'AFC' },
+    { id: 'col', name: '哥伦比亚', flag: 'https://flagcdn.com/w80/co.png', group: 'K', conf: 'CONMEBOL' },
+
+    // L组
+    { id: 'eng', name: '英格兰', flag: 'https://flagcdn.com/w80/gb-eng.png', group: 'L', conf: 'UEFA' },
+    { id: 'cro', name: '克罗地亚', flag: 'https://flagcdn.com/w80/hr.png', group: 'L', conf: 'UEFA' },
+    { id: 'gha', name: '加纳', flag: 'https://flagcdn.com/w80/gh.png', group: 'L', conf: 'CAF' },
+    { id: 'pan', name: '巴拿马', flag: 'https://flagcdn.com/w80/pa.png', group: 'L', conf: 'CONCACAF' }
 ];
 
-// 比赛数据 - 2026世界杯实时数据（每天更新）
-// 今天是：2026年6月11日 20:35（北京时间）
-// 揭幕战：墨西哥 vs 美国 即将开始！
+// 比赛数据 - 2026年6月11日-12日开幕日赛程
+// 时间已转换为北京时间（UTC+8）
 const matchesData = [
-    // ========== 2026年6月11日（今天）开幕日 ==========
+    // ========== 2026年6月11日（周四）==========
     {
         id: 1,
-        date: '2026-06-11',
-        time: '21:00',
+        date: '2026-06-12',
+        time: '03:00',
         home: 'mex',
-        away: 'usa',
+        away: 'rsa',
         homeScore: null,
         awayScore: null,
         status: 'upcoming',
@@ -77,63 +103,32 @@ const matchesData = [
         stage: 'group',
         stadium: '阿兹特克体育场',
         city: '墨西哥城',
-        important: true
+        important: true,
+        note: '开幕式+揭幕战'
     },
 
-    // ========== 2026年6月12日（明天）==========
+    // ========== 2026年6月12日（周五）==========
     {
         id: 2,
         date: '2026-06-12',
-        time: '14:00',
+        time: '06:00',
         home: 'can',
-        away: 'ned',
+        away: 'bih',
         homeScore: null,
         awayScore: null,
         status: 'upcoming',
-        group: 'A组',
+        group: 'B组',
         stage: 'group',
         stadium: 'BC Place',
         city: '温哥华',
-        important: true
+        important: false
     },
     {
         id: 3,
         date: '2026-06-12',
-        time: '17:00',
+        time: '09:00',
         home: 'bra',
-        away: 'arg',
-        homeScore: null,
-        awayScore: null,
-        status: 'upcoming',
-        group: 'B组',
-        stage: 'group',
-        stadium: '大都会人寿体育场',
-        city: '纽约',
-        important: true
-    },
-    {
-        id: 4,
-        date: '2026-06-12',
-        time: '20:00',
-        home: 'eng',
-        away: 'fra',
-        homeScore: null,
-        awayScore: null,
-        status: 'upcoming',
-        group: 'B组',
-        stage: 'group',
-        stadium: '索菲体育场',
-        city: '洛杉矶',
-        important: true
-    },
-
-    // ========== 2026年6月13日 ==========
-    {
-        id: 5,
-        date: '2026-06-13',
-        time: '14:00',
-        home: 'esp',
-        away: 'ger',
+        away: 'mar',
         homeScore: null,
         awayScore: null,
         status: 'upcoming',
@@ -144,204 +139,236 @@ const matchesData = [
         important: true
     },
     {
+        id: 4,
+        date: '2026-06-13',
+        time: '03:00',
+        home: 'usa',
+        away: 'par',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'D组',
+        stage: 'group',
+        stadium: 'SoFi体育场',
+        city: '洛杉矶',
+        important: true
+    },
+    {
+        id: 5,
+        date: '2026-06-13',
+        time: '06:00',
+        home: 'ger',
+        away: 'cuw',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'E组',
+        stage: 'group',
+        stadium: '大都会人寿体育场',
+        city: '纽约',
+        important: false
+    },
+    {
         id: 6,
         date: '2026-06-13',
-        time: '17:00',
-        home: 'por',
+        time: '09:00',
+        home: 'ned',
         away: 'jpn',
         homeScore: null,
         awayScore: null,
         status: 'upcoming',
-        group: 'C组',
-        stage: 'group',
-        stadium: '流明球场',
-        city: '西雅图',
-        important: true
-    },
-    {
-        id: 7,
-        date: '2026-06-13',
-        time: '20:00',
-        home: 'kor',
-        away: 'aus',
-        homeScore: null,
-        awayScore: null,
-        status: 'upcoming',
-        group: 'D组',
+        group: 'F组',
         stage: 'group',
         stadium: '硬石体育场',
         city: '迈阿密',
-        important: false
+        important: true
     },
 
-    // ========== 2026年6月14日 ==========
+    // ========== 2026年6月14日（周日）==========
     {
-        id: 8,
+        id: 7,
         date: '2026-06-14',
-        time: '16:00',
-        home: 'mar',
-        away: 'cmr',
+        time: '03:00',
+        home: 'bel',
+        away: 'egy',
         homeScore: null,
         awayScore: null,
         status: 'upcoming',
-        group: 'D组',
+        group: 'G组',
         stage: 'group',
         stadium: '吉列体育场',
         city: '波士顿',
+        important: true
+    },
+    {
+        id: 8,
+        date: '2026-06-14',
+        time: '06:00',
+        home: 'esp',
+        away: 'cpv',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'H组',
+        stage: 'group',
+        stadium: '流明球场',
+        city: '西雅图',
         important: false
     },
     {
         id: 9,
         date: '2026-06-14',
-        time: '19:00',
-        home: 'ned',
-        away: 'mex',
+        time: '09:00',
+        home: 'fra',
+        away: 'sen',
         homeScore: null,
         awayScore: null,
         status: 'upcoming',
-        group: 'A组',
+        group: 'I组',
+        stage: 'group',
+        stadium: '索菲体育场',
+        city: '洛杉矶',
+        important: true
+    },
+
+    // ========== 2026年6月15日（周一）==========
+    {
+        id: 10,
+        date: '2026-06-15',
+        time: '03:00',
+        home: 'arg',
+        away: 'alg',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'J组',
         stage: 'group',
         stadium: 'NRG体育场',
         city: '休斯顿',
         important: true
     },
     {
-        id: 10,
-        date: '2026-06-14',
-        time: '22:00',
-        home: 'usa',
-        away: 'can',
+        id: 11,
+        date: '2026-06-15',
+        time: '06:00',
+        home: 'por',
+        away: 'cod',
         homeScore: null,
         awayScore: null,
         status: 'upcoming',
-        group: 'A组',
+        group: 'K组',
         stage: 'group',
-        stadium: 'SoFi体育场',
-        city: '洛杉矶',
+        stadium: '梅赛德斯-奔驰体育场',
+        city: '亚特兰大',
+        important: true
+    },
+    {
+        id: 12,
+        date: '2026-06-15',
+        time: '09:00',
+        home: 'eng',
+        away: 'cro',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'L组',
+        stage: 'group',
+        stadium: '林肯金融球场',
+        city: '费城',
         important: true
     }
 ];
 
-// 小组积分榜数据 - 2026年6月11日 20:35（比赛进行中）
+// 小组积分榜 - 初始状态（2026年6月11日，尚未开始）
 const groupStandings = {
     'A': [
-        { team: 'mex', mp: 1, w: 0, d: 0, l: 0, gf: 1, ga: 0, pts: 0 },
-        { team: 'usa', mp: 1, w: 0, d: 0, l: 0, gf: 0, ga: 1, pts: 0 },
-        { team: 'can', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'ned', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+        { team: 'mex', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'rsa', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'kor', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'cze', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
     ],
     'B': [
-        { team: 'bra', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'arg', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'eng', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'fra', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
-    ],
-    'C': [
-        { team: 'esp', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'ger', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'por', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'jpn', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
-    ],
-    'D': [
-        { team: 'kor', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'aus', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'mar', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'cmr', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
-    ],
-    'E': [
-        { team: 'ita', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'uru', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'cro', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'can', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'bih', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'qat', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
         { team: 'sui', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
     ],
+    'C': [
+        { team: 'bra', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'mar', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'hai', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'sco', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+    ],
+    'D': [
+        { team: 'usa', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'par', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'aus', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'tur', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+    ],
+    'E': [
+        { team: 'ger', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'cuw', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'civ', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'ecu', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+    ],
     'F': [
-        { team: 'bel', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'den', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'srb', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'gha', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+        { team: 'ned', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'jpn', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'swe', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'tun', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
     ],
     'G': [
+        { team: 'bel', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'egy', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
         { team: 'irn', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'ecu', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'wal', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'qat', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+        { team: 'nzl', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
     ],
     'H': [
+        { team: 'esp', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'cpv', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'ksa', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'uru', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+    ],
+    'I': [
+        { team: 'fra', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
         { team: 'sen', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'tun', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'pol', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'ksa', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+        { team: 'irq', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'nor', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+    ],
+    'J': [
+        { team: 'arg', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'alg', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'aut', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'jor', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+    ],
+    'K': [
+        { team: 'por', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'cod', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'uzb', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'col', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
+    ],
+    'L': [
+        { team: 'eng', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'cro', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'gha', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'pan', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
     ]
 };
 
 // 总积分榜 - 初始状态
 const overallStandings = [
     { rank: 1, team: 'mex', group: 'A', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-    { rank: 2, team: 'usa', group: 'A', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-    { rank: 3, team: 'can', group: 'A', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-    { rank: 4, team: 'bra', group: 'B', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-    { rank: 5, team: 'arg', group: 'B', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-    { rank: 6, team: 'eng', group: 'B', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-    { rank: 7, team: 'fra', group: 'B', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-    { rank: 8, team: 'esp', group: 'C', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 }
+    { rank: 2, team: 'rsa', group: 'A', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 3, team: 'kor', group: 'A', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 4, team: 'cze', group: 'A', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 5, team: 'can', group: 'B', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 6, team: 'bih', group: 'B', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 7, team: 'qat', group: 'B', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 8, team: 'sui', group: 'B', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 }
 ];
 
-// 比赛详情数据
-const matchDetails = {
-    1: {
-        homePlayers: [
-            { number: 1, name: '特纳', pos: 'GK', goals: 0, assists: 0, yellow: 0, rating: 7.2 },
-            { number: 2, name: '德斯特', pos: 'DF', goals: 0, assists: 1, yellow: 1, rating: 7.0 },
-            { number: 3, name: '齐默曼', pos: 'DF', goals: 0, assists: 0, yellow: 0, rating: 7.5 },
-            { number: 13, name: '里姆', pos: 'DF', goals: 0, assists: 0, yellow: 0, rating: 7.3 },
-            { number: 5, name: '罗宾逊', pos: 'DF', goals: 1, assists: 0, yellow: 0, rating: 7.8 },
-            { number: 6, name: '穆萨', pos: 'MF', goals: 0, assists: 0, yellow: 0, rating: 6.9 },
-            { number: 8, name: '麦肯尼', pos: 'MF', goals: 0, assists: 0, yellow: 1, rating: 7.1 },
-            { number: 10, name: '普利西奇', pos: 'MF', goals: 1, assists: 0, yellow: 0, rating: 8.2 },
-            { number: 7, name: '雷纳', pos: 'FW', goals: 0, assists: 1, yellow: 0, rating: 7.5 },
-            { number: 9, name: '费雷拉', pos: 'FW', goals: 0, assists: 0, yellow: 0, rating: 6.8 },
-            { number: 11, name: '维阿', pos: 'FW', goals: 0, assists: 0, yellow: 0, rating: 7.0 }
-        ],
-        awayPlayers: [
-            { number: 13, name: '奥乔亚', pos: 'GK', goals: 0, assists: 0, yellow: 0, rating: 6.5 },
-            { number: 19, name: '桑切斯', pos: 'DF', goals: 0, assists: 0, yellow: 1, rating: 6.3 },
-            { number: 3, name: '蒙特斯', pos: 'DF', goals: 0, assists: 0, yellow: 0, rating: 6.8 },
-            { number: 15, name: '莫雷诺', pos: 'DF', goals: 1, assists: 0, yellow: 0, rating: 7.0 },
-            { number: 23, name: '加利亚多', pos: 'DF', goals: 0, assists: 0, yellow: 0, rating: 6.5 },
-            { number: 16, name: '埃雷拉', pos: 'MF', goals: 0, assists: 0, yellow: 0, rating: 6.8 },
-            { number: 4, name: '阿尔瓦雷斯', pos: 'MF', goals: 0, assists: 1, yellow: 1, rating: 6.9 },
-            { number: 10, name: '维加', pos: 'MF', goals: 0, assists: 0, yellow: 0, rating: 6.7 },
-            { number: 22, name: '洛萨诺', pos: 'FW', goals: 0, assists: 0, yellow: 0, rating: 6.5 },
-            { number: 20, name: '马丁', pos: 'FW', goals: 0, assists: 0, yellow: 0, rating: 6.2 },
-            { number: 15, name: '安图尼亚', pos: 'FW', goals: 0, assists: 0, yellow: 0, rating: 6.4 }
-        ],
-        homeGoals: [
-            { player: '罗宾逊', minute: 34, assist: '' },
-            { player: '普利西奇', minute: 67, assist: '雷纳' }
-        ],
-        awayGoals: [
-            { player: '莫雷诺', minute: 56, assist: '阿尔瓦雷斯' }
-        ],
-        statistics: {
-            possession: { home: 48, away: 52 },
-            shots: { home: 12, away: 14 },
-            shotsOnTarget: { home: 5, away: 6 },
-            corners: { home: 5, away: 7 },
-            fouls: { home: 11, away: 13 },
-            yellowCards: { home: 2, away: 2 },
-            redCards: { home: 0, away: 0 }
-        },
-        timeline: [
-            { minute: 1, type: 'start', text: '比赛开始' },
-            { minute: 34, type: 'goal', team: 'home', player: '罗宾逊', text: '罗宾逊进球！美国 1-0 墨西哥' },
-            { minute: 45, type: 'half', text: '上半场结束' },
-            { minute: 46, type: 'start', text: '下半场开始' },
-            { minute: 56, type: 'goal', team: 'away', player: '莫雷诺', text: '莫雷诺进球！美国 1-1 墨西哥' },
-            { minute: 67, type: 'goal', team: 'home', player: '普利西奇', text: '普利西奇进球！美国 2-1 墨西哥' },
-            { minute: 90, type: 'end', text: '比赛结束' }
-        ]
-    }
-};
+// 比赛详情数据（示例）
+const matchDetails = {};
 
 // 音乐播放列表
 const musicPlaylist = [
