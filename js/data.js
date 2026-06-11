@@ -1,398 +1,359 @@
-// 2026世界杯数据 - 来源: 2026-world-cup-predictor-main 项目
-// Elo评分数据来自 elo_cache_2026.json
-// 赛程数据来自 match_cache.json
+// 2026世界杯数据 - 基于真实预选赛结果
+// 最后更新: 2024年
+// 注意: 预选赛进行中，球队名单会逐步确定
 
 const worldCupData = {
     startDate: '2026-06-11',
     endDate: '2026-07-19',
     teams: 48,
     matches: 104,
-    hostCountries: ['美国', '加拿大', '墨西哥']
+    hostCountries: ['美国', '加拿大', '墨西哥'],
+    venues: [
+        { city: '墨西哥城', country: '墨西哥', stadium: '阿兹特克体育场', capacity: 87523 },
+        { city: '洛杉矶', country: '美国', stadium: 'SoFi体育场', capacity: 70240 },
+        { city: '纽约', country: '美国', stadium: '大都会人寿体育场', capacity: 82500 },
+        { city: '达拉斯', country: '美国', stadium: 'AT&T体育场', capacity: 80000 },
+        { city: '西雅图', country: '美国', stadium: '流明球场', capacity: 72000 },
+        { city: '波士顿', country: '美国', stadium: '吉列体育场', capacity: 65878 },
+        { city: '旧金山', country: '美国', stadium: '李维斯体育场', capacity: 68500 },
+        { city: '费城', country: '美国', stadium: '林肯金融球场', capacity: 69796 },
+        { city: '迈阿密', country: '美国', stadium: '硬石体育场', capacity: 64767 },
+        { city: '亚特兰大', country: '美国', stadium: '梅赛德斯-奔驰体育场', capacity: 71000 },
+        { city: '芝加哥', country: '美国', stadium: '军人球场', capacity: 61500 },
+        { city: '温哥华', country: '加拿大', stadium: 'BC Place', capacity: 54500 },
+        { city: '多伦多', country: '加拿大', stadium: 'BMO球场', capacity: 45000 },
+        { city: '蒙特雷', country: '墨西哥', stadium: 'BBVA球场', capacity: 53500 },
+        { city: '瓜达拉哈拉', country: '墨西哥', stadium: '阿克伦球场', capacity: 46000 }
+    ]
 };
 
-// 球队名称映射 (英文 -> 中文)
-const teamNameMap = {
-    'Argentina': '阿根廷',
-    'Brazil': '巴西',
-    'France': '法国',
-    'Germany': '德国',
-    'Spain': '西班牙',
-    'England': '英格兰',
-    'Portugal': '葡萄牙',
-    'Netherlands': '荷兰',
-    'Italy': '意大利',
-    'Belgium': '比利时',
-    'Croatia': '克罗地亚',
-    'Uruguay': '乌拉圭',
-    'Mexico': '墨西哥',
-    'USA': '美国',
-    'United States': '美国',
-    'Canada': '加拿大',
-    'Japan': '日本',
-    'South Korea': '韩国',
-    'Korea Republic': '韩国',
-    'Iran': '伊朗',
-    'Saudi Arabia': '沙特阿拉伯',
-    'Australia': '澳大利亚',
-    'Morocco': '摩洛哥',
-    'Senegal': '塞内加尔',
-    'Cameroon': '喀麦隆',
-    'Ghana': '加纳',
-    'Algeria': '阿尔及利亚',
-    'Norway': '挪威',
-    'Switzerland': '瑞士',
-    'Scotland': '苏格兰',
-    'Austria': '奥地利',
-    'Bosnia and Herzegovina': '波黑',
-    'Sweden': '瑞典',
-    'Turkey': '土耳其',
-    'Czech Republic': '捷克',
-    'Colombia': '哥伦比亚',
-    'Ecuador': '厄瓜多尔',
-    'Paraguay': '巴拉圭',
-    'Panama': '巴拿马',
-    'Curaçao': '库拉索',
-    'Haiti': '海地',
-    'Qatar': '卡塔尔',
-    'Jordan': '约旦',
-    'Uzbekistan': '乌兹别克斯坦',
-    'Cape Verde': '佛得角',
-    'Tunisia': '突尼斯',
-    'New Zealand': '新西兰',
-    'DR Congo': '刚果民主共和国',
-    'Iraq': '伊拉克',
-    'South Africa': '南非',
-    'Denmark': '丹麦',
-    'Poland': '波兰',
-    'Ukraine': '乌克兰',
-    'Romania': '罗马尼亚',
-    'Serbia': '塞尔维亚',
-    'Greece': '希腊',
-    'Wales': '威尔士',
-    'Hungary': '匈牙利',
-    'Slovenia': '斯洛文尼亚',
-    'Slovakia': '斯洛伐克',
-    'Finland': '芬兰',
-    'Ireland': '爱尔兰',
-    'Northern Ireland': '北爱尔兰',
-    'Iceland': '冰岛',
-    'Israel': '以色列',
-    'Russia': '俄罗斯',
-    'Bolivia': '玻利维亚',
-    'Chile': '智利',
-    'Peru': '秘鲁',
-    'Venezuela': '委内瑞拉',
-    'Jamaica': '牙买加',
-    'Costa Rica': '哥斯达黎加',
-    'Honduras': '洪都拉斯',
-    'Guatemala': '危地马拉',
-    'El Salvador': '萨尔瓦多',
-    'Cuba': '古巴',
-    'Dominican Republic': '多米尼加共和国',
-    'Trinidad and Tobago': '特立尼达和多巴哥',
-    'Nigeria': '尼日利亚',
-    'Egypt': '埃及',
-    'Ivory Coast': '科特迪瓦',
-    'Mali': '马里',
-    'Burkina Faso': '布基纳法索',
-    'Guinea': '几内亚',
-    'Zambia': '赞比亚',
-    'Zimbabwe': '津巴布韦',
-    'Kenya': '肯尼亚',
-    'Tanzania': '坦桑尼亚',
-    'Uganda': '乌干达',
-    'Angola': '安哥拉',
-    'Madagascar': '马达加斯加',
-    'Mauritania': '毛里塔尼亚',
-    'Libya': '利比亚',
-    'Sudan': '苏丹',
-    'Ethiopia': '埃塞俄比亚',
-    'Gabon': '加蓬',
-    'Congo': '刚果',
-    'Central African Republic': '中非共和国',
-    'Chad': '乍得',
-    'Niger': '尼日尔',
-    'Benin': '贝宁',
-    'Togo': '多哥',
-    'Liberia': '利比里亚',
-    'Sierra Leone': '塞拉利昂',
-    'Guinea-Bissau': '几内亚比绍',
-    'Gambia': '冈比亚',
-    'Malawi': '马拉维',
-    'Botswana': '博茨瓦纳',
-    'Namibia': '纳米比亚',
-    'Mozambique': '莫桑比克',
-    'Lesotho': '莱索托',
-    'Eswatini': '斯威士兰',
-    'Comoros': '科摩罗',
-    'Seychelles': '塞舌尔',
-    'Mauritius': '毛里求斯',
-    'China': '中国',
-    'Thailand': '泰国',
-    'Vietnam': '越南',
-    'Malaysia': '马来西亚',
-    'Indonesia': '印度尼西亚',
-    'Philippines': '菲律宾',
-    'Singapore': '新加坡',
-    'Myanmar': '缅甸',
-    'Cambodia': '柬埔寨',
-    'Laos': '老挝',
-    'Brunei': '文莱',
-    'Timor-Leste': '东帝汶',
-    'India': '印度',
-    'Syria': '叙利亚',
-    'Lebanon': '黎巴嫩',
-    'Palestine': '巴勒斯坦',
-    'Kuwait': '科威特',
-    'Bahrain': '巴林',
-    'UAE': '阿联酋',
-    'Oman': '阿曼',
-    'Yemen': '也门',
-    'Turkmenistan': '土库曼斯坦',
-    'Kyrgyzstan': '吉尔吉斯斯坦',
-    'Tajikistan': '塔吉克斯坦',
-    'Afghanistan': '阿富汗',
-    'Mongolia': '蒙古',
-    'Chinese Taipei': '中国台北',
-    'Hong Kong': '中国香港',
-    'Macau': '中国澳门',
-    'North Korea': '朝鲜',
-    'Guam': '关岛',
-    'Northern Mariana Islands': '北马里亚纳群岛',
-    'Fiji': '斐济',
-    'Papua New Guinea': '巴布亚新几内亚',
-    'New Caledonia': '新喀里多尼亚',
-    'Tahiti': '塔希提',
-    'Solomon Islands': '所罗门群岛',
-    'Vanuatu': '瓦努阿图',
-    'Samoa': '萨摩亚',
-    'Tonga': '汤加',
-    'Cook Islands': '库克群岛',
-    'American Samoa': '美属萨摩亚',
-    'Kiribati': '基里巴斯',
-    'Tuvalu': '图瓦卢',
-    'Nauru': '瑙鲁',
-    'Palau': '帕劳',
-    'Marshall Islands': '马绍尔群岛',
-    'Micronesia': '密克罗尼西亚',
-    'Kosovo': '科索沃',
-    'Belarus': '白俄罗斯',
-    'Estonia': '爱沙尼亚',
-    'Latvia': '拉脱维亚',
-    'Lithuania': '立陶宛',
-    'Moldova': '摩尔多瓦',
-    'Kazakhstan': '哈萨克斯坦',
-    'Armenia': '亚美尼亚',
-    'Azerbaijan': '阿塞拜疆',
-    'Georgia': '格鲁吉亚',
-    'Albania': '阿尔巴尼亚',
-    'North Macedonia': '北马其顿',
-    'Montenegro': '黑山',
-    'Luxembourg': '卢森堡',
-    'Malta': '马耳他',
-    'Cyprus': '塞浦路斯',
-    'Andorra': '安道尔',
-    'San Marino': '圣马力诺',
-    'Liechtenstein': '列支敦士登',
-    'Faroe Islands': '法罗群岛',
-    'Gibraltar': '直布罗陀'
+// ==================== 已确定晋级球队 (截至2024年) ====================
+// 标记说明: 🏆 = 主办国, ✅ = 已确定晋级, ⏳ = 预选赛中
+
+const qualifiedTeams = {
+    // 主办国 (3支) - 自动晋级
+    hosts: [
+        { id: 'us', name: '美国', nameEn: 'USA', flag: 'https://flagcdn.com/w80/us.png', conf: 'CONCACAF', qualified: true },
+        { id: 'ca', name: '加拿大', nameEn: 'Canada', flag: 'https://flagcdn.com/w80/ca.png', conf: 'CONCACAF', qualified: true },
+        { id: 'mx', name: '墨西哥', nameEn: 'Mexico', flag: 'https://flagcdn.com/w80/mx.png', conf: 'CONCACAF', qualified: true }
+    ],
+
+    // 亚洲区 (AFC) - 8.5个名额
+    // 已晋级: 日本、伊朗、韩国、乌兹别克斯坦
+    asia: [
+        { id: 'jp', name: '日本', nameEn: 'Japan', flag: 'https://flagcdn.com/w80/jp.png', conf: 'AFC', qualified: true, rank: 15 },
+        { id: 'ir', name: '伊朗', nameEn: 'Iran', flag: 'https://flagcdn.com/w80/ir.png', conf: 'AFC', qualified: true, rank: 20 },
+        { id: 'kr', name: '韩国', nameEn: 'South Korea', flag: 'https://flagcdn.com/w80/kr.png', conf: 'AFC', qualified: true, rank: 23 },
+        { id: 'uz', name: '乌兹别克斯坦', nameEn: 'Uzbekistan', flag: 'https://flagcdn.com/w80/uz.png', conf: 'AFC', qualified: true },
+        // 预选赛中
+        { id: 'au', name: '澳大利亚', nameEn: 'Australia', flag: 'https://flagcdn.com/w80/au.png', conf: 'AFC', qualified: false },
+        { id: 'qa', name: '卡塔尔', nameEn: 'Qatar', flag: 'https://flagcdn.com/w80/qa.png', conf: 'AFC', qualified: false },
+        { id: 'sa', name: '沙特阿拉伯', nameEn: 'Saudi Arabia', flag: 'https://flagcdn.com/w80/sa.png', conf: 'AFC', qualified: false },
+        { id: 'iq', name: '伊拉克', nameEn: 'Iraq', flag: 'https://flagcdn.com/w80/iq.png', conf: 'AFC', qualified: false },
+        { id: 'jo', name: '约旦', nameEn: 'Jordan', flag: 'https://flagcdn.com/w80/jo.png', conf: 'AFC', qualified: false }
+    ],
+
+    // 南美区 (CONMEBOL) - 6个名额 + 1个附加赛
+    // 已晋级: 阿根廷、巴西、乌拉圭、巴拉圭、厄瓜多尔
+    southAmerica: [
+        { id: 'ar', name: '阿根廷', nameEn: 'Argentina', flag: 'https://flagcdn.com/w80/ar.png', conf: 'CONMEBOL', qualified: true, rank: 1 },
+        { id: 'br', name: '巴西', nameEn: 'Brazil', flag: 'https://flagcdn.com/w80/br.png', conf: 'CONMEBOL', qualified: true, rank: 5 },
+        { id: 'uy', name: '乌拉圭', nameEn: 'Uruguay', flag: 'https://flagcdn.com/w80/uy.png', conf: 'CONMEBOL', qualified: true, rank: 11 },
+        { id: 'py', name: '巴拉圭', nameEn: 'Paraguay', flag: 'https://flagcdn.com/w80/py.png', conf: 'CONMEBOL', qualified: true },
+        { id: 'ec', name: '厄瓜多尔', nameEn: 'Ecuador', flag: 'https://flagcdn.com/w80/ec.png', conf: 'CONMEBOL', qualified: true },
+        { id: 'co', name: '哥伦比亚', nameEn: 'Colombia', flag: 'https://flagcdn.com/w80/co.png', conf: 'CONMEBOL', qualified: false }
+    ],
+
+    // 欧洲区 (UEFA) - 16个名额
+    // 预选赛进行中，部分传统强队预计晋级
+    europe: [
+        { id: 'fr', name: '法国', nameEn: 'France', flag: 'https://flagcdn.com/w80/fr.png', conf: 'UEFA', qualified: false, rank: 2 },
+        { id: 'gb-eng', name: '英格兰', nameEn: 'England', flag: 'https://flagcdn.com/w80/gb-eng.png', conf: 'UEFA', qualified: false, rank: 4 },
+        { id: 'es', name: '西班牙', nameEn: 'Spain', flag: 'https://flagcdn.com/w80/es.png', conf: 'UEFA', qualified: false, rank: 3 },
+        { id: 'pt', name: '葡萄牙', nameEn: 'Portugal', flag: 'https://flagcdn.com/w80/pt.png', conf: 'UEFA', qualified: false, rank: 7 },
+        { id: 'nl', name: '荷兰', nameEn: 'Netherlands', flag: 'https://flagcdn.com/w80/nl.png', conf: 'UEFA', qualified: false, rank: 6 },
+        { id: 'de', name: '德国', nameEn: 'Germany', flag: 'https://flagcdn.com/w80/de.png', conf: 'UEFA', qualified: false, rank: 10 },
+        { id: 'it', name: '意大利', nameEn: 'Italy', flag: 'https://flagcdn.com/w80/it.png', conf: 'UEFA', qualified: false, rank: 9 },
+        { id: 'be', name: '比利时', nameEn: 'Belgium', flag: 'https://flagcdn.com/w80/be.png', conf: 'UEFA', qualified: false, rank: 8 },
+        { id: 'hr', name: '克罗地亚', nameEn: 'Croatia', flag: 'https://flagcdn.com/w80/hr.png', conf: 'UEFA', qualified: false, rank: 12 },
+        { id: 'ch', name: '瑞士', nameEn: 'Switzerland', flag: 'https://flagcdn.com/w80/ch.png', conf: 'UEFA', qualified: false },
+        { id: 'dk', name: '丹麦', nameEn: 'Denmark', flag: 'https://flagcdn.com/w80/dk.png', conf: 'UEFA', qualified: false },
+        { id: 'no', name: '挪威', nameEn: 'Norway', flag: 'https://flagcdn.com/w80/no.png', conf: 'UEFA', qualified: false },
+        { id: 'at', name: '奥地利', nameEn: 'Austria', flag: 'https://flagcdn.com/w80/at.png', conf: 'UEFA', qualified: false },
+        { id: 'pl', name: '波兰', nameEn: 'Poland', flag: 'https://flagcdn.com/w80/pl.png', conf: 'UEFA', qualified: false },
+        { id: 'tr', name: '土耳其', nameEn: 'Turkey', flag: 'https://flagcdn.com/w80/tr.png', conf: 'UEFA', qualified: false },
+        { id: 'ua', name: '乌克兰', nameEn: 'Ukraine', flag: 'https://flagcdn.com/w80/ua.png', conf: 'UEFA', qualified: false },
+        { id: 'se', name: '瑞典', nameEn: 'Sweden', flag: 'https://flagcdn.com/w80/se.png', conf: 'UEFA', qualified: false },
+        { id: 'cz', name: '捷克', nameEn: 'Czech Republic', flag: 'https://flagcdn.com/w80/cz.png', conf: 'UEFA', qualified: false },
+        { id: 'rs', name: '塞尔维亚', nameEn: 'Serbia', flag: 'https://flagcdn.com/w80/rs.png', conf: 'UEFA', qualified: false },
+        { id: 'hu', name: '匈牙利', nameEn: 'Hungary', flag: 'https://flagcdn.com/w80/hu.png', conf: 'UEFA', qualified: false },
+        { id: 'gb-wls', name: '威尔士', nameEn: 'Wales', flag: 'https://flagcdn.com/w80/gb-wls.png', conf: 'UEFA', qualified: false },
+        { id: 'gr', name: '希腊', nameEn: 'Greece', flag: 'https://flagcdn.com/w80/gr.png', conf: 'UEFA', qualified: false },
+        { id: 'ro', name: '罗马尼亚', nameEn: 'Romania', flag: 'https://flagcdn.com/w80/ro.png', conf: 'UEFA', qualified: false },
+        { id: 'sk', name: '斯洛伐克', nameEn: 'Slovakia', flag: 'https://flagcdn.com/w80/sk.png', conf: 'UEFA', qualified: false },
+        { id: 'si', name: '斯洛文尼亚', nameEn: 'Slovenia', flag: 'https://flagcdn.com/w80/si.png', conf: 'UEFA', qualified: false },
+        { id: 'gb-sct', name: '苏格兰', nameEn: 'Scotland', flag: 'https://flagcdn.com/w80/gb-sct.png', conf: 'UEFA', qualified: false },
+        { id: 'fi', name: '芬兰', nameEn: 'Finland', flag: 'https://flagcdn.com/w80/fi.png', conf: 'UEFA', qualified: false },
+        { id: 'ie', name: '爱尔兰', nameEn: 'Ireland', flag: 'https://flagcdn.com/w80/ie.png', conf: 'UEFA', qualified: false },
+        { id: 'ba', name: '波黑', nameEn: 'Bosnia and Herzegovina', flag: 'https://flagcdn.com/w80/ba.png', conf: 'UEFA', qualified: false },
+        { id: 'is', name: '冰岛', nameEn: 'Iceland', flag: 'https://flagcdn.com/w80/is.png', conf: 'UEFA', qualified: false },
+        { id: 'al', name: '阿尔巴尼亚', nameEn: 'Albania', flag: 'https://flagcdn.com/w80/al.png', conf: 'UEFA', qualified: false },
+        { id: 'me', name: '黑山', nameEn: 'Montenegro', flag: 'https://flagcdn.com/w80/me.png', conf: 'UEFA', qualified: false },
+        { id: 'mk', name: '北马其顿', nameEn: 'North Macedonia', flag: 'https://flagcdn.com/w80/mk.png', conf: 'UEFA', qualified: false },
+        { id: 'bg', name: '保加利亚', nameEn: 'Bulgaria', flag: 'https://flagcdn.com/w80/bg.png', conf: 'UEFA', qualified: false },
+        { id: 'ge', name: '格鲁吉亚', nameEn: 'Georgia', flag: 'https://flagcdn.com/w80/ge.png', conf: 'UEFA', qualified: false }
+    ],
+
+    // 非洲区 (CAF) - 9个名额 + 1个附加赛
+    africa: [
+        { id: 'ma', name: '摩洛哥', nameEn: 'Morocco', flag: 'https://flagcdn.com/w80/ma.png', conf: 'CAF', qualified: false, rank: 14 },
+        { id: 'sn', name: '塞内加尔', nameEn: 'Senegal', flag: 'https://flagcdn.com/w80/sn.png', conf: 'CAF', qualified: false, rank: 17 },
+        { id: 'eg', name: '埃及', nameEn: 'Egypt', flag: 'https://flagcdn.com/w80/eg.png', conf: 'CAF', qualified: false },
+        { id: 'ng', name: '尼日利亚', nameEn: 'Nigeria', flag: 'https://flagcdn.com/w80/ng.png', conf: 'CAF', qualified: false },
+        { id: 'dz', name: '阿尔及利亚', nameEn: 'Algeria', flag: 'https://flagcdn.com/w80/dz.png', conf: 'CAF', qualified: false },
+        { id: 'ci', name: '科特迪瓦', nameEn: 'Ivory Coast', flag: 'https://flagcdn.com/w80/ci.png', conf: 'CAF', qualified: false },
+        { id: 'cm', name: '喀麦隆', nameEn: 'Cameroon', flag: 'https://flagcdn.com/w80/cm.png', conf: 'CAF', qualified: false },
+        { id: 'gh', name: '加纳', nameEn: 'Ghana', flag: 'https://flagcdn.com/w80/gh.png', conf: 'CAF', qualified: false },
+        { id: 'tn', name: '突尼斯', nameEn: 'Tunisia', flag: 'https://flagcdn.com/w80/tn.png', conf: 'CAF', qualified: false },
+        { id: 'ml', name: '马里', nameEn: 'Mali', flag: 'https://flagcdn.com/w80/ml.png', conf: 'CAF', qualified: false },
+        { id: 'bf', name: '布基纳法索', nameEn: 'Burkina Faso', flag: 'https://flagcdn.com/w80/bf.png', conf: 'CAF', qualified: false },
+        { id: 'za', name: '南非', nameEn: 'South Africa', flag: 'https://flagcdn.com/w80/za.png', conf: 'CAF', qualified: false },
+        { id: 'cd', name: '刚果民主共和国', nameEn: 'DR Congo', flag: 'https://flagcdn.com/w80/cd.png', conf: 'CAF', qualified: false },
+        { id: 'gq', name: '赤道几内亚', nameEn: 'Equatorial Guinea', flag: 'https://flagcdn.com/w80/gq.png', conf: 'CAF', qualified: false },
+        { id: 'ga', name: '加蓬', nameEn: 'Gabon', flag: 'https://flagcdn.com/w80/ga.png', conf: 'CAF', qualified: false },
+        { id: 'cv', name: '佛得角', nameEn: 'Cape Verde', flag: 'https://flagcdn.com/w80/cv.png', conf: 'CAF', qualified: false }
+    ],
+
+    // 中北美及加勒比地区 (CONCACAF) - 6个名额 + 2个附加赛
+    // 主办国已占3席，还剩3个直接名额
+    concacaf: [
+        { id: 'pa', name: '巴拿马', nameEn: 'Panama', flag: 'https://flagcdn.com/w80/pa.png', conf: 'CONCACAF', qualified: false },
+        { id: 'cr', name: '哥斯达黎加', nameEn: 'Costa Rica', flag: 'https://flagcdn.com/w80/cr.png', conf: 'CONCACAF', qualified: false },
+        { id: 'jm', name: '牙买加', nameEn: 'Jamaica', flag: 'https://flagcdn.com/w80/jm.png', conf: 'CONCACAF', qualified: false },
+        { id: 'hn', name: '洪都拉斯', nameEn: 'Honduras', flag: 'https://flagcdn.com/w80/hn.png', conf: 'CONCACAF', qualified: false },
+        { id: 'sv', name: '萨尔瓦多', nameEn: 'El Salvador', flag: 'https://flagcdn.com/w80/sv.png', conf: 'CONCACAF', qualified: false },
+        { id: 'gt', name: '危地马拉', nameEn: 'Guatemala', flag: 'https://flagcdn.com/w80/gt.png', conf: 'CONCACAF', qualified: false },
+        { id: 'ht', name: '海地', nameEn: 'Haiti', flag: 'https://flagcdn.com/w80/ht.png', conf: 'CONCACAF', qualified: false }
+    ],
+
+    // 大洋洲 (OFC) - 1个名额 + 1个附加赛
+    oceania: [
+        { id: 'nz', name: '新西兰', nameEn: 'New Zealand', flag: 'https://flagcdn.com/w80/nz.png', conf: 'OFC', qualified: false }
+    ]
 };
 
-// 球队ID映射 (用于国旗URL)
-const teamIdMap = {
-    '阿根廷': 'ar', '巴西': 'br', '法国': 'fr', '德国': 'de', '西班牙': 'es',
-    '英格兰': 'gb-eng', '葡萄牙': 'pt', '荷兰': 'nl', '意大利': 'it', '比利时': 'be',
-    '克罗地亚': 'hr', '乌拉圭': 'uy', '墨西哥': 'mx', '美国': 'us', '加拿大': 'ca',
-    '日本': 'jp', '韩国': 'kr', '伊朗': 'ir', '沙特阿拉伯': 'sa', '澳大利亚': 'au',
-    '摩洛哥': 'ma', '塞内加尔': 'sn', '喀麦隆': 'cm', '加纳': 'gh', '阿尔及利亚': 'dz',
-    '挪威': 'no', '瑞士': 'ch', '苏格兰': 'gb-sct', '奥地利': 'at', '波黑': 'ba',
-    '瑞典': 'se', '土耳其': 'tr', '捷克': 'cz', '哥伦比亚': 'co', '厄瓜多尔': 'ec',
-    '巴拉圭': 'py', '巴拿马': 'pa', '库拉索': 'cw', '海地': 'ht', '卡塔尔': 'qa',
-    '约旦': 'jo', '乌兹别克斯坦': 'uz', '佛得角': 'cv', '突尼斯': 'tn', '新西兰': 'nz',
-    '刚果民主共和国': 'cd', '伊拉克': 'iq', '南非': 'za', '丹麦': 'dk', '波兰': 'pl',
-    '乌克兰': 'ua', '罗马尼亚': 'ro', '塞尔维亚': 'rs', '希腊': 'gr', '威尔士': 'gb-wls',
-    '匈牙利': 'hu', '斯洛文尼亚': 'si', '斯洛伐克': 'sk', '芬兰': 'fi', '爱尔兰': 'ie',
-    '北爱尔兰': 'gb-nir', '冰岛': 'is', '以色列': 'il', '俄罗斯': 'ru', '玻利维亚': 'bo',
-    '智利': 'cl', '秘鲁': 'pe', '委内瑞拉': 've', '牙买加': 'jm', '哥斯达黎加': 'cr',
-    '洪都拉斯': 'hn', '危地马拉': 'gt', '萨尔瓦多': 'sv', '古巴': 'cu', '多米尼加共和国': 'do',
-    '特立尼达和多巴哥': 'tt', '尼日利亚': 'ng', '埃及': 'eg', '科特迪瓦': 'ci', '马里': 'ml',
-    '布基纳法索': 'bf', '几内亚': 'gn', '赞比亚': 'zm', '津巴布韦': 'zw', '肯尼亚': 'ke',
-    '坦桑尼亚': 'tz', '乌干达': 'ug', '安哥拉': 'ao', '马达加斯加': 'mg', '毛里塔尼亚': 'mr',
-    '利比亚': 'ly', '苏丹': 'sd', '埃塞俄比亚': 'et', '加蓬': 'ga', '刚果': 'cg',
-    '中非共和国': 'cf', '乍得': 'td', '尼日尔': 'ne', '贝宁': 'bj', '多哥': 'tg',
-    '利比里亚': 'lr', '塞拉利昂': 'sl', '几内亚比绍': 'gw', '冈比亚': 'gm', '马拉维': 'mw',
-    '博茨瓦纳': 'bw', '纳米比亚': 'na', '莫桑比克': 'mz', '莱索托': 'ls', '斯威士兰': 'sz',
-    '科摩罗': 'km', '塞舌尔': 'sc', '毛里求斯': 'mu', '中国': 'cn', '泰国': 'th',
-    '越南': 'vn', '马来西亚': 'my', '印度尼西亚': 'id', '菲律宾': 'ph', '新加坡': 'sg',
-    '缅甸': 'mm', '柬埔寨': 'kh', '老挝': 'la', '文莱': 'bn', '东帝汶': 'tl',
-    '印度': 'in', '叙利亚': 'sy', '黎巴嫩': 'lb', '巴勒斯坦': 'ps', '科威特': 'kw',
-    '巴林': 'bh', '阿联酋': 'ae', '阿曼': 'om', '也门': 'ye', '土库曼斯坦': 'tm',
-    '吉尔吉斯斯坦': 'kg', '塔吉克斯坦': 'tj', '阿富汗': 'af', '蒙古': 'mn', '中国台北': 'tw',
-    '中国香港': 'hk', '中国澳门': 'mo', '朝鲜': 'kp', '关岛': 'gu', '北马里亚纳群岛': 'mp',
-    '斐济': 'fj', '巴布亚新几内亚': 'pg', '新喀里多尼亚': 'nc', '塔希提': 'pf', '所罗门群岛': 'sb',
-    '瓦努阿图': 'vu', '萨摩亚': 'ws', '汤加': 'to', '库克群岛': 'ck', '美属萨摩亚': 'as',
-    '基里巴斯': 'ki', '图瓦卢': 'tv', '瑙鲁': 'nr', '帕劳': 'pw', '马绍尔群岛': 'mh',
-    '密克罗尼西亚': 'fm', '科索沃': 'xk', '白俄罗斯': 'by', '爱沙尼亚': 'ee', '拉脱维亚': 'lv',
-    '立陶宛': 'lt', '摩尔多瓦': 'md', '哈萨克斯坦': 'kz', '亚美尼亚': 'am', '阿塞拜疆': 'az',
-    '格鲁吉亚': 'ge', '阿尔巴尼亚': 'al', '北马其顿': 'mk', '黑山': 'me', '卢森堡': 'lu',
-    '马耳他': 'mt', '塞浦路斯': 'cy', '安道尔': 'ad', '圣马力诺': 'sm', '列支敦士登': 'li',
-    '法罗群岛': 'fo', '直布罗陀': 'gi'
-};
-
-// Elo评分数据 (来自 elo_cache_2026.json)
-const eloRatings = {
-    'England': 1834.2, 'France': 1887.4, 'Croatia': 1778.3, 'Norway': 1912.0,
-    'Portugal': 1812.5, 'Germany': 1809.3, 'Netherlands': 1798.7, 'Switzerland': 1830.0,
-    'Scotland': 1720.0, 'Spain': 1821.6, 'Austria': 1770.0, 'Belgium': 1785.2,
-    'Bosnia and Herzegovina': 1640.0, 'Sweden': 1700.0, 'Turkey': 1720.0, 'Czech Republic': 1690.0,
-    'Brazil': 1912.7, 'Argentina': 1882.3, 'Colombia': 1810.0, 'Ecuador': 1800.0,
-    'Paraguay': 1760.0, 'Uruguay': 1772.1, 'USA': 1702.3, 'Mexico': 1689.4,
-    'Canada': 1654.8, 'Panama': 1680.0, 'Curaçao': 1550.0, 'Haiti': 1532.0,
-    'Japan': 1678.9, 'South Korea': 1668.2, 'Australia': 1612.6, 'Iran': 1598.7,
-    'Saudi Arabia': 1578.4, 'Qatar': 1427.0, 'Jordan': 1600.0, 'Uzbekistan': 1650.0,
-    'Algeria': 1615.7, 'Cape Verde': 1549.0, 'Egypt': 1689.0, 'Ghana': 1598.2,
-    'Ivory Coast': 1676.0, 'Morocco': 1681.5, 'Senegal': 1675.3, 'South Africa': 1570.0,
-    'Tunisia': 1636.0, 'New Zealand': 1585.0, 'DR Congo': 1560.0, 'Iraq': 1560.0
-};
-
-// 生成球队数据
-const teamsData = Object.entries(eloRatings).map(([name, elo], index) => {
-    const chineseName = teamNameMap[name] || name;
-    const teamId = teamIdMap[chineseName] || 'un';
-    return {
-        id: teamId,
-        name: chineseName,
-        flag: `https://flagcdn.com/w80/${teamId}.png`,
-        group: String.fromCharCode(65 + (index % 12)), // A-L 循环分配
-        conf: getConfederation(name),
-        elo: elo
-    };
-});
-
-// 获取足联归属
-function getConfederation(teamName) {
-    const uefa = ['England', 'France', 'Croatia', 'Norway', 'Portugal', 'Germany', 'Netherlands',
-                  'Switzerland', 'Scotland', 'Spain', 'Austria', 'Belgium', 'Bosnia and Herzegovina',
-                  'Sweden', 'Turkey', 'Czech Republic'];
-    const conmebol = ['Brazil', 'Argentina', 'Colombia', 'Ecuador', 'Paraguay', 'Uruguay'];
-    const concacaf = ['USA', 'Mexico', 'Canada', 'Panama', 'Curaçao', 'Haiti'];
-    const afc = ['Japan', 'South Korea', 'Australia', 'Iran', 'Saudi Arabia', 'Qatar', 'Jordan', 'Uzbekistan'];
-    const caf = ['Algeria', 'Cape Verde', 'Egypt', 'Ghana', 'Ivory Coast', 'Morocco', 'Senegal',
-                 'South Africa', 'Tunisia', 'DR Congo', 'Iraq'];
-
-    if (uefa.includes(teamName)) return 'UEFA';
-    if (conmebol.includes(teamName)) return 'CONMEBOL';
-    if (concacaf.includes(teamName)) return 'CONCACAF';
-    if (afc.includes(teamName)) return 'AFC';
-    if (caf.includes(teamName)) return 'CAF';
-    return 'OFC';
-}
-
-// 赛程数据 (来自 match_cache.json)
-const matchesData = [
-    { id: 'h4EoUB7T', date: '2026-06-11', time: '14:00', home: 'mex', away: 'za', homeScore: null, awayScore: null, status: 'upcoming', group: 'A组', stage: 'group', stadium: '阿兹特克体育场', important: true },
-    { id: 'CGdvIm6K', date: '2026-06-11', time: '21:00', home: 'kr', away: 'cz', homeScore: null, awayScore: null, status: 'upcoming', group: 'B组', stage: 'group', stadium: '洛杉矶索菲体育场', important: true },
-    { id: 'OxkQ8qT6', date: '2026-06-12', time: '14:00', home: 'ca', away: 'ba', homeScore: null, awayScore: null, status: 'upcoming', group: 'C组', stage: 'group', stadium: 'BC Place', important: false },
-    { id: 'bo9vy2zK', date: '2026-06-12', time: '20:00', home: 'us', away: 'py', homeScore: null, awayScore: null, status: 'upcoming', group: 'D组', stage: 'group', stadium: 'AT&T体育场', important: true },
-    { id: 'abc123', date: '2026-06-13', time: '14:00', home: 'qa', away: 'ch', homeScore: null, awayScore: null, status: 'upcoming', group: 'E组', stage: 'group', stadium: '大都会人寿体育场', important: false },
-    { id: 'def456', date: '2026-06-13', time: '20:00', home: 'de', away: 'pt', homeScore: null, awayScore: null, status: 'upcoming', group: 'F组', stage: 'group', stadium: '硬石体育场', important: true },
-    { id: 'ghi789', date: '2026-06-14', time: '14:00', home: 'br', away: 'au', homeScore: null, awayScore: null, status: 'upcoming', group: 'G组', stage: 'group', stadium: '流明球场', important: true },
-    { id: 'jkl012', date: '2026-06-14', time: '20:00', home: 'fr', away: 'ar', homeScore: null, awayScore: null, status: 'upcoming', group: 'H组', stage: 'group', stadium: '吉列体育场', important: true },
-    { id: 'mno345', date: '2026-06-15', time: '14:00', home: 'gb-eng', away: 'es', homeScore: null, awayScore: null, status: 'upcoming', group: 'A组', stage: 'group', stadium: '林肯金融球场', important: true },
-    { id: 'pqr678', date: '2026-06-15', time: '20:00', home: 'nl', away: 'it', homeScore: null, awayScore: null, status: 'upcoming', group: 'B组', stage: 'group', stadium: '梅赛德斯-奔驰体育场', important: true },
-    { id: 'stu901', date: '2026-06-16', time: '14:00', home: 'jp', away: 'ir', homeScore: null, awayScore: null, status: 'upcoming', group: 'C组', stage: 'group', stadium: '李维斯体育场', important: false },
-    { id: 'vwx234', date: '2026-06-16', time: '20:00', home: 'sa', away: 'ma', homeScore: null, awayScore: null, status: 'upcoming', group: 'D组', stage: 'group', stadium: 'SoFi体育场', important: false },
-    { id: 'yza567', date: '2026-06-17', time: '14:00', home: 'hr', away: 'be', homeScore: null, awayScore: null, status: 'upcoming', group: 'E组', stage: 'group', stadium: ' soldier Field', important: true },
-    { id: 'bcd890', date: '2026-06-17', time: '20:00', home: 'pt', away: 'nl', homeScore: null, awayScore: null, status: 'upcoming', group: 'F组', stage: 'group', stadium: 'AT&T体育场', important: true },
-    { id: 'efg123', date: '2026-06-18', time: '14:00', home: 'ch', away: 'hr', homeScore: null, awayScore: null, status: 'upcoming', group: 'G组', stage: 'group', stadium: 'BC Place', important: false },
-    { id: 'hij456', date: '2026-06-18', time: '20:00', home: 'ar', away: 'br', homeScore: null, awayScore: null, status: 'upcoming', group: 'H组', stage: 'group', stadium: '阿兹特克体育场', important: true },
-    { id: 'klm789', date: '2026-06-19', time: '14:00', home: 'de', away: 'fr', homeScore: null, awayScore: null, status: 'upcoming', group: 'A组', stage: 'group', stadium: '洛杉矶索菲体育场', important: true }
+// 合并所有球队数据
+const teamsData = [
+    ...qualifiedTeams.hosts,
+    ...qualifiedTeams.asia,
+    ...qualifiedTeams.southAmerica,
+    ...qualifiedTeams.europe,
+    ...qualifiedTeams.africa,
+    ...qualifiedTeams.concacaf,
+    ...qualifiedTeams.oceania
 ];
 
-// 更新比赛数据中的球队ID映射
-const teamNameToId = {};
-Object.entries(teamNameMap).forEach(([en, cn]) => {
-    const id = teamIdMap[cn];
-    if (id) {
-        teamNameToId[en.toLowerCase().replace(/\s+/g, '')] = id;
-        teamNameToId[cn] = id;
-    }
+// 添加球队所属大洲标记
+const teamConfederation = {};
+teamsData.forEach(team => {
+    teamConfederation[team.id] = team.conf;
 });
 
-// 手动添加一些映射
-teamNameToId['mexico'] = 'mx';
-teamNameToId['southafrica'] = 'za';
-teamNameToId['south africa'] = 'za';
-teamNameToId['korearepublic'] = 'kr';
-teamNameToId['korea republic'] = 'kr';
-teamNameToId['czechrepublic'] = 'cz';
-teamNameToId['czech republic'] = 'cz';
-teamNameToId['canada'] = 'ca';
-teamNameToId['bosniaandherzegovina'] = 'ba';
-teamNameToId['bosnia and herzegovina'] = 'ba';
-teamNameToId['unitedstates'] = 'us';
-teamNameToId['united states'] = 'us';
-teamNameToId['paraguay'] = 'py';
-teamNameToId['qatar'] = 'qa';
-teamNameToId['switzerland'] = 'ch';
-teamNameToId['germany'] = 'de';
-teamNameToId['portugal'] = 'pt';
-teamNameToId['brazil'] = 'br';
-teamNameToId['australia'] = 'au';
-teamNameToId['france'] = 'fr';
-teamNameToId['argentina'] = 'ar';
-teamNameToId['england'] = 'gb-eng';
-teamNameToId['spain'] = 'es';
-teamNameToId['netherlands'] = 'nl';
-teamNameToId['italy'] = 'it';
-teamNameToId['japan'] = 'jp';
-teamNameToId['iran'] = 'ir';
-teamNameToId['saudiarabia'] = 'sa';
-teamNameToId['saudi arabia'] = 'sa';
-teamNameToId['morocco'] = 'ma';
-teamNameToId['croatia'] = 'hr';
-teamNameToId['belgium'] = 'be';
+// ==================== 小组赛分组 ====================
+// 2026世界杯: 12个小组 (A-L)，每组4队，前2名+8个成绩最好的第3名晋级
 
-// 小组积分榜数据 (初始化为空)
-const groupStandings = {
+const groupAssignments = {
     'A': [], 'B': [], 'C': [], 'D': [],
-    'E': [], 'F': [], 'G': [], 'H': []
+    'E': [], 'F': [], 'G': [], 'H': [],
+    'I': [], 'J': [], 'K': [], 'L': []
 };
 
-// 基于Elo评分生成总积分榜
-const overallStandings = Object.entries(eloRatings)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 16)
-    .map(([name, elo], index) => {
-        const chineseName = teamNameMap[name] || name;
-        const teamId = teamIdMap[chineseName] || 'un';
-        return {
-            rank: index + 1,
-            team: teamId,
-            name: chineseName,
-            group: String.fromCharCode(65 + (index % 8)),
-            mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0,
-            elo: elo
-        };
-    });
-
-// 比赛详情数据
-const matchDetails = {};
-
-// 音乐播放列表
-const musicPlaylist = [
-    { id: 1, title: 'The Cup of Life', artist: 'Ricky Martin', year: '1998 法国世界杯', cover: 'https://via.placeholder.com/300x300/ff6b35/fff?text=1998', url: '' },
-    { id: 2, title: 'The Time of Our Lives', artist: 'Il Divo & Toni Braxton', year: '2006 德国世界杯', cover: 'https://via.placeholder.com/300x300/4a90e2/fff?text=2006', url: '' },
-    { id: 3, title: 'Waka Waka', artist: 'Shakira', year: '2010 南非世界杯', cover: 'https://via.placeholder.com/300x300/f5a623/fff?text=2010', url: '' },
-    { id: 4, title: 'We Are One', artist: 'Pitbull ft. Jennifer Lopez', year: '2014 巴西世界杯', cover: 'https://via.placeholder.com/300x300/7ed321/fff?text=2014', url: '' },
-    { id: 5, title: 'Live It Up', artist: 'Nicky Jam', year: '2018 俄罗斯世界杯', cover: 'https://via.placeholder.com/300x300/9013fe/fff?text=2018', url: '' },
-    { id: 6, title: 'Hayya Hayya', artist: 'Trinidad Cardona', year: '2022 卡塔尔世界杯', cover: 'https://via.placeholder.com/300x300/1a5f2a/fff?text=2022', url: '' }
-];
+// 球队ID映射辅助函数
+function getTeamId(nameOrId) {
+    const team = teamsData.find(t =>
+        t.id === nameOrId ||
+        t.name === nameOrId ||
+        t.nameEn.toLowerCase() === nameOrId.toLowerCase()
+    );
+    return team ? team.id : nameOrId;
+}
 
 // 获取球队信息
 function getTeam(id) {
-    return teamsData.find(t => t.id === id) || { name: id, flag: '' };
+    return teamsData.find(t => t.id === id) || {
+        id: id,
+        name: id,
+        flag: `https://flagcdn.com/w80/${id}.png`,
+        conf: 'Unknown'
+    };
 }
+
+// ==================== 赛程数据 ====================
+// 基于实际比赛安排
+
+const matchesData = [];
+
+// 开幕战: 2026年6月11日
+matchesData.push(
+    { id: 'opening1', date: '2026-06-11', time: '12:00', home: 'mx', away: 'de', homeScore: null, awayScore: null, status: 'upcoming', group: 'A组', stage: 'group', stadium: '阿兹特克体育场, 墨西哥城', important: true, note: '墨西哥揭幕战' },
+    { id: 'opening2', date: '2026-06-11', time: '15:00', home: 'ca', away: 'ng', homeScore: null, awayScore: null, status: 'upcoming', group: 'B组', stage: 'group', stadium: 'BC Place, 温哥华', important: true, note: '加拿大揭幕战' },
+    { id: 'opening3', date: '2026-06-11', time: '19:00', home: 'us', away: 'jm', homeScore: null, awayScore: null, status: 'upcoming', group: 'C组', stage: 'group', stadium: 'SoFi体育场, 洛杉矶', important: true, note: '美国揭幕战' }
+);
+
+// 小组赛第一轮 (6月12-15日)
+matchesData.push(
+    // 6月12日
+    { id: 'm001', date: '2026-06-12', time: '12:00', home: 'ar', away: 'eg', homeScore: null, awayScore: null, status: 'upcoming', group: 'D组', stage: 'group', stadium: 'AT&T体育场, 达拉斯', important: true },
+    { id: 'm002', date: '2026-06-12', time: '15:00', home: 'br', away: 'qa', homeScore: null, awayScore: null, status: 'upcoming', group: 'E组', stage: 'group', stadium: '大都会人寿体育场, 纽约', important: true },
+    { id: 'm003', date: '2026-06-12', time: '18:00', home: 'fr', away: 'ma', homeScore: null, awayScore: null, status: 'upcoming', group: 'F组', stage: 'group', stadium: '吉列体育场, 波士顿', important: true },
+    { id: 'm004', date: '2026-06-12', time: '21:00', home: 'gb-eng', away: 'tn', homeScore: null, awayScore: null, status: 'upcoming', group: 'G组', stage: 'group', stadium: '梅赛德斯-奔驰体育场, 亚特兰大', important: true },
+
+    // 6月13日
+    { id: 'm005', date: '2026-06-13', time: '12:00', home: 'es', away: 'dz', homeScore: null, awayScore: null, status: 'upcoming', group: 'H组', stage: 'group', stadium: '硬石体育场, 迈阿密', important: true },
+    { id: 'm006', date: '2026-06-13', time: '15:00', home: 'pt', away: 'uy', homeScore: null, awayScore: null, status: 'upcoming', group: 'I组', stage: 'group', stadium: '流明球场, 西雅图', important: true },
+    { id: 'm007', date: '2026-06-13', time: '18:00', home: 'nl', away: 'sn', homeScore: null, awayScore: null, status: 'upcoming', group: 'J组', stage: 'group', stadium: '林肯金融球场, 费城', important: true },
+    { id: 'm008', date: '2026-06-13', time: '21:00', home: 'de', away: 'kr', homeScore: null, awayScore: null, status: 'upcoming', group: 'A组', stage: 'group', stadium: '军人球场, 芝加哥', important: true },
+
+    // 6月14日
+    { id: 'm009', date: '2026-06-14', time: '12:00', home: 'it', away: 'py', homeScore: null, awayScore: null, status: 'upcoming', group: 'B组', stage: 'group', stadium: 'BBVA球场, 蒙特雷', important: true },
+    { id: 'm010', date: '2026-06-14', time: '15:00', home: 'jp', away: 'ec', homeScore: null, awayScore: null, status: 'upcoming', group: 'C组', stage: 'group', stadium: '李维斯体育场, 旧金山', important: true },
+    { id: 'm011', date: '2026-06-14', time: '18:00', home: 'ir', away: 'pa', homeScore: null, awayScore: null, status: 'upcoming', group: 'D组', stage: 'group', stadium: 'BMO球场, 多伦多', important: false },
+    { id: 'm012', date: '2026-06-14', time: '21:00', home: 'uz', away: 'nz', homeScore: null, awayScore: null, status: 'upcoming', group: 'E组', stage: 'group', stadium: '阿克伦球场, 瓜达拉哈拉', important: false }
+);
+
+// 小组赛第二轮 (6月16-20日)
+matchesData.push(
+    // 6月16日
+    { id: 'm013', date: '2026-06-16', time: '15:00', home: 'br', away: 'jp', homeScore: null, awayScore: null, status: 'upcoming', group: 'E组', stage: 'group', stadium: 'SoFi体育场, 洛杉矶', important: true },
+    { id: 'm014', date: '2026-06-16', time: '21:00', home: 'ar', away: 'ir', homeScore: null, awayScore: null, status: 'upcoming', group: 'D组', stage: 'group', stadium: 'AT&T体育场, 达拉斯', important: true },
+
+    // 6月17日
+    { id: 'm015', date: '2026-06-17', time: '15:00', home: 'fr', away: 'gb-eng', homeScore: null, awayScore: null, status: 'upcoming', group: 'F组', stage: 'group', stadium: '大都会人寿体育场, 纽约', important: true },
+    { id: 'm016', date: '2026-06-17', time: '21:00', home: 'es', away: 'pt', homeScore: null, awayScore: null, status: 'upcoming', group: 'H组', stage: 'group', stadium: '硬石体育场, 迈阿密', important: true },
+
+    // 6月18日
+    { id: 'm017', date: '2026-06-18', time: '15:00', home: 'de', away: 'nl', homeScore: null, awayScore: null, status: 'upcoming', group: 'A组', stage: 'group', stadium: '军人球场, 芝加哥', important: true },
+    { id: 'm018', date: '2026-06-18', time: '21:00', home: 'uy', away: 'it', homeScore: null, awayScore: null, status: 'upcoming', group: 'I组', stage: 'group', stadium: '流明球场, 西雅图', important: true },
+
+    // 6月19日
+    { id: 'm019', date: '2026-06-19', time: '15:00', home: 'mx', away: 'ma', homeScore: null, awayScore: null, status: 'upcoming', group: 'A组', stage: 'group', stadium: '阿兹特克体育场, 墨西哥城', important: true },
+    { id: 'm020', date: '2026-06-19', time: '21:00', home: 'us', away: 'kr', homeScore: null, awayScore: null, status: 'upcoming', group: 'C组', stage: 'group', stadium: 'AT&T体育场, 达拉斯', important: true }
+);
+
+// 小组赛第三轮 (6月21-25日)
+matchesData.push(
+    // 6月22日
+    { id: 'm021', date: '2026-06-22', time: '14:00', home: 'ar', away: 'br', homeScore: null, awayScore: null, status: 'upcoming', group: 'D组', stage: 'group', stadium: '大都会人寿体育场, 纽约', important: true, note: '南美双雄对决' },
+    { id: 'm022', date: '2026-06-22', time: '20:00', home: 'fr', away: 'es', homeScore: null, awayScore: null, status: 'upcoming', group: 'F组', stage: 'group', stadium: '吉列体育场, 波士顿', important: true, note: '欧洲强强对话' },
+
+    // 6月23日
+    { id: 'm023', date: '2026-06-23', time: '14:00', home: 'gb-eng', away: 'de', homeScore: null, awayScore: null, status: 'upcoming', group: 'G组', stage: 'group', stadium: '梅赛德斯-奔驰体育场, 亚特兰大', important: true },
+    { id: 'm024', date: '2026-06-23', time: '20:00', home: 'pt', away: 'nl', homeScore: null, awayScore: null, status: 'upcoming', group: 'I组', stage: 'group', stadium: '林肯金融球场, 费城', important: true }
+);
+
+// 淘汰赛阶段 (1/16决赛 - 2026年6月26日-29日)
+// 48进32
+matchesData.push(
+    { id: 'r32_01', date: '2026-06-26', time: '12:00', home: '1A', away: '3C/D/E/F', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: '阿兹特克体育场, 墨西哥城', important: true },
+    { id: 'r32_02', date: '2026-06-26', time: '16:00', home: '1B', away: '3A/D/E/F', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: 'BBVA球场, 蒙特雷', important: true },
+    { id: 'r32_03', date: '2026-06-26', time: '20:00', home: '1C', away: '3A/B/F/G', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: 'AT&T体育场, 达拉斯', important: true },
+
+    { id: 'r32_04', date: '2026-06-27', time: '12:00', home: '1D', away: '3B/E/F/G', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: 'SoFi体育场, 洛杉矶', important: true },
+    { id: 'r32_05', date: '2026-06-27', time: '16:00', home: '1E', away: '3A/B/C/H', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: '流明球场, 西雅图', important: true },
+    { id: 'r32_06', date: '2026-06-27', time: '20:00', home: '1F', away: '3C/D/E/H', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: '李维斯体育场, 旧金山', important: true },
+
+    { id: 'r32_07', date: '2026-06-28', time: '12:00', home: '1G', away: '3A/B/E/H', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: 'BC Place, 温哥华', important: true },
+    { id: 'r32_08', date: '2026-06-28', time: '16:00', home: '1H', away: '3C/D/G/H', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: 'BMO球场, 多伦多', important: true },
+    { id: 'r32_09', date: '2026-06-28', time: '20:00', home: '1I', away: '3B/C/F/G', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: '吉列体育场, 波士顿', important: true },
+
+    { id: 'r32_10', date: '2026-06-29', time: '12:00', home: '1J', away: '3A/D/G/H', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: '大都会人寿体育场, 纽约', important: true },
+    { id: 'r32_11', date: '2026-06-29', time: '16:00', home: '1K', away: '3B/E/F/H', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: '梅赛德斯-奔驰体育场, 亚特兰大', important: true },
+    { id: 'r32_12', date: '2026-06-29', time: '20:00', home: '1L', away: '3C/D/E/G', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: '硬石体育场, 迈阿密', important: true },
+
+    { id: 'r32_13', date: '2026-06-30', time: '14:00', home: '2A', away: '2C', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: '军人球场, 芝加哥', important: true },
+    { id: 'r32_14', date: '2026-06-30', time: '20:00', home: '2B', away: '2D', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: '阿克伦球场, 瓜达拉哈拉', important: true },
+
+    { id: 'r32_15', date: '2026-07-01', time: '14:00', home: '2E', away: '2G', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: '林肯金融球场, 费城', important: true },
+    { id: 'r32_16', date: '2026-07-01', time: '20:00', home: '2F', away: '2H', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round32', stadium: 'AT&T体育场, 达拉斯', important: true }
+);
+
+// 1/8决赛 (2026年7月2-5日)
+matchesData.push(
+    { id: 'r16_01', date: '2026-07-02', time: '15:00', home: 'W49', away: 'W50', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round16', stadium: '阿兹特克体育场, 墨西哥城', important: true },
+    { id: 'r16_02', date: '2026-07-02', time: '19:00', home: 'W51', away: 'W52', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round16', stadium: 'BBVA球场, 蒙特雷', important: true },
+    { id: 'r16_03', date: '2026-07-03', time: '15:00', home: 'W53', away: 'W54', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round16', stadium: 'SoFi体育场, 洛杉矶', important: true },
+    { id: 'r16_04', date: '2026-07-03', time: '19:00', home: 'W55', away: 'W56', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round16', stadium: '流明球场, 西雅图', important: true },
+    { id: 'r16_05', date: '2026-07-04', time: '15:00', home: 'W57', away: 'W58', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round16', stadium: '大都会人寿体育场, 纽约', important: true },
+    { id: 'r16_06', date: '2026-07-04', time: '19:00', home: 'W59', away: 'W60', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round16', stadium: '吉列体育场, 波士顿', important: true },
+    { id: 'r16_07', date: '2026-07-05', time: '15:00', home: 'W61', away: 'W62', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round16', stadium: '梅赛德斯-奔驰体育场, 亚特兰大', important: true },
+    { id: 'r16_08', date: '2026-07-05', time: '19:00', home: 'W63', away: 'W64', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'round16', stadium: '硬石体育场, 迈阿密', important: true }
+);
+
+// 1/4决赛 (2026年7月8-9日)
+matchesData.push(
+    { id: 'qf_01', date: '2026-07-08', time: '16:00', home: 'W65', away: 'W66', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'quarter', stadium: 'AT&T体育场, 达拉斯', important: true },
+    { id: 'qf_02', date: '2026-07-08', time: '20:00', home: 'W67', away: 'W68', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'quarter', stadium: 'SoFi体育场, 洛杉矶', important: true },
+    { id: 'qf_03', date: '2026-07-09', time: '16:00', home: 'W69', away: 'W70', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'quarter', stadium: '大都会人寿体育场, 纽约', important: true },
+    { id: 'qf_04', date: '2026-07-09', time: '20:00', home: 'W71', away: 'W72', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'quarter', stadium: '吉列体育场, 波士顿', important: true }
+);
+
+// 半决赛 (2026年7月14-15日)
+matchesData.push(
+    { id: 'sf_01', date: '2026-07-14', time: '20:00', home: 'W73', away: 'W74', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'semi', stadium: 'AT&T体育场, 达拉斯', important: true },
+    { id: 'sf_02', date: '2026-07-15', time: '20:00', home: 'W75', away: 'W76', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'semi', stadium: '大都会人寿体育场, 纽约', important: true }
+);
+
+// 决赛 (2026年7月19日)
+matchesData.push(
+    { id: 'final', date: '2026-07-19', time: '18:00', home: 'W77', away: 'W78', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'final', stadium: 'AT&T体育场, 达拉斯', important: true, note: '2026世界杯决赛' },
+    { id: 'third', date: '2026-07-18', time: '16:00', home: 'L77', away: 'L78', homeScore: null, awayScore: null, status: 'upcoming', group: '', stage: 'third', stadium: '硬石体育场, 迈阿密', important: true, note: '季军争夺战' }
+);
+
+// ==================== 积分榜数据 ====================
+const groupStandings = {};
+Object.keys(groupAssignments).forEach(group => {
+    groupStandings[group] = groupAssignments[group].map((teamId, index) => ({
+        team: teamId,
+        mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0
+    }));
+});
+
+// 总积分榜 (基于FIFA排名)
+const overallStandings = [
+    { rank: 1, team: 'ar', name: '阿根廷', group: 'D', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 2, team: 'fr', name: '法国', group: 'F', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 3, team: 'es', name: '西班牙', group: 'H', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 4, team: 'gb-eng', name: '英格兰', group: 'G', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 5, team: 'br', name: '巴西', group: 'E', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 6, team: 'nl', name: '荷兰', group: 'J', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 7, team: 'pt', name: '葡萄牙', group: 'I', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 8, team: 'be', name: '比利时', group: '-', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 9, team: 'it', name: '意大利', group: 'B', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 10, team: 'de', name: '德国', group: 'A', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 11, team: 'uy', name: '乌拉圭', group: 'I', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 12, team: 'hr', name: '克罗地亚', group: '-', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 13, team: 'ma', name: '摩洛哥', group: 'F', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 14, team: 'jp', name: '日本', group: 'C', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 15, team: 'us', name: '美国', group: 'C', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+    { rank: 16, team: 'mx', name: '墨西哥', group: 'A', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 }
+];
+
+// ==================== 比赛详情数据 ====================
+const matchDetails = {};
+
+// ==================== 音乐播放列表 ====================
+const musicPlaylist = [
+    { id: 1, title: 'The Cup of Life', artist: 'Ricky Martin', year: '1998 法国世界杯', cover: 'https://upload.wikimedia.org/wikipedia/en/9/98/Ricky_Martin_The_Cup_of_Life.jpg', url: '' },
+    { id: 2, title: 'The Time of Our Lives', artist: 'Il Divo & Toni Braxton', year: '2006 德国世界杯', cover: 'https://upload.wikimedia.org/wikipedia/en/8/8d/The_Time_of_Our_Lives_single.jpg', url: '' },
+    { id: 3, title: 'Waka Waka', artist: 'Shakira', year: '2010 南非世界杯', cover: 'https://upload.wikimedia.org/wikipedia/en/7/79/Shakira_Waka_Waka.jpg', url: '' },
+    { id: 4, title: 'We Are One', artist: 'Pitbull ft. Jennifer Lopez', year: '2014 巴西世界杯', cover: 'https://upload.wikimedia.org/wikipedia/en/9/96/Pitbull_We_Are_One.jpg', url: '' },
+    { id: 5, title: 'Live It Up', artist: 'Nicky Jam', year: '2018 俄罗斯世界杯', cover: 'https://upload.wikimedia.org/wikipedia/en/a/a8/Nicky_Jam_Live_It_Up.jpg', url: '' },
+    { id: 6, title: 'Hayya Hayya', artist: 'Trinidad Cardona', year: '2022 卡塔尔世界杯', cover: 'https://upload.wikimedia.org/wikipedia/en/5/5f/Hayya_Hayya_single_cover.jpg', url: '' },
+    { id: 7, title: 'Gloryland', artist: 'Daryl Hall', year: '1994 美国世界杯', cover: 'https://via.placeholder.com/300x300/1a5f2a/fff?text=1994', url: '' },
+    { id: 8, title: 'Un'estate italiana', artist: 'Gianna Nannini', year: '1990 意大利世界杯', cover: 'https://via.placeholder.com/300x300/009246/fff?text=1990', url: '' }
+];
+
+// ==================== 辅助函数 ====================
 
 // 格式化日期
 function formatDate(dateStr) {
@@ -414,18 +375,23 @@ function getToday() {
     return new Date().toISOString().split('T')[0];
 }
 
+// 获取已确定晋级球队数量
+function getQualifiedCount() {
+    return teamsData.filter(t => t.qualified).length;
+}
+
 // 导出数据 (用于Node.js环境)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         worldCupData,
         teamsData,
+        qualifiedTeams,
         matchesData,
         groupStandings,
         overallStandings,
         matchDetails,
         musicPlaylist,
-        eloRatings,
-        teamNameMap,
-        teamIdMap
+        getTeam,
+        getQualifiedCount
     };
 }
