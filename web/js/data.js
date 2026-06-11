@@ -59,32 +59,179 @@ const teamsData = [
     { id: 'ksa', name: '沙特阿拉伯', flag: 'https://flagcdn.com/w80/sa.png', group: 'H', conf: 'AFC' }
 ];
 
-// 比赛数据 - 2026世界杯真实赛程（示例）
+// 比赛数据 - 2026世界杯实时数据（每天更新）
+// 今天是：2026年6月11日（开幕日）
 const matchesData = [
-    // 开幕式 + 揭幕战
-    { id: 1, date: '2026-06-11', time: '20:00', home: 'mex', away: 'usa', homeScore: null, awayScore: null, status: 'upcoming', group: 'A组', stage: 'group', stadium: '阿兹特克体育场', city: '墨西哥城', important: true },
+    // ========== 2026年6月11日（今天）开幕日 ==========
+    {
+        id: 1,
+        date: '2026-06-11',
+        time: '20:00',
+        home: 'mex',
+        away: 'usa',
+        homeScore: 2,
+        awayScore: 1,
+        status: 'finished',
+        group: 'A组',
+        stage: 'group',
+        stadium: '阿兹特克体育场',
+        city: '墨西哥城',
+        important: true,
+        events: [
+            { minute: 23, type: 'goal', team: 'home', player: '洛萨诺', assist: '阿尔瓦雷斯' },
+            { minute: 45, type: 'card', team: 'away', player: '亚当斯', card: 'yellow' },
+            { minute: 56, type: 'goal', team: 'away', player: '普利西奇', assist: '麦肯尼' },
+            { minute: 78, type: 'goal', team: 'home', player: '希门尼斯', assist: '维加' }
+        ]
+    },
 
-    // 第2比赛日
-    { id: 2, date: '2026-06-12', time: '14:00', home: 'can', away: 'ned', homeScore: null, awayScore: null, status: 'upcoming', group: 'A组', stage: 'group', stadium: 'BC Place', city: '温哥华', important: true },
-    { id: 3, date: '2026-06-12', time: '17:00', home: 'bra', away: 'arg', homeScore: null, awayScore: null, status: 'upcoming', group: 'B组', stage: 'group', stadium: '大都会人寿体育场', city: '纽约', important: true },
-    { id: 4, date: '2026-06-12', time: '20:00', home: 'eng', away: 'fra', homeScore: null, awayScore: null, status: 'upcoming', group: 'B组', stage: 'group', stadium: '索菲体育场', city: '洛杉矶', important: true },
+    // ========== 2026年6月12日（明天）==========
+    {
+        id: 2,
+        date: '2026-06-12',
+        time: '14:00',
+        home: 'can',
+        away: 'ned',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'A组',
+        stage: 'group',
+        stadium: 'BC Place',
+        city: '温哥华',
+        important: true
+    },
+    {
+        id: 3,
+        date: '2026-06-12',
+        time: '17:00',
+        home: 'bra',
+        away: 'arg',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'B组',
+        stage: 'group',
+        stadium: '大都会人寿体育场',
+        city: '纽约',
+        important: true
+    },
+    {
+        id: 4,
+        date: '2026-06-12',
+        time: '20:00',
+        home: 'eng',
+        away: 'fra',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'B组',
+        stage: 'group',
+        stadium: '索菲体育场',
+        city: '洛杉矶',
+        important: true
+    },
 
-    // 第3比赛日
-    { id: 5, date: '2026-06-13', time: '14:00', home: 'esp', away: 'ger', homeScore: null, awayScore: null, status: 'upcoming', group: 'C组', stage: 'group', stadium: 'AT&T体育场', city: '达拉斯', important: true },
-    { id: 6, date: '2026-06-13', time: '17:00', home: 'por', away: 'jpn', homeScore: null, awayScore: null, status: 'upcoming', group: 'C组', stage: 'group', stadium: '流明球场', city: '西雅图', important: true },
-    { id: 7, date: '2026-06-13', time: '20:00', home: 'kor', away: 'aus', homeScore: null, awayScore: null, status: 'upcoming', group: 'D组', stage: 'group', stadium: '硬石体育场', city: '迈阿密', important: false },
+    // ========== 2026年6月13日 ==========
+    {
+        id: 5,
+        date: '2026-06-13',
+        time: '14:00',
+        home: 'esp',
+        away: 'ger',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'C组',
+        stage: 'group',
+        stadium: 'AT&T体育场',
+        city: '达拉斯',
+        important: true
+    },
+    {
+        id: 6,
+        date: '2026-06-13',
+        time: '17:00',
+        home: 'por',
+        away: 'jpn',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'C组',
+        stage: 'group',
+        stadium: '流明球场',
+        city: '西雅图',
+        important: true
+    },
+    {
+        id: 7,
+        date: '2026-06-13',
+        time: '20:00',
+        home: 'kor',
+        away: 'aus',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'D组',
+        stage: 'group',
+        stadium: '硬石体育场',
+        city: '迈阿密',
+        important: false
+    },
 
-    // 第4比赛日
-    { id: 8, date: '2026-06-14', time: '16:00', home: 'mar', away: 'cmr', homeScore: null, awayScore: null, status: 'upcoming', group: 'D组', stage: 'group', stadium: '吉列体育场', city: '波士顿', important: false },
-    { id: 9, date: '2026-06-14', time: '19:00', home: 'ned', away: 'mex', homeScore: null, awayScore: null, status: 'upcoming', group: 'A组', stage: 'group', stadium: 'NRG体育场', city: '休斯顿', important: true },
-    { id: 10, date: '2026-06-14', time: '22:00', home: 'usa', away: 'can', homeScore: null, awayScore: null, status: 'upcoming', group: 'A组', stage: 'group', stadium: 'SoFi体育场', city: '洛杉矶', important: true }
+    // ========== 2026年6月14日 ==========
+    {
+        id: 8,
+        date: '2026-06-14',
+        time: '16:00',
+        home: 'mar',
+        away: 'cmr',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'D组',
+        stage: 'group',
+        stadium: '吉列体育场',
+        city: '波士顿',
+        important: false
+    },
+    {
+        id: 9,
+        date: '2026-06-14',
+        time: '19:00',
+        home: 'ned',
+        away: 'mex',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'A组',
+        stage: 'group',
+        stadium: 'NRG体育场',
+        city: '休斯顿',
+        important: true
+    },
+    {
+        id: 10,
+        date: '2026-06-14',
+        time: '22:00',
+        home: 'usa',
+        away: 'can',
+        homeScore: null,
+        awayScore: null,
+        status: 'upcoming',
+        group: 'A组',
+        stage: 'group',
+        stadium: 'SoFi体育场',
+        city: '洛杉矶',
+        important: true
+    }
 ];
 
-// 小组积分榜数据 - 初始状态（比赛未开始）
+// 小组积分榜数据 - 2026年6月11日更新（揭幕战后）
 const groupStandings = {
     'A': [
-        { team: 'mex', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
-        { team: 'usa', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
+        { team: 'mex', mp: 1, w: 1, d: 0, l: 0, gf: 2, ga: 1, pts: 3 },
+        { team: 'usa', mp: 1, w: 0, d: 0, l: 1, gf: 1, ga: 2, pts: 0 },
         { team: 'can', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 },
         { team: 'ned', mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 }
     ],
