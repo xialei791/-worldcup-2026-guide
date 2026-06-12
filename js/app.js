@@ -399,9 +399,15 @@ function renderMatchesList(stage, team) {
 function initTeams() {
     const container = document.getElementById('teamsGrid');
 
-    container.innerHTML = teamsData.map((team, index) => `
+    // 按世界排名排序（无排名排最后）
+    const sorted = [...teamsData].sort((a, b) => (a.rank || 999) - (b.rank || 999));
+
+    container.innerHTML = sorted.map((team, index) => `
         <div class="team-card" onclick="openTeamModal('${team.id}')" style="animation-delay: ${index * 0.05}s">
-            <img src="${team.flag}" alt="${team.name}">
+            <div class="team-card-header">
+                ${team.rank && team.rank < 99 ? `<span class="team-rank ${team.rank <= 10 ? 'top-ten' : ''}">${team.rank}</span>` : ''}
+                <img src="${team.flag}" alt="${team.name}">
+            </div>
             <h4>${team.name}</h4>
             <span class="group">${team.group}组 · ${team.conf}</span>
         </div>

@@ -7,7 +7,7 @@
       "flag": "https://flagcdn.com/w80/za.png",
       "conf": "CAF",
       "group": "A",
-      "rank": null,
+      "rank": 60,
       "players": [
         {
           "name": "Percy Coetzee",
@@ -181,7 +181,7 @@
       "flag": "https://flagcdn.com/w80/br.png",
       "conf": "CONMEBOL",
       "group": "C",
-      "rank": null,
+      "rank": 6,
       "players": [
         {
           "name": "Eder Militão",
@@ -355,7 +355,7 @@
       "flag": "https://flagcdn.com/w80/gb-sct.png",
       "conf": "Unknown",
       "group": "C",
-      "rank": null,
+      "rank": 42,
       "players": [
         {
           "name": "Ross Cooper",
@@ -529,7 +529,7 @@
       "flag": "https://flagcdn.com/w80/tr.png",
       "conf": "UEFA",
       "group": "D",
-      "rank": null,
+      "rank": 22,
       "players": [
         {
           "name": "Irfan Oezcan",
@@ -703,7 +703,7 @@
       "flag": "https://flagcdn.com/w80/ci.png",
       "conf": "CAF",
       "group": "E",
-      "rank": null,
+      "rank": 33,
       "players": [
         {
           "name": "Nicolas Kouame",
@@ -877,7 +877,7 @@
       "flag": "https://flagcdn.com/w80/nl.png",
       "conf": "NL",
       "group": "F",
-      "rank": null,
+      "rank": 8,
       "players": [
         {
           "name": "Marten de Roon",
@@ -1051,7 +1051,7 @@
       "flag": "https://flagcdn.com/w80/cv.png",
       "conf": "Unknown",
       "group": "H",
-      "rank": null,
+      "rank": 67,
       "players": [
         {
           "name": "Rui Silva",
@@ -1225,7 +1225,7 @@
       "flag": "https://flagcdn.com/w80/fr.png",
       "conf": "ESPAÑA",
       "group": "I",
-      "rank": null,
+      "rank": 3,
       "players": [
         {
           "name": "Ngolo Saliba",
@@ -1399,7 +1399,7 @@
       "flag": "https://flagcdn.com/w80/tn.png",
       "conf": "CAF",
       "group": "F",
-      "rank": null,
+      "rank": 45,
       "players": [
         {
           "name": "Rami Maaloul",
@@ -1573,7 +1573,7 @@
       "flag": "https://flagcdn.com/w80/eg.png",
       "conf": "CAF",
       "group": "G",
-      "rank": null,
+      "rank": 29,
       "players": [
         {
           "name": "Emam El-Wensh",
@@ -1747,7 +1747,7 @@
       "flag": "https://flagcdn.com/w80/iq.png",
       "conf": "AFC",
       "group": "I",
-      "rank": null,
+      "rank": 57,
       "players": [
         {
           "name": "Ibrahim Adnan",
@@ -1921,7 +1921,7 @@
       "flag": "https://flagcdn.com/w80/pt.png",
       "conf": "UEFA",
       "group": "K",
-      "rank": null,
+      "rank": 5,
       "players": [
         {
           "name": "Jose Silva",
@@ -2095,7 +2095,7 @@
       "flag": "https://flagcdn.com/w80/uz.png",
       "conf": "AFC",
       "group": "K",
-      "rank": null,
+      "rank": 50,
       "players": [
         {
           "name": "Rustam Abdullaev",
@@ -2269,7 +2269,7 @@
       "flag": "https://flagcdn.com/w80/co.png",
       "conf": "CONMEBOL",
       "group": "K",
-      "rank": null,
+      "rank": 13,
       "players": [
         {
           "name": "Yairo Quintero",
@@ -2443,7 +2443,7 @@
       "flag": "https://flagcdn.com/w80/ec.png",
       "conf": "CONMEBOL",
       "group": "E",
-      "rank": null,
+      "rank": 23,
       "players": [
         {
           "name": "Marlon Guevara",
@@ -2617,7 +2617,7 @@
       "flag": "https://flagcdn.com/w80/jp.png",
       "conf": "AFC",
       "group": "F",
-      "rank": null,
+      "rank": 18,
       "players": [
         {
           "name": "Gaku Minamino",
@@ -2791,7 +2791,7 @@
       "flag": "https://flagcdn.com/w80/nz.png",
       "conf": "OFC",
       "group": "G",
-      "rank": null,
+      "rank": 85,
       "players": [
         {
           "name": "Joe Tzimas",
@@ -2965,7 +2965,7 @@
       "flag": "https://flagcdn.com/w80/sa.png",
       "conf": "AFC",
       "group": "H",
-      "rank": null,
+      "rank": 61,
       "players": [
         {
           "name": "Mohammed Kadesh",
@@ -3139,7 +3139,7 @@
       "flag": "https://flagcdn.com/w80/at.png",
       "conf": "UEFA",
       "group": "J",
-      "rank": null,
+      "rank": 24,
       "players": [
         {
           "name": "Karim Baumgartner",
@@ -3313,7 +3313,7 @@
       "flag": "https://flagcdn.com/w80/gh.png",
       "conf": "AFRICA",
       "group": "L",
-      "rank": null,
+      "rank": 73,
       "players": [
         {
           "name": "Issahaku Abdul",
@@ -3487,7 +3487,7 @@
       "flag": "https://flagcdn.com/w80/kr.png",
       "conf": "AFC",
       "group": "A",
-      "rank": null,
+      "rank": 25,
       "players": [
         {
           "name": "Min-jae Kim",
@@ -3661,7 +3661,7 @@
       "flag": "https://flagcdn.com/w80/es.png",
       "conf": "UEFA",
       "group": "H",
-      "rank": null,
+      "rank": 2,
       "players": [
         {
           "name": "Dani Gomez",
@@ -3835,7 +3835,7 @@
       "flag": "https://flagcdn.com/w80/no.png",
       "conf": "UEFA",
       "group": "I",
-      "rank": null,
+      "rank": 31,
       "players": [
         {
           "name": "Morten Holmgren",
@@ -4009,7 +4009,7 @@
       "flag": "https://flagcdn.com/w80/ar.png",
       "conf": "CONMEBOL",
       "group": "J",
-      "rank": null,
+      "rank": 1,
       "players": [
         {
           "name": "Emiliano Rodriguez",
@@ -4183,7 +4183,7 @@
       "flag": "https://flagcdn.com/w80/cd.png",
       "conf": "Unknown",
       "group": "K",
-      "rank": null,
+      "rank": 46,
       "players": [
         {
           "name": "Jonathan Bolaingwa",
@@ -4357,7 +4357,7 @@
       "flag": "https://flagcdn.com/w80/gb-eng.png",
       "conf": "Unknown",
       "group": "L",
-      "rank": null,
+      "rank": 4,
       "players": [
         {
           "name": "Jack Grealish",
@@ -4531,7 +4531,7 @@
       "flag": "https://flagcdn.com/w80/cz.png",
       "conf": "UEFA",
       "group": "A",
-      "rank": null,
+      "rank": 40,
       "players": [
         {
           "name": "Ondrej Barak",
@@ -4705,7 +4705,7 @@
       "flag": "https://flagcdn.com/w80/ca.png",
       "conf": "CONCACAF",
       "group": "B",
-      "rank": null,
+      "rank": 30,
       "players": [
         {
           "name": "Tajon Pantemis",
@@ -4879,7 +4879,7 @@
       "flag": "https://flagcdn.com/w80/qa.png",
       "conf": "AFC",
       "group": "B",
-      "rank": null,
+      "rank": 56,
       "players": [
         {
           "name": "Musaab Khoukhi",
@@ -5053,7 +5053,7 @@
       "flag": "https://flagcdn.com/w80/ch.png",
       "conf": "UEFA",
       "group": "B",
-      "rank": null,
+      "rank": 19,
       "players": [
         {
           "name": "Yann Widmer",
@@ -5227,7 +5227,7 @@
       "flag": "https://flagcdn.com/w80/ma.png",
       "conf": "CAF",
       "group": "C",
-      "rank": null,
+      "rank": 7,
       "players": [
         {
           "name": "Abdel Benoun",
@@ -5401,7 +5401,7 @@
       "flag": "https://flagcdn.com/w80/py.png",
       "conf": "CONMEBOL",
       "group": "D",
-      "rank": null,
+      "rank": 41,
       "players": [
         {
           "name": "Hector Morales",
@@ -5575,7 +5575,7 @@
       "flag": "https://flagcdn.com/w80/cw.png",
       "conf": "Unknown",
       "group": "E",
-      "rank": null,
+      "rank": 82,
       "players": [
         {
           "name": "Richairo Martina",
@@ -5749,7 +5749,7 @@
       "flag": "https://flagcdn.com/w80/se.png",
       "conf": "UEFA",
       "group": "F",
-      "rank": null,
+      "rank": 38,
       "players": [
         {
           "name": "Jens Lustig",
@@ -5923,7 +5923,7 @@
       "flag": "https://flagcdn.com/w80/dz.png",
       "conf": "CAF",
       "group": "J",
-      "rank": null,
+      "rank": 28,
       "players": [
         {
           "name": "Sofiane Mandi",
@@ -6097,7 +6097,7 @@
       "flag": "https://flagcdn.com/w80/jo.png",
       "conf": "AFC",
       "group": "J",
-      "rank": null,
+      "rank": 63,
       "players": [
         {
           "name": "Hamza Samir",
@@ -6271,7 +6271,7 @@
       "flag": "https://flagcdn.com/w80/ht.png",
       "conf": "Unknown",
       "group": "C",
-      "rank": null,
+      "rank": 83,
       "players": [
         {
           "name": "Bleriot Degand",
@@ -6445,7 +6445,7 @@
       "flag": "https://flagcdn.com/w80/de.png",
       "conf": "UEFA",
       "group": "E",
-      "rank": null,
+      "rank": 10,
       "players": [
         {
           "name": "Leroy Ruediger",
@@ -6619,7 +6619,7 @@
       "flag": "https://flagcdn.com/w80/uy.png",
       "conf": "URUGUAY",
       "group": "H",
-      "rank": null,
+      "rank": 16,
       "players": [
         {
           "name": "Agustin Pellistri",
@@ -6793,7 +6793,7 @@
       "flag": "https://flagcdn.com/w80/sn.png",
       "conf": "CAF",
       "group": "I",
-      "rank": null,
+      "rank": 15,
       "players": [
         {
           "name": "Samba Dia",
@@ -6967,7 +6967,7 @@
       "flag": "https://flagcdn.com/w80/pa.png",
       "conf": "Unknown",
       "group": "L",
-      "rank": null,
+      "rank": 34,
       "players": [
         {
           "name": "Roderick Cedeño",
@@ -7141,7 +7141,7 @@
       "flag": "https://flagcdn.com/w80/mx.png",
       "conf": "CONCACAF",
       "group": "A",
-      "rank": null,
+      "rank": 14,
       "players": [
         {
           "name": "Hector Alvarez",
@@ -7315,7 +7315,7 @@
       "flag": "https://flagcdn.com/w80/ba.png",
       "conf": "Unknown",
       "group": "B",
-      "rank": null,
+      "rank": 64,
       "players": [
         {
           "name": "Miroslav Golubovic",
@@ -7489,7 +7489,7 @@
       "flag": "https://flagcdn.com/w80/us.png",
       "conf": "CONCACAF",
       "group": "D",
-      "rank": null,
+      "rank": 17,
       "players": [
         {
           "name": "Weston Cowell",
@@ -7663,7 +7663,7 @@
       "flag": "https://flagcdn.com/w80/au.png",
       "conf": "OFC",
       "group": "D",
-      "rank": null,
+      "rank": 27,
       "players": [
         {
           "name": "Declan Stones",
@@ -7837,7 +7837,7 @@
       "flag": "https://flagcdn.com/w80/be.png",
       "conf": "BE",
       "group": "G",
-      "rank": null,
+      "rank": 9,
       "players": [
         {
           "name": "Youri Carrasco",
@@ -8011,7 +8011,7 @@
       "flag": "https://flagcdn.com/w80/ir.png",
       "conf": "AFC",
       "group": "G",
-      "rank": null,
+      "rank": 20,
       "players": [
         {
           "name": "Alireza Wahid",
@@ -8185,7 +8185,7 @@
       "flag": "https://flagcdn.com/w80/hr.png",
       "conf": "UEFA",
       "group": "L",
-      "rank": null,
+      "rank": 11,
       "players": [
         {
           "name": "Luka Brozovic",
@@ -10677,7 +10677,7 @@
       }
     ]
   },
-  "_last_updated": "2026-06-12T04:37:45.572Z",
+  "_last_updated": "2026-06-12T04:49:09.408Z",
   "overallStandings": [
     {
       "team": "mx",
