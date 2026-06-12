@@ -245,6 +245,7 @@ function renderOverallTable() {
             <div>赛</div>
             <div>胜</div>
             <div>平</div>
+            <div>负</div>
             <div>积分</div>
         </div>
     `;
