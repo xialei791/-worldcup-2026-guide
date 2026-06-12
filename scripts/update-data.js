@@ -309,6 +309,26 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 
 /**
+ * 生成 data/data.json 供 data-loader.js 加载
+ */
+function updateDataJson(teams, matches) {
+    const jsonPath = path.join(__dirname, '..', 'data', 'data.json');
+
+    const data = {
+        teamsData: teams,
+        matchesData: matches,
+        groupStandings: {},
+        overallStandings: [],
+        _last_updated: new Date().toISOString(),
+        _source: 'auto-update'
+    };
+
+    fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2), 'utf-8');
+    console.log('✅ data.json 已生成');
+    console.log(`   文件路径: ${jsonPath}`);
+}
+
+/**
  * 主函数
  */
 async function main() {
@@ -325,6 +345,9 @@ async function main() {
 
         // 更新数据文件
         updateDataFile(teams, matches);
+
+        // 同时生成 data/data.json 供 data-loader.js 使用
+        updateDataJson(teams, matches);
 
         console.log();
         console.log('✨ 数据更新完成!');
