@@ -38,7 +38,7 @@ if (worldCupData) {
 // 获取球队（带兜底处理，防止淘汰赛空球队导致渲染崩溃）
 function getTeam(teamId) {
     if (!teamId) {
-        return { id: '', name: '待定', flag: '', conf: '' };
+        return { id: '__trophy__', name: '🏆', flag: 'trophy', conf: '' };
     }
     if (worldCupData && worldCupData.teamsData) {
         return worldCupData.teamsData.find(t => t.id === teamId) || { id: teamId, name: teamId, flag: '' };

@@ -64,15 +64,15 @@ function initTodayMatches() {
                 </div>
                 <div class="match-teams">
                     <div class="team-info">
-                        <img src="${home.flag}" alt="${home.name}" class="team-flag">
-                        <span class="team-name">${home.name}</span>
+                        ${renderTeamImg(home)}
+                        <span class="team-name">${renderTeamName(home)}</span>
                     </div>
                     <div class="vs-center">
                         ${scoreDisplay}
                     </div>
                     <div class="team-info">
-                        <img src="${away.flag}" alt="${away.name}" class="team-flag">
-                        <span class="team-name">${away.name}</span>
+                        ${renderTeamImg(away)}
+                        <span class="team-name">${renderTeamName(away)}</span>
                     </div>
                 </div>
                 <div class="match-venue">
@@ -350,16 +350,16 @@ function renderMatchesList(stage) {
                 </div>
                 <div class="match-teams-row">
                     <div class="team-side">
-                        <img src="${home.flag}" alt="${home.name}">
-                        <span>${home.name}</span>
+                        ${renderTeamImg(home)}
+                        <span>${renderTeamName(home)}</span>
                     </div>
                     <div class="match-center">
                         ${scoreDisplay}
                         <span class="match-stage">${match.group}</span>
                     </div>
                     <div class="team-side away">
-                        <img src="${away.flag}" alt="${away.name}">
-                        <span>${away.name}</span>
+                        ${renderTeamImg(away)}
+                        <span>${renderTeamName(away)}</span>
                     </div>
                 </div>
             </div>
@@ -575,8 +575,8 @@ function openMatchModal(matchId) {
         <div class="modal-match-header">
             <div class="modal-teams">
                 <div class="modal-team">
-                    <img src="${home.flag}" alt="${home.name}">
-                    <h3>${home.name}</h3>
+                    ${renderTeamImg(home)}
+                    <h3>${renderTeamName(home)}</h3>
                 </div>
                 <div class="modal-score">
                     ${match.status === 'upcoming' ? '<span class="vs-big">VS</span>' :
@@ -584,8 +584,8 @@ function openMatchModal(matchId) {
                     <span class="modal-status">${getStatusText(match.status, match.minute)}</span>
                 </div>
                 <div class="modal-team">
-                    <img src="${away.flag}" alt="${away.name}">
-                    <h3>${away.name}</h3>
+                    ${renderTeamImg(away)}
+                    <h3>${renderTeamName(away)}</h3>
                 </div>
             </div>
             <div class="modal-info">

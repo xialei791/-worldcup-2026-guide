@@ -10,6 +10,19 @@ const matchDetails = {};
 
 // ==================== 辅助函数 ====================
 
+// 渲染球队头像（淘汰赛未定球队显示大力神杯）
+function renderTeamImg(team) {
+    if (!team || team.id === '__trophy__') {
+        return '<span class="trophy-icon"><i class="fas fa-trophy"></i></span>';
+    }
+    return '<img src="' + team.flag + '" alt="' + team.name + '" class="team-flag">';
+}
+
+function renderTeamName(team) {
+    if (!team || team.id === '__trophy__') return '🏆';
+    return team.name;
+}
+
 function formatDate(dateStr) {
     if (!dateStr) return '';
     const date = new Date(dateStr);
