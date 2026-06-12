@@ -131,10 +131,10 @@ function renderCalendar(year, month) {
     // 日期
     for (let day = 1; day <= daysInMonth; day++) {
         const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-        const dayMatches = matchesData.filter(m => m.date === dateStr);
+        const dayMatches = matchesData.filter(m => (m.beijingDate || m.date) === dateStr);
         const hasMatch = dayMatches.length > 0;
         const hasImportant = dayMatches.some(m => m.important);
-        const isToday = dateStr === '2026-06-13'; // 模拟今天
+        const isToday = dateStr === '2026-06-13'; // 模拟今天（北京时间）
 
         let classes = 'calendar-day';
         if (isToday) classes += ' today';
@@ -157,7 +157,7 @@ function renderCalendar(year, month) {
 }
 
 function showDayMatches(date) {
-    const matches = matchesData.filter(m => m.date === date);
+    const matches = matchesData.filter(m => (m.beijingDate || m.date) === date);
     if (matches.length > 0) {
         // 滚动到赛程区域
         document.getElementById('matches').scrollIntoView({ behavior: 'smooth' });
