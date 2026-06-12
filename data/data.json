@@ -8536,7 +8536,7 @@
       "group": "F组",
       "stage": "group",
       "stadium": "AT&T Stadium",
-      "important": false,
+      "important": true,
       "beijingTime": "04:00",
       "beijingDayShift": 1,
       "beijingDate": "2026-06-15"
@@ -8672,7 +8672,7 @@
       "group": "J组",
       "stage": "group",
       "stadium": "GEHA Field at Arrowhead Stadium",
-      "important": false,
+      "important": true,
       "beijingTime": "09:00",
       "beijingDayShift": 1,
       "beijingDate": "2026-06-17"
@@ -8706,7 +8706,7 @@
       "group": "K组",
       "stage": "group",
       "stadium": "NRG Stadium",
-      "important": false,
+      "important": true,
       "beijingTime": "01:00",
       "beijingDayShift": 1,
       "beijingDate": "2026-06-18"
@@ -8944,7 +8944,7 @@
       "group": "F组",
       "stage": "group",
       "stadium": "NRG Stadium",
-      "important": false,
+      "important": true,
       "beijingTime": "01:00",
       "beijingDayShift": 1,
       "beijingDate": "2026-06-21"
@@ -8961,7 +8961,7 @@
       "group": "F组",
       "stage": "group",
       "stadium": "Estadio BBVA",
-      "important": false,
+      "important": true,
       "beijingTime": "12:00",
       "beijingDayShift": 1,
       "beijingDate": "2026-06-21"
@@ -9080,7 +9080,7 @@
       "group": "J组",
       "stage": "group",
       "stadium": "AT&T Stadium",
-      "important": false,
+      "important": true,
       "beijingTime": "01:00",
       "beijingDayShift": 1,
       "beijingDate": "2026-06-23"
@@ -9114,7 +9114,7 @@
       "group": "K组",
       "stage": "group",
       "stadium": "NRG Stadium",
-      "important": false,
+      "important": true,
       "beijingTime": "01:00",
       "beijingDayShift": 1,
       "beijingDate": "2026-06-24"
@@ -9352,7 +9352,7 @@
       "group": "F组",
       "stage": "group",
       "stadium": "AT&T Stadium",
-      "important": false,
+      "important": true,
       "beijingTime": "07:00",
       "beijingDayShift": 1,
       "beijingDate": "2026-06-26"
@@ -9369,7 +9369,7 @@
       "group": "F组",
       "stage": "group",
       "stadium": "GEHA Field at Arrowhead Stadium",
-      "important": false,
+      "important": true,
       "beijingTime": "07:00",
       "beijingDayShift": 1,
       "beijingDate": "2026-06-26"
@@ -9539,7 +9539,7 @@
       "group": "J组",
       "stage": "group",
       "stadium": "AT&T Stadium",
-      "important": false,
+      "important": true,
       "beijingTime": "10:00",
       "beijingDayShift": 1,
       "beijingDate": "2026-06-28"
@@ -9556,7 +9556,7 @@
       "group": "K组",
       "stage": "group",
       "stadium": "Hard Rock Stadium",
-      "important": false,
+      "important": true,
       "beijingTime": "07:30",
       "beijingDayShift": 1,
       "beijingDate": "2026-06-28"
@@ -10677,7 +10677,7 @@
       }
     ]
   },
-  "_last_updated": "2026-06-12T04:36:31.435Z",
+  "_last_updated": "2026-06-12T04:37:45.572Z",
   "overallStandings": [
     {
       "team": "mx",
