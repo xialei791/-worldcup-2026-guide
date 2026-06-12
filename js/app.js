@@ -37,18 +37,22 @@ function initCountdown() {
     setInterval(updateCountdown, 1000);
 }
 
-// ==================== 今日赛事 ====================
+// ==================== 焦点赛事 ====================
 function initTodayMatches() {
-    const today = '2026-06-13'; // 模拟今天
-    const todayMatches = matchesData.filter(m => m.date === today);
     const container = document.getElementById('todayMatches');
 
-    if (todayMatches.length === 0) {
-        container.innerHTML = '<div class="no-match">今日暂无比赛</div>';
+    // 找出接下来3场焦点战（important=true，按日期排序）
+    const focusMatches = matchesData
+        .filter(m => m.important && m.status === 'upcoming')
+        .sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time))
+        .slice(0, 3);
+
+    if (focusMatches.length === 0) {
+        container.innerHTML = '<div class="no-match">暂无焦点赛事</div>';
         return;
     }
 
-    container.innerHTML = todayMatches.map((match, index) => {
+    container.innerHTML = focusMatches.map((match, index) => {
         const home = getTeam(match.home);
         const away = getTeam(match.away);
         const statusClass = match.status;
@@ -363,8 +367,10 @@ function renderMatchesList(stage, team) {
             ? '<span class="vs-text">VS</span>'
             : `<span class="score ${match.status === 'live' ? 'live-score' : ''}">${match.homeScore} - ${match.awayScore}</span>`;
 
+        const isImportant = match.important;
         return `
-            <div class="match-item" onclick="openMatchModal(${match.id})" style="animation-delay: ${index * 0.05}s">
+            <div class="match-item ${isImportant ? 'match-important' : ''}" onclick="openMatchModal(${match.id})" style="animation-delay: ${index * 0.05}s">
+                ${isImportant ? '<div class="match-important-badge"><i class="fas fa-star"></i> 焦点</div>' : ''}
                 <div class="match-time">
                     <div class="time">${match.beijingTime || match.time}</div>
                     <div class="date">${formatDate(match.beijingDate || match.date)}<span class="bj-label">北京时间</span></div>

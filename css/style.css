@@ -275,6 +275,7 @@ body {
 }
 
 /* 今日赛事 - 卡片增强 */
+.focus-matches,
 .today-matches {
     padding: 80px 0;
     position: relative;
@@ -896,11 +897,38 @@ body {
     padding: 20px;
     transition: var(--transition);
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .match-item:hover {
     background: var(--border-color);
     transform: translateX(5px);
+}
+
+.match-important {
+    border-left: 4px solid #ffd700;
+    background: linear-gradient(90deg, rgba(255,215,0,0.04) 0%, var(--bg-color) 30%);
+}
+
+.match-important-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #b8860b;
+    background: rgba(255,215,0,0.15);
+    padding: 2px 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.match-important-badge i {
+    color: #ffd700;
+    font-size: 9px;
 }
 
 .match-time {
