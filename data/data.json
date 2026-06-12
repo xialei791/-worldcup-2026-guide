@@ -10677,7 +10677,7 @@
       }
     ]
   },
-  "_last_updated": "2026-06-12T04:29:56.869Z",
+  "_last_updated": "2026-06-12T04:30:56.535Z",
   "overallStandings": [
     {
       "team": "mx",
@@ -10716,6 +10716,19 @@
       "gf": 0,
       "ga": 0,
       "gd": 0,
+      "pts": 0
+    },
+    {
+      "team": "za",
+      "name": "South Africa",
+      "group": "A",
+      "mp": 1,
+      "w": 0,
+      "d": 0,
+      "l": 1,
+      "gf": 0,
+      "ga": 2,
+      "gd": -2,
       "pts": 0
     },
     {
@@ -11288,19 +11301,6 @@
       "gf": 0,
       "ga": 0,
       "gd": 0,
-      "pts": 0
-    },
-    {
-      "team": "za",
-      "name": "South Africa",
-      "group": "A",
-      "mp": 1,
-      "w": 0,
-      "d": 0,
-      "l": 1,
-      "gf": 0,
-      "ga": 2,
-      "gd": -2,
       "pts": 0
     }
   ],
