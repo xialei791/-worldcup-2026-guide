@@ -141,8 +141,8 @@ function renderCalendar(year, month) {
         if (hasMatch) classes += ' has-match';
         if (hasImportant) classes += ' important';
 
-        const dots = dayMatches.slice(0, 3).map(() =>
-            `<span class="match-dot ${hasImportant ? 'important' : ''}"></span>`
+        const dots = dayMatches.slice(0, 3).map(m =>
+            `<span class="match-dot ${m.important ? 'important' : ''}"></span>`
         ).join('');
 
         html += `
