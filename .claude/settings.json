@@ -1,50 +1,21 @@
 {
   "permissions": {
     "allow": [
-      {
-        "command": "Bash",
-        "pattern": ".*"
-      },
-      {
-        "command": "Read",
-        "pattern": ".*"
-      },
-      {
-        "command": "Edit",
-        "pattern": ".*"
-      },
-      {
-        "command": "Write",
-        "pattern": ".*"
-      },
-      {
-        "command": "Glob",
-        "pattern": ".*"
-      },
-      {
-        "command": "Grep",
-        "pattern": ".*"
-      },
-      {
-        "command": "NotebookEdit",
-        "pattern": ".*"
-      },
-      {
-        "command": "Agent",
-        "pattern": ".*"
-      },
-      {
-        "command": "Workflow",
-        "pattern": ".*"
-      },
-      {
-        "command": "CronCreate",
-        "pattern": ".*"
-      },
-      {
-        "command": "CronDelete",
-        "pattern": ".*"
-      }
+      "Bash",
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "NotebookEdit",
+      "Agent",
+      "Workflow",
+      "CronCreate",
+      "CronDelete"
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "model_info"
   }
 }

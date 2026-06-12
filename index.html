@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026世界杯观赛指南 | FIFA World Cup 2026</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/music-player.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -31,9 +30,6 @@
                 <li><a href="#standings">积分榜</a></li>
                 <li><a href="#teams">球队</a></li>
             </ul>
-            <div class="music-toggle" id="musicToggle">
-                <i class="fas fa-music"></i>
-            </div>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -245,56 +241,6 @@
         </div>
     </div>
 
-    <!-- 音乐播放器 -->
-    <div class="music-player" id="musicPlayer">
-        <div class="player-mini" id="playerMini">
-            <div class="album-art">
-                <img src="https://via.placeholder.com/60x60/1a5f2a/fff?text=WC" alt="专辑封面" id="albumArt">
-            </div>
-            <div class="song-info">
-                <span class="song-title" id="songTitle">The Cup of Life</span>
-                <span class="song-artist" id="songArtist">1998 法国世界杯</span>
-            </div>
-            <div class="player-controls">
-                <button class="control-btn" id="prevBtn"><i class="fas fa-step-backward"></i></button>
-                <button class="control-btn play-btn" id="playBtn"><i class="fas fa-play"></i></button>
-                <button class="control-btn" id="nextBtn"><i class="fas fa-step-forward"></i></button>
-            </div>
-            <button class="expand-btn" id="expandBtn"><i class="fas fa-chevron-up"></i></button>
-        </div>
-
-        <div class="player-full hidden" id="playerFull">
-            <div class="full-header">
-                <button class="collapse-btn" id="collapseBtn"><i class="fas fa-chevron-down"></i></button>
-                <span class="now-playing">正在播放</span>
-            </div>
-            <div class="full-art">
-                <img src="https://via.placeholder.com/250x250/1a5f2a/fff?text=WC" alt="专辑封面" id="fullAlbumArt">
-            </div>
-            <div class="full-info">
-                <h3 class="full-title" id="fullTitle">The Cup of Life</h3>
-                <p class="full-artist" id="fullArtist">Ricky Martin - 1998 法国世界杯</p>
-            </div>
-            <div class="progress-container">
-                <span class="time" id="currentTime">0:00</span>
-                <div class="progress-bar" id="progressBar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-                <span class="time" id="totalTime">3:45</span>
-            </div>
-            <div class="full-controls">
-                <button class="control-btn" id="shuffleBtn"><i class="fas fa-random"></i></button>
-                <button class="control-btn" id="prevBtnFull"><i class="fas fa-step-backward"></i></button>
-                <button class="control-btn play-btn-large" id="playBtnFull"><i class="fas fa-play"></i></button>
-                <button class="control-btn" id="nextBtnFull"><i class="fas fa-step-forward"></i></button>
-                <button class="control-btn" id="repeatBtn"><i class="fas fa-redo"></i></button>
-            </div>
-            <div class="playlist" id="playlist">
-                <!-- 动态生成 -->
-            </div>
-        </div>
-    </div>
-
     <!-- 页脚 -->
     <footer class="footer">
         <div class="container">
@@ -303,6 +249,7 @@
         </div>
     </footer>
 
+    <script src="js/data-loader.js"></script>
     <script src="js/data.js"></script>
     <script src="js/app.js"></script>
 </body>

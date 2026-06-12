@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Claude Code
+.claude/skills/
+
+# 个人测试文件
+check_python.bat
+notify*.py
+notify*.bat
+test_*.py
+test_*.bat
+wechat_auto_reply.py
+task_monitor.py
+find-skills/
+
+# 其他
+.DS_Store
+*.log
+EOF

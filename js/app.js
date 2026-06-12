@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initStandings();
     initMatches();
     initTeams();
-    initMusicPlayer();
     initNavigation();
     initTodayMatches();
     initModal();
@@ -400,124 +399,6 @@ function openMatchModal(matchId) {
 function closeMatchModal() {
     document.getElementById('matchModal').classList.remove('active');
     document.body.style.overflow = '';
-}
-
-// ==================== 音乐播放器 ====================
-let currentSongIndex = 0;
-let isPlaying = false;
-let isShuffle = false;
-let isRepeat = false;
-
-function initMusicPlayer() {
-    renderPlaylist();
-
-    // 播放/暂停
-    document.getElementById('playBtn').addEventListener('click', togglePlay);
-    document.getElementById('playBtnFull').addEventListener('click', togglePlay);
-
-    // 上一首/下一首
-    document.getElementById('prevBtn').addEventListener('click', prevSong);
-    document.getElementById('nextBtn').addEventListener('click', nextSong);
-    document.getElementById('prevBtnFull').addEventListener('click', prevSong);
-    document.getElementById('nextBtnFull').addEventListener('click', nextSong);
-
-    // 展开/收起
-    document.getElementById('expandBtn').addEventListener('click', () => {
-        document.getElementById('playerFull').classList.remove('hidden');
-        document.getElementById('playerMini').classList.add('hidden');
-    });
-
-    document.getElementById('collapseBtn').addEventListener('click', () => {
-        document.getElementById('playerFull').classList.add('hidden');
-        document.getElementById('playerMini').classList.remove('hidden');
-    });
-
-    // 随机/循环
-    document.getElementById('shuffleBtn').addEventListener('click', function() {
-        isShuffle = !isShuffle;
-        this.classList.toggle('active', isShuffle);
-    });
-
-    document.getElementById('repeatBtn').addEventListener('click', function() {
-        isRepeat = !isRepeat;
-        this.classList.toggle('active', isRepeat);
-    });
-
-    // 音乐按钮点击
-    document.getElementById('musicToggle').addEventListener('click', function() {
-        const player = document.getElementById('musicPlayer');
-        player.classList.toggle('hidden');
-        if (!player.classList.contains('hidden') && !isPlaying) {
-            togglePlay();
-        }
-    });
-
-    updatePlayerUI();
-}
-
-function renderPlaylist() {
-    const container = document.getElementById('playlist');
-    container.innerHTML = musicPlaylist.map((song, index) => `
-        <div class="playlist-item ${index === currentSongIndex ? 'active' : ''}" onclick="selectSong(${index})">
-            <span class="song-num">${index + 1}</span>
-            <div class="song-info-small">
-                <span class="song-name">${song.title}</span>
-                <span class="song-year">${song.year}</span>
-            </div>
-            ${index === currentSongIndex ? '<span class="playing-icon">♪</span>' : ''}
-        </div>
-    `).join('');
-}
-
-function togglePlay() {
-    isPlaying = !isPlaying;
-    updatePlayerUI();
-
-    const musicToggle = document.getElementById('musicToggle');
-    musicToggle.classList.toggle('playing', isPlaying);
-}
-
-function prevSong() {
-    if (isShuffle) {
-        currentSongIndex = Math.floor(Math.random() * musicPlaylist.length);
-    } else {
-        currentSongIndex = currentSongIndex === 0 ? musicPlaylist.length - 1 : currentSongIndex - 1;
-    }
-    updatePlayerUI();
-    renderPlaylist();
-}
-
-function nextSong() {
-    if (isShuffle) {
-        currentSongIndex = Math.floor(Math.random() * musicPlaylist.length);
-    } else {
-        currentSongIndex = currentSongIndex === musicPlaylist.length - 1 ? 0 : currentSongIndex + 1;
-    }
-    updatePlayerUI();
-    renderPlaylist();
-}
-
-function selectSong(index) {
-    currentSongIndex = index;
-    isPlaying = true;
-    updatePlayerUI();
-    renderPlaylist();
-}
-
-function updatePlayerUI() {
-    const song = musicPlaylist[currentSongIndex];
-
-    // 迷你播放器
-    document.getElementById('songTitle').textContent = song.title;
-    document.getElementById('songArtist').textContent = song.year;
-    document.getElementById('albumArt').src = song.cover;
-    document.getElementById('playBtn').innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
-
-    // 全屏播放器
-    document.getElementById('fullTitle').textContent = song.title;
-    document.getElementById('fullArtist').textContent = `${song.artist} - ${song.year}`;
-    document.getElementById('fullAlbumArt').src = song.cover;
-    document.getElementById('playBtnFull').innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
 }
 
 // ==================== 导航 ====================
