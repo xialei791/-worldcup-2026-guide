@@ -80,7 +80,8 @@ function initTodayMatches() {
                     </div>
                 </div>
                 <div class="match-venue">
-                    <i class="fas fa-map-marker-alt"></i> ${match.stadium}
+                    <span><i class="fas fa-clock"></i> ${match.beijingDate || match.date} ${match.beijingTime || match.time}</span>
+                    <span><i class="fas fa-map-marker-alt"></i> ${match.stadium}</span>
                 </div>
             </div>
         `;
