@@ -326,16 +326,35 @@ function initScorers() {
 
 // ==================== 赛程 ====================
 function initMatches() {
-    renderMatchesList('all');
+    // 填充球队筛选器
+    const teamFilter = document.getElementById('teamFilter');
+    const sortedTeams = [...teamsData].sort((a, b) => {
+        if (a.group !== b.group) return a.group.localeCompare(b.group);
+        return a.name.localeCompare(b.name);
+    });
+    sortedTeams.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = t.group + '组 ' + t.name;
+        teamFilter.appendChild(opt);
+    });
+
+    renderMatchesList('all', 'all');
 
     document.getElementById('stageFilter').addEventListener('change', function() {
-        renderMatchesList(this.value);
+        renderMatchesList(this.value, document.getElementById('teamFilter').value);
+    });
+    document.getElementById('teamFilter').addEventListener('change', function() {
+        renderMatchesList(document.getElementById('stageFilter').value, this.value);
     });
 }
 
-function renderMatchesList(stage) {
+function renderMatchesList(stage, team) {
     const container = document.getElementById('matchesList');
-    const filtered = stage === 'all' ? matchesData : matchesData.filter(m => m.stage === stage);
+    let filtered = stage === 'all' ? matchesData : matchesData.filter(m => m.stage === stage);
+    if (team !== 'all') {
+        filtered = filtered.filter(m => m.home === team || m.away === team);
+    }
 
     container.innerHTML = filtered.map((match, index) => {
         const home = getTeam(match.home);

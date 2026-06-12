@@ -860,14 +860,26 @@ body {
     background: #fff;
 }
 
-.stage-filter select {
-    padding: 12px 20px;
+.match-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.match-filters select {
+    padding: 10px 16px;
     border: 1px solid var(--border-color);
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 13px;
     background: #fff;
     cursor: pointer;
     outline: none;
+    min-width: 120px;
+}
+
+.match-filters select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(26,95,42,0.1);
 }
 
 .matches-list {
