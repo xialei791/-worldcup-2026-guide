@@ -485,8 +485,13 @@ function renderFormation(formation, players) {
                     <div class="pitch-corner pitch-corner-bl"></div>
                     <div class="pitch-corner pitch-corner-br"></div>
                     <!-- Players -->
-                    ${rows.map((row, ri) => `
-                        <div class="pitch-row" style="top: ${10 + (ri + 1) * 20}%">
+                    ${rows.map((row, ri) => {
+                        // 从18%开始到最后一行58%，均匀分布，守门员保持在82%
+                        const topPct = rows.length > 1
+                            ? 18 + ri * (40 / (rows.length - 1))
+                            : 35;
+                        return `
+                        <div class="pitch-row" style="top: ${topPct}%">
                             ${row.map(p => `
                                 <div class="pitch-player">
                                     <div class="formation-circle ${p.position.toLowerCase()}">
@@ -495,10 +500,10 @@ function renderFormation(formation, players) {
                                     <span class="formation-name">${p.name.split(' ').pop()}</span>
                                 </div>
                             `).join('')}
-                        </div>
-                    `).join('')}
+                        </div>`;
+                    }).join('')}
                     <!-- GK at bottom -->
-                    <div class="pitch-row" style="top: 85%">
+                    <div class="pitch-row" style="top: 82%">
                         ${gk.map(p => `
                             <div class="pitch-player">
                                 <div class="formation-circle gk">
