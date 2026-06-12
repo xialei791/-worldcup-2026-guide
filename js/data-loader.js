@@ -34,16 +34,19 @@ if (worldCupData) {
     window.overallStandings = worldCupData.overallStandings;
 }
 
-// 获取球队
+// 获取球队（带兜底处理，防止淘汰赛空球队导致渲染崩溃）
 function getTeam(teamId) {
+    if (!teamId) {
+        return { id: '', name: '待定', flag: '', conf: '' };
+    }
     if (worldCupData && worldCupData.teamsData) {
-        return worldCupData.teamsData.find(t => t.id === teamId);
+        return worldCupData.teamsData.find(t => t.id === teamId) || { id: teamId, name: teamId, flag: '' };
     }
     // 回退到原 data.js
     if (typeof teamsData !== 'undefined') {
-        return teamsData.find(t => t.id === teamId);
+        return teamsData.find(t => t.id === teamId) || { id: teamId, name: teamId, flag: '' };
     }
-    return null;
+    return { id: teamId, name: teamId, flag: '' };
 }
 
 // 获取比赛
