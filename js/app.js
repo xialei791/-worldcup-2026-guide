@@ -446,14 +446,15 @@ function closeTeamModal() {
 
 function renderFormation(formation, players) {
     const parts = formation.split('-').map(Number);
-    // Filter out GK from field players
     const gk = players.filter(p => p.position === 'GK').slice(0, 1);
     const fieldPlayers = players.filter(p => p.position !== 'GK');
 
-    // Build rows based on formation
+    // Build rows: for "4-3-3", we want defenders at bottom, forwards at top
+    // parts = [4, 3, 3] → DF=4, MF=3, FW=3
     let rows = [];
     let idx = 0;
-    for (let i = parts.length - 1; i >= 0; i--) {
+    // Defenders first (bottom of field)
+    for (let i = 0; i < parts.length; i++) {
         const count = parts[i];
         const rowPlayers = fieldPlayers.slice(idx, idx + count);
         idx += count;
@@ -462,28 +463,52 @@ function renderFormation(formation, players) {
 
     return `
         <div class="formation-field">
-            <div class="formation-label">${formation}</div>
-            ${rows.map((row, ri) => `
-                <div class="formation-row" style="grid-template-columns: repeat(${row.length}, 1fr)">
-                    ${row.map(p => `
-                        <div class="formation-player">
-                            <div class="formation-circle ${p.position.toLowerCase()}">
-                                <span class="formation-num">${p.number || ''}</span>
-                            </div>
-                            <span class="formation-name">${p.name.split(' ').pop()}</span>
+            <div class="pitch">
+                <div class="pitch-label">${formation}</div>
+                <div class="pitch-border">
+                    <!-- Center line -->
+                    <div class="pitch-center-line"></div>
+                    <!-- Center circle -->
+                    <div class="pitch-center-circle"></div>
+                    <!-- Penalty areas -->
+                    <div class="pitch-penalty-area pitch-penalty-top"></div>
+                    <div class="pitch-penalty-area pitch-penalty-bottom"></div>
+                    <!-- Goal areas -->
+                    <div class="pitch-goal-area pitch-goal-top"></div>
+                    <div class="pitch-goal-area pitch-goal-bottom"></div>
+                    <!-- Goals -->
+                    <div class="pitch-goal pitch-goal-top"></div>
+                    <div class="pitch-goal pitch-goal-bottom"></div>
+                    <!-- Corner arcs -->
+                    <div class="pitch-corner pitch-corner-tl"></div>
+                    <div class="pitch-corner pitch-corner-tr"></div>
+                    <div class="pitch-corner pitch-corner-bl"></div>
+                    <div class="pitch-corner pitch-corner-br"></div>
+                    <!-- Players -->
+                    ${rows.map((row, ri) => `
+                        <div class="pitch-row" style="top: ${10 + (ri + 1) * 20}%">
+                            ${row.map(p => `
+                                <div class="pitch-player">
+                                    <div class="formation-circle ${p.position.toLowerCase()}">
+                                        <span class="formation-num">${p.number || ''}</span>
+                                    </div>
+                                    <span class="formation-name">${p.name.split(' ').pop()}</span>
+                                </div>
+                            `).join('')}
                         </div>
                     `).join('')}
-                </div>
-            `).join('')}
-            <div class="formation-row single">
-                ${gk.map(p => `
-                    <div class="formation-player">
-                        <div class="formation-circle gk">
-                            <span class="formation-num">${p.number || ''}</span>
-                        </div>
-                        <span class="formation-name">${p.name.split(' ').pop()}</span>
+                    <!-- GK at bottom -->
+                    <div class="pitch-row" style="top: 85%">
+                        ${gk.map(p => `
+                            <div class="pitch-player">
+                                <div class="formation-circle gk">
+                                    <span class="formation-num">${p.number || ''}</span>
+                                </div>
+                                <span class="formation-name">${p.name.split(' ').pop()}</span>
+                            </div>
+                        `).join('')}
                     </div>
-                `).join('')}
+                </div>
             </div>
         </div>
     `;

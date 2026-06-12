@@ -1665,94 +1665,147 @@ body {
 }
 
 /* 阵型图 */
+
 .formation-container {
-    background: linear-gradient(180deg, #4a9e5e 0%, #2d7a3e 40%, #1a5f2a 100%);
-    border-radius: 16px;
-    padding: 20px 30px;
-    position: relative;
-    overflow: hidden;
-    min-height: 260px;
-    aspect-ratio: 3 / 1;
     display: flex;
-    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 10px 0;
 }
 
-.formation-container::before {
-    content: '';
+.formation-field {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+}
+
+.pitch {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 68 / 105;
+    background: linear-gradient(135deg, #4a9e5e 0%, #3d8f50 50%, #2d7a3e 100%);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.pitch-label {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    height: 70%;
-    border: 2px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.12);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    z-index: 1;
+    pointer-events: none;
+    font-family: 'Arial', sans-serif;
+}
+
+.pitch-border {
+    position: absolute;
+    inset: 8px;
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 3px;
+}
+
+.pitch-center-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 0;
+    border-top: 2px solid rgba(255,255,255,0.5);
+}
+
+.pitch-center-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255,255,255,0.5);
     border-radius: 50%;
 }
 
-.formation-container::after {
-    content: '';
+.pitch-penalty-area {
     position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 60%;
-    border-left: 2px dashed rgba(255,255,255,0.1);
+    left: 18%;
+    right: 18%;
+    height: 22%;
+    border: 2px solid rgba(255,255,255,0.5);
 }
+.pitch-penalty-top { top: 0; border-top: none; border-radius: 0 0 4px 4px; }
+.pitch-penalty-bottom { bottom: 0; border-bottom: none; border-radius: 4px 4px 0 0; }
 
-.formation-field {
+.pitch-goal-area {
+    position: absolute;
+    left: 35%;
+    right: 35%;
+    height: 10%;
+    border: 2px solid rgba(255,255,255,0.5);
+}
+.pitch-goal-top { top: 0; border-top: none; }
+.pitch-goal-bottom { bottom: 0; border-bottom: none; }
+
+.pitch-goal {
+    position: absolute;
+    left: 42%;
+    right: 42%;
+    height: 5px;
+    background: rgba(255,255,255,0.8);
+}
+.pitch-goal-top { top: 0; }
+.pitch-goal-bottom { bottom: 0; }
+
+.pitch-corner {
+    position: absolute;
+    width: 8%;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+}
+.pitch-corner-tl { top: 8px; left: 8px; border-top: none; border-left: none; }
+.pitch-corner-tr { top: 8px; right: 8px; border-top: none; border-right: none; }
+.pitch-corner-bl { bottom: 8px; left: 8px; border-bottom: none; border-left: none; }
+.pitch-corner-br { bottom: 8px; right: 8px; border-bottom: none; border-right: none; }
+
+.pitch-row {
+    position: absolute;
+    left: 5%;
+    right: 5%;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    position: relative;
-    z-index: 1;
-    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 5;
 }
 
-.formation-label {
-    text-align: center;
-    color: rgba(255,255,255,0.5);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 5px;
-}
-
-.formation-row {
-    display: grid;
-    gap: 10px;
-    justify-items: center;
-}
-
-.formation-row.single {
-    display: flex;
-    justify-content: center;
-}
-
-.formation-player {
+.pitch-player {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
 }
 
 .formation-circle {
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 12px;
     color: #fff;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
     transition: transform 0.2s;
     cursor: default;
+    border: 2px solid rgba(255,255,255,0.3);
 }
 
 .formation-circle:hover {
-    transform: scale(1.15);
+    transform: scale(1.2);
 }
 
 .formation-circle.gk { background: linear-gradient(135deg, #f39c12, #e67e22); }
@@ -1761,16 +1814,16 @@ body {
 .formation-circle.fw { background: linear-gradient(135deg, #e74c3c, #c0392b); }
 
 .formation-num {
-    font-size: 16px;
+    font-size: 12px;
     text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .formation-name {
-    font-size: 10px;
+    font-size: 9px;
     color: #fff;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
     font-weight: 500;
-    max-width: 55px;
+    max-width: 50px;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
