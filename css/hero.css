@@ -1,4 +1,4 @@
-/* 首页 - 三国国旗平铺背景 */
+/* 首页 - 左中右三国全幅国旗背景 */
 .hero-section {
     position: relative;
     min-height: 100vh;
@@ -10,46 +10,65 @@
     padding: 100px 20px 60px;
 }
 
-/* 国旗平铺纹理 */
-.hero-section::before {
-    content: '';
+/* 左中右旗面容器 */
+.hero-flags {
     position: absolute;
     inset: 0;
+    display: flex;
     z-index: 0;
-    background-image:
-        url('https://flagcdn.com/w160/us.png'),
-        url('https://flagcdn.com/w160/ca.png'),
-        url('https://flagcdn.com/w160/mx.png');
-    background-repeat: repeat, repeat, repeat;
-    background-size: 120px auto, 120px auto, 120px auto;
-    background-position:
-        0 0,
-        40px 60px,
-        80px 120px;
-    opacity: 0.12;
-    pointer-events: none;
 }
 
-/* 网格柔光 */
-.hero-section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background:
-        radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.06) 0%, transparent 60%);
-    pointer-events: none;
+.flag-panel {
+    flex: 1;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: saturate(1.1) brightness(0.7);
 }
 
+/* 虚化过渡带 */
+.flag-divider {
+    width: 80px;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.flag-divider-left {
+    background: linear-gradient(
+        to right,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0.5) 30%,
+        rgba(0,0,0,0.6) 50%,
+        rgba(0,0,0,0.5) 70%,
+        rgba(0,0,0,0) 100%
+    );
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.flag-divider-right {
+    background: linear-gradient(
+        to right,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0.5) 30%,
+        rgba(0,0,0,0.6) 50%,
+        rgba(0,0,0,0.5) 70%,
+        rgba(0,0,0,0) 100%
+    );
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+/* 整体深色遮罩 */
 .hero-overlay {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(180deg,
-            rgba(0,0,0,0.75) 0%,
-            rgba(0,0,0,0.35) 25%,
-            rgba(0,0,0,0.45) 60%,
-            rgba(0,0,0,0.85) 100%
+        linear-gradient(0deg,
+            rgba(0,0,0,0.6) 0%,
+            transparent 30%,
+            transparent 70%,
+            rgba(0,0,0,0.4) 100%
         );
     z-index: 1;
 }
@@ -59,8 +78,8 @@
     inset: 0;
     z-index: 0;
     background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 120px, rgba(255,255,255,0.02) 120px, rgba(255,255,255,0.02) 121px),
-        repeating-linear-gradient(90deg, transparent, transparent 120px, rgba(255,255,255,0.02) 120px, rgba(255,255,255,0.02) 121px);
+        repeating-linear-gradient(0deg, transparent, transparent 120px, rgba(255,255,255,0.015) 120px, rgba(255,255,255,0.015) 121px),
+        repeating-linear-gradient(90deg, transparent, transparent 120px, rgba(255,255,255,0.015) 120px, rgba(255,255,255,0.015) 121px);
 }
 
 .hero-content {
@@ -132,7 +151,6 @@
     object-fit: cover;
 }
 
-/* 赛事数据 */
 .hero-stats {
     display: flex;
     align-items: center;
@@ -171,7 +189,6 @@
     background: rgba(255,255,255,0.1);
 }
 
-/* 快捷入口按钮 */
 .hero-actions {
     display: flex;
     gap: 12px;
@@ -240,9 +257,11 @@
     .hero-stats { gap: 14px; padding: 10px 20px; }
     .hero-stat-num { font-size: 22px; }
     .hero-btn { font-size: 12px; padding: 8px 18px; }
+    .flag-divider { width: 40px; }
 }
 
 @media (max-width: 480px) {
     .hero-badge { font-size: 40px; }
     .hero-title { font-size: 22px; letter-spacing: 4px; }
+    .flag-divider { width: 20px; }
 }
