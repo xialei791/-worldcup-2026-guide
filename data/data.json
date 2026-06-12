@@ -448,7 +448,8 @@
       "stadium": "Estadio Azteca",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-12"
     },
     {
       "id": "match_2",
@@ -464,7 +465,8 @@
       "stadium": "Estadio Akron",
       "important": false,
       "beijingTime": "10:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-12"
     },
     {
       "id": "match_3",
@@ -480,7 +482,8 @@
       "stadium": "BMO Field",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-13"
     },
     {
       "id": "match_4",
@@ -496,7 +499,8 @@
       "stadium": "SoFi Stadium",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-13"
     },
     {
       "id": "match_5",
@@ -512,7 +516,8 @@
       "stadium": "Gillette Stadium",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-14"
     },
     {
       "id": "match_6",
@@ -528,7 +533,8 @@
       "stadium": "BC Place",
       "important": false,
       "beijingTime": "12:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-14"
     },
     {
       "id": "match_7",
@@ -544,7 +550,8 @@
       "stadium": "MetLife Stadium",
       "important": false,
       "beijingTime": "06:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-14"
     },
     {
       "id": "match_8",
@@ -560,7 +567,8 @@
       "stadium": "Levi's Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-14"
     },
     {
       "id": "match_9",
@@ -576,7 +584,8 @@
       "stadium": "Lincoln Financial Field",
       "important": false,
       "beijingTime": "07:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-15"
     },
     {
       "id": "match_10",
@@ -592,7 +601,8 @@
       "stadium": "NRG Stadium",
       "important": false,
       "beijingTime": "01:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-15"
     },
     {
       "id": "match_11",
@@ -608,7 +618,8 @@
       "stadium": "AT&T Stadium",
       "important": false,
       "beijingTime": "04:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-15"
     },
     {
       "id": "match_12",
@@ -624,7 +635,8 @@
       "stadium": "Estadio BBVA",
       "important": false,
       "beijingTime": "10:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-15"
     },
     {
       "id": "match_13",
@@ -640,7 +652,8 @@
       "stadium": "SoFi Stadium",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-16"
     },
     {
       "id": "match_14",
@@ -656,7 +669,8 @@
       "stadium": "Mercedes-Benz Stadium",
       "important": false,
       "beijingTime": "00:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-16"
     },
     {
       "id": "match_15",
@@ -672,7 +686,8 @@
       "stadium": "Lumen Field",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-16"
     },
     {
       "id": "match_16",
@@ -688,7 +703,8 @@
       "stadium": "Hard Rock Stadium",
       "important": false,
       "beijingTime": "06:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-16"
     },
     {
       "id": "match_17",
@@ -704,7 +720,8 @@
       "stadium": "MetLife Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-17"
     },
     {
       "id": "match_18",
@@ -720,7 +737,8 @@
       "stadium": "Gillette Stadium",
       "important": false,
       "beijingTime": "06:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-17"
     },
     {
       "id": "match_19",
@@ -736,7 +754,8 @@
       "stadium": "GEHA Field at Arrowhead Stadium",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-17"
     },
     {
       "id": "match_20",
@@ -752,7 +771,8 @@
       "stadium": "Levi's Stadium",
       "important": false,
       "beijingTime": "12:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-17"
     },
     {
       "id": "match_21",
@@ -768,7 +788,8 @@
       "stadium": "NRG Stadium",
       "important": false,
       "beijingTime": "01:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-18"
     },
     {
       "id": "match_22",
@@ -784,7 +805,8 @@
       "stadium": "AT&T Stadium",
       "important": false,
       "beijingTime": "04:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-18"
     },
     {
       "id": "match_23",
@@ -800,7 +822,8 @@
       "stadium": "Estadio Azteca",
       "important": false,
       "beijingTime": "10:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-18"
     },
     {
       "id": "match_24",
@@ -816,7 +839,8 @@
       "stadium": "BMO Field",
       "important": false,
       "beijingTime": "07:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-18"
     },
     {
       "id": "match_25",
@@ -832,7 +856,8 @@
       "stadium": "Estadio Akron",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-19"
     },
     {
       "id": "match_26",
@@ -848,7 +873,8 @@
       "stadium": "SoFi Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-19"
     },
     {
       "id": "match_27",
@@ -864,7 +890,8 @@
       "stadium": "BC Place",
       "important": false,
       "beijingTime": "06:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-19"
     },
     {
       "id": "match_28",
@@ -880,7 +907,8 @@
       "stadium": "Mercedes-Benz Stadium",
       "important": false,
       "beijingTime": "00:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-19"
     },
     {
       "id": "match_29",
@@ -896,7 +924,8 @@
       "stadium": "Lincoln Financial Field",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-20"
     },
     {
       "id": "match_30",
@@ -912,7 +941,8 @@
       "stadium": "Gillette Stadium",
       "important": false,
       "beijingTime": "06:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-20"
     },
     {
       "id": "match_31",
@@ -928,7 +958,8 @@
       "stadium": "Lumen Field",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-20"
     },
     {
       "id": "match_32",
@@ -944,7 +975,8 @@
       "stadium": "Levi's Stadium",
       "important": false,
       "beijingTime": "11:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-20"
     },
     {
       "id": "match_33",
@@ -960,7 +992,8 @@
       "stadium": "BMO Field",
       "important": false,
       "beijingTime": "04:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-21"
     },
     {
       "id": "match_34",
@@ -976,7 +1009,8 @@
       "stadium": "GEHA Field at Arrowhead Stadium",
       "important": false,
       "beijingTime": "08:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-21"
     },
     {
       "id": "match_35",
@@ -992,7 +1026,8 @@
       "stadium": "NRG Stadium",
       "important": false,
       "beijingTime": "01:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-21"
     },
     {
       "id": "match_36",
@@ -1008,7 +1043,8 @@
       "stadium": "Estadio BBVA",
       "important": false,
       "beijingTime": "12:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-21"
     },
     {
       "id": "match_37",
@@ -1024,7 +1060,8 @@
       "stadium": "SoFi Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-22"
     },
     {
       "id": "match_38",
@@ -1040,7 +1077,8 @@
       "stadium": "BC Place",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-22"
     },
     {
       "id": "match_39",
@@ -1056,7 +1094,8 @@
       "stadium": "Mercedes-Benz Stadium",
       "important": false,
       "beijingTime": "00:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-22"
     },
     {
       "id": "match_40",
@@ -1072,7 +1111,8 @@
       "stadium": "Hard Rock Stadium",
       "important": false,
       "beijingTime": "06:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-22"
     },
     {
       "id": "match_41",
@@ -1088,7 +1128,8 @@
       "stadium": "Lincoln Financial Field",
       "important": false,
       "beijingTime": "05:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-23"
     },
     {
       "id": "match_42",
@@ -1104,7 +1145,8 @@
       "stadium": "MetLife Stadium",
       "important": false,
       "beijingTime": "08:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-23"
     },
     {
       "id": "match_43",
@@ -1120,7 +1162,8 @@
       "stadium": "AT&T Stadium",
       "important": false,
       "beijingTime": "01:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-23"
     },
     {
       "id": "match_44",
@@ -1136,7 +1179,8 @@
       "stadium": "Levi's Stadium",
       "important": false,
       "beijingTime": "11:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-23"
     },
     {
       "id": "match_45",
@@ -1152,7 +1196,8 @@
       "stadium": "NRG Stadium",
       "important": false,
       "beijingTime": "01:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-24"
     },
     {
       "id": "match_46",
@@ -1168,7 +1213,8 @@
       "stadium": "BMO Field",
       "important": false,
       "beijingTime": "07:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-24"
     },
     {
       "id": "match_47",
@@ -1184,7 +1230,8 @@
       "stadium": "Estadio Akron",
       "important": false,
       "beijingTime": "10:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-24"
     },
     {
       "id": "match_48",
@@ -1200,7 +1247,8 @@
       "stadium": "Gillette Stadium",
       "important": false,
       "beijingTime": "04:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-24"
     },
     {
       "id": "match_49",
@@ -1216,7 +1264,8 @@
       "stadium": "Hard Rock Stadium",
       "important": false,
       "beijingTime": "06:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-25"
     },
     {
       "id": "match_50",
@@ -1232,7 +1281,8 @@
       "stadium": "Mercedes-Benz Stadium",
       "important": false,
       "beijingTime": "06:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-25"
     },
     {
       "id": "match_51",
@@ -1248,7 +1298,8 @@
       "stadium": "Estadio BBVA",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-25"
     },
     {
       "id": "match_52",
@@ -1264,7 +1315,8 @@
       "stadium": "Estadio Azteca",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-25"
     },
     {
       "id": "match_53",
@@ -1280,7 +1332,8 @@
       "stadium": "Lumen Field",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-25"
     },
     {
       "id": "match_54",
@@ -1296,7 +1349,8 @@
       "stadium": "BC Place",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-25"
     },
     {
       "id": "match_55",
@@ -1312,7 +1366,8 @@
       "stadium": "Lincoln Financial Field",
       "important": false,
       "beijingTime": "04:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-26"
     },
     {
       "id": "match_56",
@@ -1328,7 +1383,8 @@
       "stadium": "MetLife Stadium",
       "important": false,
       "beijingTime": "04:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-26"
     },
     {
       "id": "match_57",
@@ -1344,7 +1400,8 @@
       "stadium": "Levi's Stadium",
       "important": false,
       "beijingTime": "10:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-26"
     },
     {
       "id": "match_58",
@@ -1360,7 +1417,8 @@
       "stadium": "SoFi Stadium",
       "important": false,
       "beijingTime": "10:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-26"
     },
     {
       "id": "match_59",
@@ -1376,7 +1434,8 @@
       "stadium": "AT&T Stadium",
       "important": false,
       "beijingTime": "07:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-26"
     },
     {
       "id": "match_60",
@@ -1392,7 +1451,8 @@
       "stadium": "GEHA Field at Arrowhead Stadium",
       "important": false,
       "beijingTime": "07:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-26"
     },
     {
       "id": "match_61",
@@ -1408,7 +1468,8 @@
       "stadium": "BMO Field",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-27"
     },
     {
       "id": "match_62",
@@ -1424,7 +1485,8 @@
       "stadium": "Gillette Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-27"
     },
     {
       "id": "match_63",
@@ -1440,7 +1502,8 @@
       "stadium": "Lumen Field",
       "important": false,
       "beijingTime": "11:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-27"
     },
     {
       "id": "match_64",
@@ -1456,7 +1519,8 @@
       "stadium": "BC Place",
       "important": false,
       "beijingTime": "11:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-27"
     },
     {
       "id": "match_65",
@@ -1472,7 +1536,8 @@
       "stadium": "NRG Stadium",
       "important": false,
       "beijingTime": "08:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-27"
     },
     {
       "id": "match_66",
@@ -1488,7 +1553,8 @@
       "stadium": "Estadio Akron",
       "important": false,
       "beijingTime": "08:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-27"
     },
     {
       "id": "match_67",
@@ -1504,7 +1570,8 @@
       "stadium": "MetLife Stadium",
       "important": false,
       "beijingTime": "05:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-28"
     },
     {
       "id": "match_68",
@@ -1520,7 +1587,8 @@
       "stadium": "Lincoln Financial Field",
       "important": false,
       "beijingTime": "05:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-28"
     },
     {
       "id": "match_69",
@@ -1536,7 +1604,8 @@
       "stadium": "GEHA Field at Arrowhead Stadium",
       "important": false,
       "beijingTime": "10:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-28"
     },
     {
       "id": "match_70",
@@ -1552,7 +1621,8 @@
       "stadium": "AT&T Stadium",
       "important": false,
       "beijingTime": "10:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-28"
     },
     {
       "id": "match_71",
@@ -1568,7 +1638,8 @@
       "stadium": "Hard Rock Stadium",
       "important": false,
       "beijingTime": "07:30",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-28"
     },
     {
       "id": "match_72",
@@ -1584,7 +1655,8 @@
       "stadium": "Mercedes-Benz Stadium",
       "important": false,
       "beijingTime": "07:30",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-28"
     },
     {
       "id": "match_73",
@@ -1600,7 +1672,8 @@
       "stadium": "SoFi Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-29"
     },
     {
       "id": "match_74",
@@ -1616,7 +1689,8 @@
       "stadium": "Gillette Stadium",
       "important": false,
       "beijingTime": "04:30",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-30"
     },
     {
       "id": "match_75",
@@ -1632,7 +1706,8 @@
       "stadium": "Estadio BBVA",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-30"
     },
     {
       "id": "match_76",
@@ -1648,7 +1723,8 @@
       "stadium": "NRG Stadium",
       "important": false,
       "beijingTime": "01:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-06-30"
     },
     {
       "id": "match_77",
@@ -1664,7 +1740,8 @@
       "stadium": "MetLife Stadium",
       "important": false,
       "beijingTime": "05:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-01"
     },
     {
       "id": "match_78",
@@ -1680,7 +1757,8 @@
       "stadium": "AT&T Stadium",
       "important": false,
       "beijingTime": "01:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-01"
     },
     {
       "id": "match_79",
@@ -1696,7 +1774,8 @@
       "stadium": "Estadio Azteca",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-01"
     },
     {
       "id": "match_80",
@@ -1712,7 +1791,8 @@
       "stadium": "Mercedes-Benz Stadium",
       "important": false,
       "beijingTime": "00:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-02"
     },
     {
       "id": "match_81",
@@ -1728,7 +1808,8 @@
       "stadium": "Levi's Stadium",
       "important": false,
       "beijingTime": "08:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-02"
     },
     {
       "id": "match_82",
@@ -1744,7 +1825,8 @@
       "stadium": "Lumen Field",
       "important": false,
       "beijingTime": "04:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-02"
     },
     {
       "id": "match_83",
@@ -1760,7 +1842,8 @@
       "stadium": "BMO Field",
       "important": false,
       "beijingTime": "07:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-03"
     },
     {
       "id": "match_84",
@@ -1776,7 +1859,8 @@
       "stadium": "SoFi Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-03"
     },
     {
       "id": "match_85",
@@ -1792,7 +1876,8 @@
       "stadium": "BC Place",
       "important": false,
       "beijingTime": "11:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-03"
     },
     {
       "id": "match_86",
@@ -1808,7 +1893,8 @@
       "stadium": "Hard Rock Stadium",
       "important": false,
       "beijingTime": "06:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-04"
     },
     {
       "id": "match_87",
@@ -1824,7 +1910,8 @@
       "stadium": "GEHA Field at Arrowhead Stadium",
       "important": false,
       "beijingTime": "09:30",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-04"
     },
     {
       "id": "match_88",
@@ -1840,7 +1927,8 @@
       "stadium": "AT&T Stadium",
       "important": false,
       "beijingTime": "02:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-04"
     },
     {
       "id": "match_89",
@@ -1856,7 +1944,8 @@
       "stadium": "Lincoln Financial Field",
       "important": false,
       "beijingTime": "05:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-05"
     },
     {
       "id": "match_90",
@@ -1872,7 +1961,8 @@
       "stadium": "NRG Stadium",
       "important": false,
       "beijingTime": "01:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-05"
     },
     {
       "id": "match_91",
@@ -1888,7 +1978,8 @@
       "stadium": "MetLife Stadium",
       "important": false,
       "beijingTime": "04:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-06"
     },
     {
       "id": "match_92",
@@ -1904,7 +1995,8 @@
       "stadium": "Estadio Azteca",
       "important": false,
       "beijingTime": "08:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-06"
     },
     {
       "id": "match_93",
@@ -1920,7 +2012,8 @@
       "stadium": "AT&T Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-07"
     },
     {
       "id": "match_94",
@@ -1936,7 +2029,8 @@
       "stadium": "Lumen Field",
       "important": false,
       "beijingTime": "08:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-07"
     },
     {
       "id": "match_95",
@@ -1952,7 +2046,8 @@
       "stadium": "Mercedes-Benz Stadium",
       "important": false,
       "beijingTime": "00:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-08"
     },
     {
       "id": "match_96",
@@ -1968,7 +2063,8 @@
       "stadium": "BC Place",
       "important": false,
       "beijingTime": "04:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-08"
     },
     {
       "id": "match_97",
@@ -1984,7 +2080,8 @@
       "stadium": "Gillette Stadium",
       "important": false,
       "beijingTime": "04:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-10"
     },
     {
       "id": "match_98",
@@ -2000,7 +2097,8 @@
       "stadium": "SoFi Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-11"
     },
     {
       "id": "match_99",
@@ -2016,7 +2114,8 @@
       "stadium": "Hard Rock Stadium",
       "important": false,
       "beijingTime": "05:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-12"
     },
     {
       "id": "match_100",
@@ -2032,7 +2131,8 @@
       "stadium": "GEHA Field at Arrowhead Stadium",
       "important": false,
       "beijingTime": "09:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-12"
     },
     {
       "id": "match_101",
@@ -2048,7 +2148,8 @@
       "stadium": "AT&T Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-15"
     },
     {
       "id": "match_102",
@@ -2064,7 +2165,8 @@
       "stadium": "Mercedes-Benz Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-16"
     },
     {
       "id": "match_103",
@@ -2080,7 +2182,8 @@
       "stadium": "Hard Rock Stadium",
       "important": false,
       "beijingTime": "05:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-19"
     },
     {
       "id": "match_104",
@@ -2096,7 +2199,8 @@
       "stadium": "MetLife Stadium",
       "important": false,
       "beijingTime": "03:00",
-      "beijingDayShift": 1
+      "beijingDayShift": 1,
+      "beijingDate": "2026-07-20"
     }
   ],
   "groupStandings": {
