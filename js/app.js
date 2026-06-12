@@ -44,7 +44,7 @@ function initTodayMatches() {
     // 找出接下来3场焦点战（important=true，按日期排序）
     const focusMatches = matchesData
         .filter(m => m.important && m.status === 'upcoming')
-        .sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time))
+        .sort((a, b) => (a.beijingDate || a.date).localeCompare(b.beijingDate || b.date) || a.beijingTime.localeCompare(b.beijingTime))
         .slice(0, 3);
 
     if (focusMatches.length === 0) {
