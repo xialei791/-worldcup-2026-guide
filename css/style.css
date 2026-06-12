@@ -1665,67 +1665,270 @@ body {
         display: flex;
     }
 
+    .nav-links li a {
+        padding: 12px 20px;
+    }
+
     .hamburger {
         display: flex;
     }
 
-    .countdown-box {
-        gap: 10px;
-    }
-
-    .countdown-item {
-        padding: 15px 20px;
-        min-width: 80px;
-    }
-
-    .countdown-num {
-        font-size: 32px;
-    }
-
-    .quick-links {
-        gap: 15px;
-    }
-
-    .quick-card {
-        padding: 20px 25px;
-        min-width: 120px;
-    }
-
-    .matches-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .table-header,
-    .table-row {
-        grid-template-columns: 60px 1.5fr 50px 50px 50px 50px 50px;
-        font-size: 13px;
-        padding: 15px 10px;
-    }
-
-    .match-item {
+    /* 赛程筛选器 */
+    .match-filters {
         flex-direction: column;
-        gap: 15px;
-    }
-
-    .match-teams-row {
         width: 100%;
     }
+    .match-filters select {
+        width: 100%;
+        min-width: auto;
+    }
 
+    /* 赛程列表 */
+    .match-item {
+        flex-direction: column;
+        gap: 12px;
+        padding: 15px;
+    }
+    .match-item .match-important-badge {
+        top: 4px;
+        right: 4px;
+        font-size: 9px;
+        padding: 1px 6px;
+    }
+    .match-teams-row {
+        width: 100%;
+        gap: 10px;
+    }
     .team-side {
         min-width: auto;
         flex: 1;
     }
-
-    .calendar-body {
-        gap: 5px;
+    .team-side img, .team-side .trophy-icon {
+        width: 36px;
+        height: 27px;
+        font-size: 18px;
+    }
+    .team-side span {
+        font-size: 13px;
+    }
+    .match-time {
+        min-width: auto;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+    }
+    .match-time .time {
+        font-size: 16px;
+    }
+    .match-time .date {
+        font-size: 12px;
+    }
+    .match-center .match-stage {
+        font-size: 11px;
     }
 
+    /* 积分榜 */
+    .table-header,
+    .table-row {
+        font-size: 12px;
+        padding: 12px 8px;
+        gap: 4px;
+    }
+    .table-header {
+        grid-template-columns: 50px 1.5fr 40px 40px 40px 40px 40px;
+    }
+    #overallStandings .table-header,
+    #overallStandings .table-row {
+        grid-template-columns: 50px 1.5fr 30px 40px 35px 35px 35px 40px;
+    }
+    .rank { width: 26px; height: 26px; font-size: 12px; }
+    .team-cell img { width: 28px; height: 20px; }
+    .team-cell span { font-size: 12px; }
+    .cell { font-size: 12px; }
+
+    /* 焦点赛事卡片 */
+    .matches-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .match-card {
+        padding: 16px;
+    }
+    .match-card .match-venue {
+        flex-direction: column;
+        gap: 4px;
+        font-size: 12px;
+        padding-top: 12px;
+    }
+    .match-card .team-info .team-flag,
+    .match-card .team-info .trophy-icon {
+        width: 48px;
+        height: 36px;
+        font-size: 24px;
+    }
+    .match-card .team-name {
+        font-size: 14px;
+    }
+
+    /* 日历 */
+    .calendar-body {
+        gap: 4px;
+    }
     .calendar-day {
         border-radius: 8px;
+        padding: 6px 0;
     }
+    .day-number {
+        font-size: 14px;
+    }
+
+    /* 球队网格 */
+    .teams-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .team-card {
+        padding: 15px 10px;
+    }
+    .team-card img {
+        width: 60px;
+        height: 45px;
+    }
+    .team-card h4 {
+        font-size: 14px;
+    }
+
+    /* 球队详情模态框 */
+    .player-list {
+        grid-template-columns: 1fr;
+    }
+    .team-detail-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    .team-detail-info h2 {
+        font-size: 22px;
+    }
+    .modal-team-content {
+        max-width: 100% !important;
+        margin: 10px;
+    }
+
+    /* 射手榜 */
+    .scorer-item {
+        padding: 10px 12px;
+        gap: 10px;
+    }
+    .scorer-stats {
+        gap: 12px;
+    }
+    .scorer-goals-num,
+    .scorer-assists-num,
+    .scorer-matches-num {
+        font-size: 15px;
+    }
+
+    /* 总榜分组选择器 */
+    .group-selector {
+        gap: 6px;
+    }
+    .group-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    /* 浮动导航 */
+    .float-nav {
+        bottom: 15px;
+        right: 15px;
+        padding: 4px 6px;
+        gap: 0;
+    }
+    .float-nav-item {
+        padding: 6px 8px;
+        min-width: 36px;
+    }
+    .float-nav-item i {
+        font-size: 14px;
+    }
+    .float-nav-item span {
+        display: none;
+    }
+
+    /* 今日焦点 - 底部留白 */
+    body {
+        padding-bottom: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-badge { font-size: 46px; letter-spacing: 8px; }
+    .hero-title { font-size: 22px; letter-spacing: 6px; }
 
     .teams-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .team-card {
+        padding: 12px 8px;
+    }
+    .team-card img {
+        width: 50px;
+        height: 38px;
+    }
+    .team-card h4 {
+        font-size: 12px;
+    }
+
+    .match-item {
+        padding: 12px 10px;
+    }
+    .table-header,
+    .table-row {
+        padding: 10px 5px;
+        font-size: 11px;
+    }
+    #overallStandings .table-header,
+    #overallStandings .table-row {
+        grid-template-columns: 40px 1.5fr 25px 35px 30px 30px 30px 35px;
+        gap: 2px;
+    }
+    .team-cell span {
+        font-size: 11px;
+    }
+
+    .calendar-day {
+        padding: 4px 0;
+    }
+    .day-number {
+        font-size: 12px;
+    }
+    .match-dot {
+        width: 4px;
+        height: 4px;
+    }
+    .match-dot.important {
+        width: 6px;
+        height: 6px;
+    }
+
+    .team-detail-flag {
+        width: 70px;
+        height: 52px;
+    }
+    .team-detail-info h2 {
+        font-size: 18px;
+    }
+
+    .scorer-item {
+        flex-wrap: wrap;
+        padding: 8px 10px;
+    }
+    .scorer-photo {
+        width: 36px;
+        height: 36px;
     }
 }
 
