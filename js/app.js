@@ -295,8 +295,8 @@ function renderMatchesList(stage) {
         return `
             <div class="match-item" onclick="openMatchModal(${match.id})" style="animation-delay: ${index * 0.05}s">
                 <div class="match-time">
-                    <div class="time">${match.time}</div>
-                    <div class="date">${formatDate(match.date)}</div>
+                    <div class="time">${match.beijingTime || match.time}${match.beijingDayShift ? '<small class="day-shift">+' + match.beijingDayShift + '</small>' : ''}</div>
+                    <div class="date">${formatDate(match.date)}<span class="bj-label">北京时间</span></div>
                 </div>
                 <div class="match-teams-row">
                     <div class="team-side">
@@ -365,7 +365,7 @@ function openMatchModal(matchId) {
                 </div>
             </div>
             <div class="modal-info">
-                <span><i class="fas fa-calendar"></i> ${match.date} ${match.time}</span>
+                <span><i class="fas fa-calendar"></i> ${match.date} ${match.beijingTime || match.time}${match.beijingDayShift ? ' (+' + match.beijingDayShift + ')' : ''} <small>北京时间</small></span>
                 <span><i class="fas fa-map-marker-alt"></i> ${match.stadium}</span>
             </div>
         </div>

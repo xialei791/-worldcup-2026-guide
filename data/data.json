@@ -446,7 +446,9 @@
       "group": "A组",
       "stage": "group",
       "stadium": "Estadio Azteca",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_2",
@@ -460,7 +462,9 @@
       "group": "A组",
       "stage": "group",
       "stadium": "Estadio Akron",
-      "important": false
+      "important": false,
+      "beijingTime": "10:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_3",
@@ -474,7 +478,9 @@
       "group": "B组",
       "stage": "group",
       "stadium": "BMO Field",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_4",
@@ -488,7 +494,9 @@
       "group": "D组",
       "stage": "group",
       "stadium": "SoFi Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_5",
@@ -502,7 +510,9 @@
       "group": "C组",
       "stage": "group",
       "stadium": "Gillette Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_6",
@@ -516,7 +526,9 @@
       "group": "D组",
       "stage": "group",
       "stadium": "BC Place",
-      "important": false
+      "important": false,
+      "beijingTime": "12:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_7",
@@ -530,7 +542,9 @@
       "group": "C组",
       "stage": "group",
       "stadium": "MetLife Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "06:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_8",
@@ -544,7 +558,9 @@
       "group": "B组",
       "stage": "group",
       "stadium": "Levi's Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_9",
@@ -558,7 +574,9 @@
       "group": "E组",
       "stage": "group",
       "stadium": "Lincoln Financial Field",
-      "important": false
+      "important": false,
+      "beijingTime": "07:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_10",
@@ -572,7 +590,9 @@
       "group": "E组",
       "stage": "group",
       "stadium": "NRG Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "01:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_11",
@@ -586,7 +606,9 @@
       "group": "F组",
       "stage": "group",
       "stadium": "AT&T Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "04:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_12",
@@ -600,7 +622,9 @@
       "group": "F组",
       "stage": "group",
       "stadium": "Estadio BBVA",
-      "important": false
+      "important": false,
+      "beijingTime": "10:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_13",
@@ -614,7 +638,9 @@
       "group": "G组",
       "stage": "group",
       "stadium": "SoFi Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_14",
@@ -628,7 +654,9 @@
       "group": "H组",
       "stage": "group",
       "stadium": "Mercedes-Benz Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "00:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_15",
@@ -642,7 +670,9 @@
       "group": "G组",
       "stage": "group",
       "stadium": "Lumen Field",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_16",
@@ -656,7 +686,9 @@
       "group": "H组",
       "stage": "group",
       "stadium": "Hard Rock Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "06:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_17",
@@ -670,7 +702,9 @@
       "group": "I组",
       "stage": "group",
       "stadium": "MetLife Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_18",
@@ -684,7 +718,9 @@
       "group": "I组",
       "stage": "group",
       "stadium": "Gillette Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "06:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_19",
@@ -698,7 +734,9 @@
       "group": "J组",
       "stage": "group",
       "stadium": "GEHA Field at Arrowhead Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_20",
@@ -712,7 +750,9 @@
       "group": "J组",
       "stage": "group",
       "stadium": "Levi's Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "12:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_21",
@@ -726,7 +766,9 @@
       "group": "K组",
       "stage": "group",
       "stadium": "NRG Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "01:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_22",
@@ -740,7 +782,9 @@
       "group": "L组",
       "stage": "group",
       "stadium": "AT&T Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "04:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_23",
@@ -754,7 +798,9 @@
       "group": "K组",
       "stage": "group",
       "stadium": "Estadio Azteca",
-      "important": false
+      "important": false,
+      "beijingTime": "10:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_24",
@@ -768,7 +814,9 @@
       "group": "L组",
       "stage": "group",
       "stadium": "BMO Field",
-      "important": false
+      "important": false,
+      "beijingTime": "07:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_25",
@@ -782,7 +830,9 @@
       "group": "A组",
       "stage": "group",
       "stadium": "Estadio Akron",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_26",
@@ -796,7 +846,9 @@
       "group": "B组",
       "stage": "group",
       "stadium": "SoFi Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_27",
@@ -810,7 +862,9 @@
       "group": "B组",
       "stage": "group",
       "stadium": "BC Place",
-      "important": false
+      "important": false,
+      "beijingTime": "06:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_28",
@@ -824,7 +878,9 @@
       "group": "A组",
       "stage": "group",
       "stadium": "Mercedes-Benz Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "00:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_29",
@@ -838,7 +894,9 @@
       "group": "C组",
       "stage": "group",
       "stadium": "Lincoln Financial Field",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_30",
@@ -852,7 +910,9 @@
       "group": "C组",
       "stage": "group",
       "stadium": "Gillette Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "06:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_31",
@@ -866,7 +926,9 @@
       "group": "D组",
       "stage": "group",
       "stadium": "Lumen Field",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_32",
@@ -880,7 +942,9 @@
       "group": "D组",
       "stage": "group",
       "stadium": "Levi's Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "11:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_33",
@@ -894,7 +958,9 @@
       "group": "E组",
       "stage": "group",
       "stadium": "BMO Field",
-      "important": false
+      "important": false,
+      "beijingTime": "04:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_34",
@@ -908,7 +974,9 @@
       "group": "E组",
       "stage": "group",
       "stadium": "GEHA Field at Arrowhead Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "08:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_35",
@@ -922,7 +990,9 @@
       "group": "F组",
       "stage": "group",
       "stadium": "NRG Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "01:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_36",
@@ -936,7 +1006,9 @@
       "group": "F组",
       "stage": "group",
       "stadium": "Estadio BBVA",
-      "important": false
+      "important": false,
+      "beijingTime": "12:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_37",
@@ -950,7 +1022,9 @@
       "group": "G组",
       "stage": "group",
       "stadium": "SoFi Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_38",
@@ -964,7 +1038,9 @@
       "group": "G组",
       "stage": "group",
       "stadium": "BC Place",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_39",
@@ -978,7 +1054,9 @@
       "group": "H组",
       "stage": "group",
       "stadium": "Mercedes-Benz Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "00:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_40",
@@ -992,7 +1070,9 @@
       "group": "H组",
       "stage": "group",
       "stadium": "Hard Rock Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "06:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_41",
@@ -1006,7 +1086,9 @@
       "group": "I组",
       "stage": "group",
       "stadium": "Lincoln Financial Field",
-      "important": false
+      "important": false,
+      "beijingTime": "05:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_42",
@@ -1020,7 +1102,9 @@
       "group": "I组",
       "stage": "group",
       "stadium": "MetLife Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "08:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_43",
@@ -1034,7 +1118,9 @@
       "group": "J组",
       "stage": "group",
       "stadium": "AT&T Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "01:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_44",
@@ -1048,7 +1134,9 @@
       "group": "J组",
       "stage": "group",
       "stadium": "Levi's Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "11:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_45",
@@ -1062,7 +1150,9 @@
       "group": "K组",
       "stage": "group",
       "stadium": "NRG Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "01:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_46",
@@ -1076,7 +1166,9 @@
       "group": "L组",
       "stage": "group",
       "stadium": "BMO Field",
-      "important": false
+      "important": false,
+      "beijingTime": "07:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_47",
@@ -1090,7 +1182,9 @@
       "group": "K组",
       "stage": "group",
       "stadium": "Estadio Akron",
-      "important": false
+      "important": false,
+      "beijingTime": "10:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_48",
@@ -1104,7 +1198,9 @@
       "group": "L组",
       "stage": "group",
       "stadium": "Gillette Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "04:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_49",
@@ -1118,7 +1214,9 @@
       "group": "C组",
       "stage": "group",
       "stadium": "Hard Rock Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "06:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_50",
@@ -1132,7 +1230,9 @@
       "group": "C组",
       "stage": "group",
       "stadium": "Mercedes-Benz Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "06:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_51",
@@ -1146,7 +1246,9 @@
       "group": "A组",
       "stage": "group",
       "stadium": "Estadio BBVA",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_52",
@@ -1160,7 +1262,9 @@
       "group": "A组",
       "stage": "group",
       "stadium": "Estadio Azteca",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_53",
@@ -1174,7 +1278,9 @@
       "group": "B组",
       "stage": "group",
       "stadium": "Lumen Field",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_54",
@@ -1188,7 +1294,9 @@
       "group": "B组",
       "stage": "group",
       "stadium": "BC Place",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_55",
@@ -1202,7 +1310,9 @@
       "group": "E组",
       "stage": "group",
       "stadium": "Lincoln Financial Field",
-      "important": false
+      "important": false,
+      "beijingTime": "04:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_56",
@@ -1216,7 +1326,9 @@
       "group": "E组",
       "stage": "group",
       "stadium": "MetLife Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "04:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_57",
@@ -1230,7 +1342,9 @@
       "group": "D组",
       "stage": "group",
       "stadium": "Levi's Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "10:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_58",
@@ -1244,7 +1358,9 @@
       "group": "D组",
       "stage": "group",
       "stadium": "SoFi Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "10:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_59",
@@ -1258,7 +1374,9 @@
       "group": "F组",
       "stage": "group",
       "stadium": "AT&T Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "07:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_60",
@@ -1272,7 +1390,9 @@
       "group": "F组",
       "stage": "group",
       "stadium": "GEHA Field at Arrowhead Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "07:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_61",
@@ -1286,7 +1406,9 @@
       "group": "I组",
       "stage": "group",
       "stadium": "BMO Field",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_62",
@@ -1300,7 +1422,9 @@
       "group": "I组",
       "stage": "group",
       "stadium": "Gillette Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_63",
@@ -1314,7 +1438,9 @@
       "group": "G组",
       "stage": "group",
       "stadium": "Lumen Field",
-      "important": false
+      "important": false,
+      "beijingTime": "11:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_64",
@@ -1328,7 +1454,9 @@
       "group": "G组",
       "stage": "group",
       "stadium": "BC Place",
-      "important": false
+      "important": false,
+      "beijingTime": "11:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_65",
@@ -1342,7 +1470,9 @@
       "group": "H组",
       "stage": "group",
       "stadium": "NRG Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "08:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_66",
@@ -1356,7 +1486,9 @@
       "group": "H组",
       "stage": "group",
       "stadium": "Estadio Akron",
-      "important": false
+      "important": false,
+      "beijingTime": "08:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_67",
@@ -1370,7 +1502,9 @@
       "group": "L组",
       "stage": "group",
       "stadium": "MetLife Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "05:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_68",
@@ -1384,7 +1518,9 @@
       "group": "L组",
       "stage": "group",
       "stadium": "Lincoln Financial Field",
-      "important": false
+      "important": false,
+      "beijingTime": "05:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_69",
@@ -1398,7 +1534,9 @@
       "group": "J组",
       "stage": "group",
       "stadium": "GEHA Field at Arrowhead Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "10:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_70",
@@ -1412,7 +1550,9 @@
       "group": "J组",
       "stage": "group",
       "stadium": "AT&T Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "10:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_71",
@@ -1426,7 +1566,9 @@
       "group": "K组",
       "stage": "group",
       "stadium": "Hard Rock Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "07:30",
+      "beijingDayShift": 1
     },
     {
       "id": "match_72",
@@ -1440,7 +1582,9 @@
       "group": "K组",
       "stage": "group",
       "stadium": "Mercedes-Benz Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "07:30",
+      "beijingDayShift": 1
     },
     {
       "id": "match_73",
@@ -1454,7 +1598,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "SoFi Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_74",
@@ -1468,7 +1614,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "Gillette Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "04:30",
+      "beijingDayShift": 1
     },
     {
       "id": "match_75",
@@ -1482,7 +1630,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "Estadio BBVA",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_76",
@@ -1496,7 +1646,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "NRG Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "01:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_77",
@@ -1510,7 +1662,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "MetLife Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "05:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_78",
@@ -1524,7 +1678,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "AT&T Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "01:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_79",
@@ -1538,7 +1694,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "Estadio Azteca",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_80",
@@ -1552,7 +1710,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "Mercedes-Benz Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "00:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_81",
@@ -1566,7 +1726,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "Levi's Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "08:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_82",
@@ -1580,7 +1742,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "Lumen Field",
-      "important": false
+      "important": false,
+      "beijingTime": "04:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_83",
@@ -1594,7 +1758,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "BMO Field",
-      "important": false
+      "important": false,
+      "beijingTime": "07:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_84",
@@ -1608,7 +1774,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "SoFi Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_85",
@@ -1622,7 +1790,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "BC Place",
-      "important": false
+      "important": false,
+      "beijingTime": "11:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_86",
@@ -1636,7 +1806,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "Hard Rock Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "06:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_87",
@@ -1650,7 +1822,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "GEHA Field at Arrowhead Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "09:30",
+      "beijingDayShift": 1
     },
     {
       "id": "match_88",
@@ -1664,7 +1838,9 @@
       "group": "R32组",
       "stage": "round16",
       "stadium": "AT&T Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "02:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_89",
@@ -1678,7 +1854,9 @@
       "group": "R16组",
       "stage": "quarter",
       "stadium": "Lincoln Financial Field",
-      "important": false
+      "important": false,
+      "beijingTime": "05:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_90",
@@ -1692,7 +1870,9 @@
       "group": "R16组",
       "stage": "quarter",
       "stadium": "NRG Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "01:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_91",
@@ -1706,7 +1886,9 @@
       "group": "R16组",
       "stage": "quarter",
       "stadium": "MetLife Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "04:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_92",
@@ -1720,7 +1902,9 @@
       "group": "R16组",
       "stage": "quarter",
       "stadium": "Estadio Azteca",
-      "important": false
+      "important": false,
+      "beijingTime": "08:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_93",
@@ -1734,7 +1918,9 @@
       "group": "R16组",
       "stage": "quarter",
       "stadium": "AT&T Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_94",
@@ -1748,7 +1934,9 @@
       "group": "R16组",
       "stage": "quarter",
       "stadium": "Lumen Field",
-      "important": false
+      "important": false,
+      "beijingTime": "08:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_95",
@@ -1762,7 +1950,9 @@
       "group": "R16组",
       "stage": "quarter",
       "stadium": "Mercedes-Benz Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "00:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_96",
@@ -1776,7 +1966,9 @@
       "group": "R16组",
       "stage": "quarter",
       "stadium": "BC Place",
-      "important": false
+      "important": false,
+      "beijingTime": "04:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_97",
@@ -1790,7 +1982,9 @@
       "group": "QF组",
       "stage": "quarter",
       "stadium": "Gillette Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "04:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_98",
@@ -1804,7 +1998,9 @@
       "group": "QF组",
       "stage": "quarter",
       "stadium": "SoFi Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_99",
@@ -1818,7 +2014,9 @@
       "group": "QF组",
       "stage": "quarter",
       "stadium": "Hard Rock Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "05:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_100",
@@ -1832,7 +2030,9 @@
       "group": "QF组",
       "stage": "quarter",
       "stadium": "GEHA Field at Arrowhead Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "09:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_101",
@@ -1846,7 +2046,9 @@
       "group": "SF组",
       "stage": "semi",
       "stadium": "AT&T Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_102",
@@ -1860,7 +2062,9 @@
       "group": "SF组",
       "stage": "semi",
       "stadium": "Mercedes-Benz Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_103",
@@ -1874,7 +2078,9 @@
       "group": "3RD组",
       "stage": "third",
       "stadium": "Hard Rock Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "05:00",
+      "beijingDayShift": 1
     },
     {
       "id": "match_104",
@@ -1888,7 +2094,9 @@
       "group": "FINAL组",
       "stage": "final",
       "stadium": "MetLife Stadium",
-      "important": false
+      "important": false,
+      "beijingTime": "03:00",
+      "beijingDayShift": 1
     }
   ],
   "groupStandings": {
