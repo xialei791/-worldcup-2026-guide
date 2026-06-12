@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026世界杯观赛指南 | FIFA World Cup 2026</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hero.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -28,6 +29,7 @@
                 <li><a href="#calendar">日历</a></li>
                 <li><a href="#matches">赛程</a></li>
                 <li><a href="#standings">积分榜</a></li>
+                <li><a href="#scorers">射手榜</a></li>
                 <li><a href="#teams">球队</a></li>
             </ul>
             <div class="hamburger">
@@ -38,56 +40,64 @@
         </div>
     </nav>
 
-    <!-- 首页区域 -->
+    <!-- 首页海报区域 -->
     <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-pattern"></div>
         <div class="hero-content">
-            <h1 class="hero-title">2026 FIFA WORLD CUP</h1>
-            <p class="hero-subtitle">美国 · 加拿大 · 墨西哥 联合举办</p>
+            <div class="hero-badge">2026</div>
+            <h1 class="hero-title">FIFA WORLD CUP</h1>
+            <p class="hero-subtitle">United by Football · 足球 unite 世界</p>
+            <div class="hero-hosts">
+                <span class="host-chip"><img src="https://flagcdn.com/w40/us.png" alt="USA"> 美国</span>
+                <span class="host-chip"><img src="https://flagcdn.com/w40/ca.png" alt="Canada"> 加拿大</span>
+                <span class="host-chip"><img src="https://flagcdn.com/w40/mx.png" alt="Mexico"> 墨西哥</span>
+            </div>
 
-            <!-- 倒计时 -->
-            <div class="countdown-container">
-                <div class="countdown-box">
-                    <div class="countdown-item">
-                        <span class="countdown-num" id="days">000</span>
-                        <span class="countdown-label">天</span>
-                    </div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-item">
-                        <span class="countdown-num" id="hours">00</span>
-                        <span class="countdown-label">时</span>
-                    </div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-item">
-                        <span class="countdown-num" id="minutes">00</span>
-                        <span class="countdown-label">分</span>
-                    </div>
-                    <div class="countdown-separator">:</div>
-                    <div class="countdown-item">
-                        <span class="countdown-num" id="seconds">00</span>
-                        <span class="countdown-label">秒</span>
+            <!-- 球星双雄 -->
+            <div class="hero-stars">
+                <div class="star-card star-messi">
+                    <div class="star-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Lionel_Messi_20180626.jpg/640px-Lionel_Messi_20180626.jpg')"></div>
+                    <div class="star-info">
+                        <span class="star-flag"><img src="https://flagcdn.com/w40/ar.png" alt="Argentina"></span>
+                        <span class="star-name">Messi</span>
+                        <span class="star-number">10</span>
                     </div>
                 </div>
-                <p class="countdown-date">2026年6月11日 - 7月19日</p>
+                <div class="hero-vs">VS</div>
+                <div class="star-card star-ronaldo">
+                    <div class="star-image" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cristiano_Ronaldo_2018.jpg/640px-Cristiano_Ronaldo_2018.jpg')"></div>
+                    <div class="star-info">
+                        <span class="star-flag"><img src="https://flagcdn.com/w40/pt.png" alt="Portugal"></span>
+                        <span class="star-name">Ronaldo</span>
+                        <span class="star-number">7</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 赛事数据 -->
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-num">48</span>
+                    <span class="hero-stat-label">参赛球队</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num">104</span>
+                    <span class="hero-stat-label">比赛场次</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="hero-stat-num">16</span>
+                    <span class="hero-stat-label">主办城市</span>
+                </div>
             </div>
 
             <!-- 快捷入口 -->
-            <div class="quick-links">
-                <a href="#calendar" class="quick-card">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>赛事日历</span>
-                </a>
-                <a href="#matches" class="quick-card">
-                    <i class="fas fa-list"></i>
-                    <span>全部赛程</span>
-                </a>
-                <a href="#standings" class="quick-card">
-                    <i class="fas fa-trophy"></i>
-                    <span>积分榜</span>
-                </a>
-                <a href="#teams" class="quick-card">
-                    <i class="fas fa-users"></i>
-                    <span>球队</span>
-                </a>
+            <div class="hero-actions">
+                <a href="#matches" class="hero-btn primary"><i class="fas fa-futbol"></i> 查看赛程</a>
+                <a href="#standings" class="hero-btn secondary"><i class="fas fa-trophy"></i> 积分榜</a>
+                <a href="#scorers" class="hero-btn outline"><i class="fas fa-crosshairs"></i> 射手榜</a>
             </div>
         </div>
     </section>

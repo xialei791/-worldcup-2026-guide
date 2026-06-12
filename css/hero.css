@@ -1,0 +1,327 @@
+/* 首页区域 - 海报风格 */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #0a0a0a;
+    padding: 100px 20px 60px;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+        rgba(10,10,10,0.95) 0%,
+        rgba(26,95,42,0.25) 30%,
+        rgba(10,10,10,0.6) 50%,
+        rgba(0,50,100,0.2) 70%,
+        rgba(10,10,10,0.95) 100%
+    );
+    z-index: 1;
+}
+
+.hero-pattern {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(26,95,42,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(0,80,150,0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 0%, rgba(255,215,0,0.05) 0%, transparent 40%);
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(255,255,255,0.015) 80px, rgba(255,255,255,0.015) 81px),
+        repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(255,255,255,0.015) 80px, rgba(255,255,255,0.015) 81px);
+    animation: patternScroll 30s linear infinite;
+    z-index: 0;
+}
+
+@keyframes patternScroll {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(80px, 80px); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.hero-badge {
+    font-size: 80px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #1a5f2a 0%, #ffd700 50%, #1a5f2a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    letter-spacing: 8px;
+    filter: drop-shadow(0 2px 20px rgba(255,215,0,0.3));
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 12px;
+    margin: -10px 0 0;
+    text-transform: uppercase;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 4px;
+    margin: 0;
+}
+
+.hero-hosts {
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
+}
+
+.host-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.host-chip img {
+    width: 20px;
+    height: 15px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+/* 球星双雄 */
+.hero-stars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 12px 0 8px;
+    width: 100%;
+}
+
+.star-card {
+    position: relative;
+    width: 180px;
+    height: 220px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.star-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.star-messi {
+    background: linear-gradient(180deg, rgba(116,172,223,0.3) 0%, rgba(10,10,10,0.95) 100%);
+    border: 1px solid rgba(116,172,223,0.3);
+}
+
+.star-ronaldo {
+    background: linear-gradient(180deg, rgba(218,41,28,0.3) 0%, rgba(10,10,10,0.95) 100%);
+    border: 1px solid rgba(218,41,28,0.3);
+}
+
+.star-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 75%;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+.star-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.star-flag img {
+    width: 24px;
+    height: 16px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.star-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    flex: 1;
+}
+
+.star-number {
+    font-size: 22px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.3);
+    font-style: italic;
+}
+
+.hero-vs {
+    font-size: 20px;
+    font-weight: 900;
+    color: rgba(255,215,0,0.6);
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255,215,0,0.2);
+}
+
+/* 赛事数据 */
+.hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 14px 32px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.hero-stat-num {
+    font-size: 28px;
+    font-weight: 900;
+    color: #ffd700;
+    line-height: 1;
+}
+
+.hero-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 1px;
+}
+
+.hero-stat-divider {
+    width: 1px;
+    height: 30px;
+    background: rgba(255,255,255,0.1);
+}
+
+/* 快捷入口按钮 */
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.hero-btn {
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.5px;
+}
+
+.hero-btn.primary {
+    background: linear-gradient(135deg, #1a5f2a, #2d7a3e);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 20px rgba(26,95,42,0.4);
+}
+
+.hero-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(26,95,42,0.5);
+}
+
+.hero-btn.secondary {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+}
+
+.hero-btn.secondary:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+.hero-btn.outline {
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.hero-btn.outline:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-2px);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .hero-badge { font-size: 50px; }
+    .hero-title { font-size: 28px; letter-spacing: 6px; }
+    .hero-subtitle { font-size: 13px; }
+    .hero-hosts { gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .host-chip { font-size: 11px; padding: 4px 12px; }
+    .hero-stars { gap: 12px; }
+    .star-card { width: 130px; height: 170px; }
+    .star-name { font-size: 13px; }
+    .star-number { font-size: 18px; }
+    .hero-vs { font-size: 16px; }
+    .hero-stats { gap: 14px; padding: 10px 20px; }
+    .hero-stat-num { font-size: 22px; }
+    .hero-actions { flex-wrap: wrap; justify-content: center; }
+    .hero-btn { font-size: 12px; padding: 8px 18px; }
+}
+
+@media (max-width: 480px) {
+    .hero-badge { font-size: 38px; }
+    .hero-title { font-size: 22px; letter-spacing: 4px; }
+    .star-card { width: 110px; height: 150px; }
+    .star-image { height: 70%; }
+}

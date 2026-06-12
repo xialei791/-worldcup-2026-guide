@@ -1,7 +1,6 @@
 // 主应用逻辑
 document.addEventListener('DOMContentLoaded', function() {
     // 初始化
-    initCountdown();
     initCalendar();
     initStandings();
     initMatches();
