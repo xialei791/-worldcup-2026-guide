@@ -184,6 +184,19 @@
         </div>
     </section>
 
+    <!-- 射手榜区域 -->
+    <section id="scorers" class="scorers-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-crosshairs"></i> 射手榜</h2>
+                <span class="scorers-subtitle">进球排名</span>
+            </div>
+            <div class="scorers-list" id="scorersList">
+                <!-- 动态生成 -->
+            </div>
+        </div>
+    </section>
+
     <!-- 赛程区域 -->
     <section id="matches" class="matches-section">
         <div class="container">
@@ -261,6 +274,16 @@
             <p class="copyright">© 2026 All Rights Reserved. 仅供学习交流使用</p>
         </div>
     </footer>
+
+    <!-- 浮动导航 -->
+    <div class="float-nav" id="floatNav">
+        <a href="#home" class="float-nav-item active" data-section="home"><i class="fas fa-home"></i><span>首页</span></a>
+        <a href="#matches" class="float-nav-item" data-section="matches"><i class="fas fa-futbol"></i><span>赛程</span></a>
+        <a href="#standings" class="float-nav-item" data-section="standings"><i class="fas fa-table"></i><span>积分榜</span></a>
+        <a href="#scorers" class="float-nav-item" data-section="scorers"><i class="fas fa-crosshairs"></i><span>射手榜</span></a>
+        <a href="#teams" class="float-nav-item" data-section="teams"><i class="fas fa-users"></i><span>球队</span></a>
+        <a href="#calendar" class="float-nav-item" data-section="calendar"><i class="fas fa-calendar"></i><span>日历</span></a>
+    </div>
 
     <script src="js/data-loader.js"></script>
     <script src="js/data.js"></script>

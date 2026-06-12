@@ -5,6 +5,7 @@ const teamsData = window.teamsData || [];
 const matchesData = window.matchesData || [];
 const groupStandings = window.groupStandings || {};
 const overallStandings = window.overallStandings || [];
+const topScorers = window.topScorers || [];
 const matchDetails = {};
 
 // ==================== 辅助函数 ====================

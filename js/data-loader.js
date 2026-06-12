@@ -32,6 +32,7 @@ if (worldCupData) {
     window.matchesData = worldCupData.matchesData;
     window.groupStandings = worldCupData.groupStandings;
     window.overallStandings = worldCupData.overallStandings;
+    window.topScorers = worldCupData.topScorers;
 }
 
 // 获取球队（带兜底处理，防止淘汰赛空球队导致渲染崩溃）
@@ -84,6 +85,7 @@ async function refreshData() {
         window.matchesData = data.matchesData;
         window.groupStandings = data.groupStandings;
         window.overallStandings = data.overallStandings;
+        window.topScorers = data.topScorers;
         console.log('[Data] 数据已刷新:', data._last_updated);
         location.reload(); // 刷新页面以更新显示
     } catch (e) {

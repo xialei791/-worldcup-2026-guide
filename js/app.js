@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initTeams();
     initNavigation();
     initTodayMatches();
+    initScorers();
     initModal();
+    initFloatNav();
 });
 
 // ==================== 倒计时 ====================
@@ -272,6 +274,55 @@ function renderOverallTable() {
     container.innerHTML = html;
 }
 
+// ==================== 射手榜 ====================
+function initScorers() {
+    const scorers = window.topScorers || [];
+    const container = document.getElementById('scorersList');
+    if (!container) return;
+
+    if (!scorers || scorers.length === 0) {
+        container.innerHTML = '<div class="no-match">暂无进球数据</div>';
+        return;
+    }
+
+    // Medal colors for top 3
+    const medals = ['#ffd700', '#c0c0c0', '#cd7f32'];
+
+    container.innerHTML = scorers.map((s, index) => {
+        const team = getTeam(s.team);
+        const medal = index < 3 ? `<span class="scorer-medal" style="color:${medals[index]}">${index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}</span>` : '';
+        const rankDisplay = medal || `<span class="scorer-rank">${s.rank}</span>`;
+
+        return `
+            <div class="scorer-item ${index < 3 ? 'top-three' : ''}">
+                <div class="scorer-rank-col">${rankDisplay}</div>
+                <img src="${s.photo || team.flag}" alt="${s.player}" class="scorer-photo">
+                <div class="scorer-info">
+                    <span class="scorer-name">${s.player}</span>
+                    <span class="scorer-team">
+                        <img src="${team.flag}" alt="${team.name}" class="scorer-team-flag">
+                        ${team.name}
+                    </span>
+                </div>
+                <div class="scorer-stats">
+                    <div class="scorer-goals">
+                        <span class="scorer-goals-num">${s.goals}</span>
+                        <span class="scorer-goals-label">进球</span>
+                    </div>
+                    <div class="scorer-assists">
+                        <span class="scorer-assists-num">${s.assists || 0}</span>
+                        <span class="scorer-assists-label">助攻</span>
+                    </div>
+                    <div class="scorer-matches">
+                        <span class="scorer-matches-num">${s.matches || 0}</span>
+                        <span class="scorer-matches-label">场次</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
 // ==================== 赛程 ====================
 function initMatches() {
     renderMatchesList('all');
@@ -436,6 +487,35 @@ function renderFormation(formation, players) {
             </div>
         </div>
     `;
+}
+
+// ==================== 浮动导航 ====================
+function initFloatNav() {
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.float-nav-item');
+
+    function updateActiveSection() {
+        let current = '';
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= 150) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            const section = item.getAttribute('data-section');
+            if (section === current) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+
+    // 监听滚动
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    updateActiveSection(); // 初始状态
 }
 
 // ==================== 模态框（比赛）====================

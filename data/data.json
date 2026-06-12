@@ -10677,7 +10677,7 @@
       }
     ]
   },
-  "_last_updated": "2026-06-12T03:38:24.013Z",
+  "_last_updated": "2026-06-12T03:46:58.179Z",
   "overallStandings": [
     {
       "team": "mx",
@@ -11302,6 +11302,26 @@
       "ga": 2,
       "gd": -2,
       "pts": 0
+    }
+  ],
+  "topScorers": [
+    {
+      "rank": 1,
+      "player": "Hirving Lozano",
+      "team": "mx",
+      "goals": 1,
+      "assists": 1,
+      "matches": 1,
+      "photo": "https://ui-avatars.com/api/?name=Hirving+Lozano&background=e67e22&color=fff&size=40"
+    },
+    {
+      "rank": 2,
+      "player": "Raul Jimenez",
+      "team": "mx",
+      "goals": 1,
+      "assists": 0,
+      "matches": 1,
+      "photo": "https://ui-avatars.com/api/?name=Raul+Jimenez&background=e67e22&color=fff&size=40"
     }
   ]
 }
