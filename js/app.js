@@ -453,8 +453,8 @@ function renderFormation(formation, players) {
     // parts = [4, 3, 3] → DF=4, MF=3, FW=3
     let rows = [];
     let idx = 0;
-    // Defenders first (bottom of field)
-    for (let i = 0; i < parts.length; i++) {
+    // Forwards first (top of pitch), defenders last (near GK at bottom)
+    for (let i = parts.length - 1; i >= 0; i--) {
         const count = parts[i];
         const rowPlayers = fieldPlayers.slice(idx, idx + count);
         idx += count;
