@@ -8377,9 +8377,9 @@
       "time": "20:00",
       "home": "kr",
       "away": "cz",
-      "homeScore": 0,
-      "awayScore": 0,
-      "status": "upcoming",
+      "homeScore": 2,
+      "awayScore": 1,
+      "status": "finished",
       "group": "A组",
       "stage": "group",
       "stadium": "Estadio Akron",
@@ -10138,24 +10138,24 @@
       },
       {
         "team": "kr",
-        "mp": 0,
-        "w": 0,
+        "mp": 1,
+        "w": 1,
         "d": 0,
         "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
-        "pts": 0
+        "gf": 2,
+        "ga": 1,
+        "gd": 1,
+        "pts": 3
       },
       {
         "team": "cz",
-        "mp": 0,
+        "mp": 1,
         "w": 0,
         "d": 0,
-        "l": 0,
-        "gf": 0,
-        "ga": 0,
-        "gd": 0,
+        "l": 1,
+        "gf": 1,
+        "ga": 2,
+        "gd": -1,
         "pts": 0
       },
       {
@@ -10677,7 +10677,7 @@
       }
     ]
   },
-  "_last_updated": "2026-06-12T04:30:56.535Z",
+  "_last_updated": "2026-06-12T04:36:31.435Z",
   "overallStandings": [
     {
       "team": "mx",
@@ -10696,26 +10696,26 @@
       "team": "kr",
       "name": "South Korea",
       "group": "A",
-      "mp": 0,
-      "w": 0,
+      "mp": 1,
+      "w": 1,
       "d": 0,
       "l": 0,
-      "gf": 0,
-      "ga": 0,
-      "gd": 0,
-      "pts": 0
+      "gf": 2,
+      "ga": 1,
+      "gd": 1,
+      "pts": 3
     },
     {
       "team": "cz",
       "name": "Czech Republic",
       "group": "A",
-      "mp": 0,
+      "mp": 1,
       "w": 0,
       "d": 0,
-      "l": 0,
-      "gf": 0,
-      "ga": 0,
-      "gd": 0,
+      "l": 1,
+      "gf": 1,
+      "ga": 2,
+      "gd": -1,
       "pts": 0
     },
     {
@@ -11307,12 +11307,12 @@
   "topScorers": [
     {
       "rank": 1,
-      "player": "Hirving Lozano",
-      "team": "mx",
+      "player": "Hwang In-beom",
+      "team": "kr",
       "goals": 1,
       "assists": 1,
       "matches": 1,
-      "photo": "https://ui-avatars.com/api/?name=Hirving+Lozano&background=e67e22&color=fff&size=40"
+      "photo": "https://ui-avatars.com/api/?name=Hwang%2BIn-beom&background=1a5f2a&color=fff&size=40&bold=true"
     },
     {
       "rank": 2,
@@ -11321,7 +11321,34 @@
       "goals": 1,
       "assists": 0,
       "matches": 1,
-      "photo": "https://ui-avatars.com/api/?name=Raul+Jimenez&background=e67e22&color=fff&size=40"
+      "photo": "https://ui-avatars.com/api/?name=Raul%2BJimenez&background=1a5f2a&color=fff&size=40&bold=true"
+    },
+    {
+      "rank": 3,
+      "player": "Oh Hyeon-gyu",
+      "team": "kr",
+      "goals": 1,
+      "assists": 0,
+      "matches": 1,
+      "photo": "https://ui-avatars.com/api/?name=Oh%2BHyeon-gyu&background=1a5f2a&color=fff&size=40&bold=true"
+    },
+    {
+      "rank": 4,
+      "player": "Ladislav Krejci",
+      "team": "cz",
+      "goals": 1,
+      "assists": 0,
+      "matches": 1,
+      "photo": "https://ui-avatars.com/api/?name=Ladislav%2BKrejci&background=1a5f2a&color=fff&size=40&bold=true"
+    },
+    {
+      "rank": 5,
+      "player": "Hirving Lozano",
+      "team": "mx",
+      "goals": 0,
+      "assists": 1,
+      "matches": 1,
+      "photo": "https://ui-avatars.com/api/?name=Hirving%2BLozano&background=1a5f2a&color=fff&size=40&bold=true"
     }
   ]
 }
