@@ -266,6 +266,7 @@ function renderOverallTable() {
                 <div class="cell">${team.mp}</div>
                 <div class="cell">${team.w}</div>
                 <div class="cell">${team.d}</div>
+                <div class="cell">${team.l}</div>
                 <div class="cell points">${team.pts}</div>
             </div>
         `;
