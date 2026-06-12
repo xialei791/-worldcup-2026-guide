@@ -7,18 +7,7 @@ from datetime import datetime
 
 # FIFA 国家代码映射 (API ISO2 -> 项目 ID)
 ISO2_TO_ID = {
-    'mx': 'mx', 'za': 'za', 'kr': 'kr', 'cz': 'cz',
-    'ca': 'ca', 'ch': 'ch', 'qa': 'qa', 'ba': 'ba',
-    'us': 'us', 'au': 'au', 'py': 'py', 'tr': 'tr',
-    'br': 'br', 'ma': 'ma', 'ht': 'ht', 'gb-sct': 'gb-sct',
-    'de': 'de', 'ci': 'ci', 'ec': 'ec', 'se': 'se',
-    'nl': 'nl', 'jp': 'jp', 'tn': 'tn', 'nz': 'nz',
-    'be': 'be', 'eg': 'eg', 'ir': 'ir', 'cv': 'cv',
-    'es': 'es', 'sa': 'sa', 'uy': 'uy', 'gb-wls': 'gb-wls',
-    'fr': 'fr', 'sn': 'sn', 'no': 'no', 'iq': 'iq',
-    'ar': 'ar', 'dz': 'dz', 'at': 'at', 'jo': 'jo',
-    'pt': 'pt', 'co': 'co', 'uz': 'uz', 'cd': 'cd',
-    'gb-eng': 'gb-eng', 'hr': 'hr', 'gh': 'gh', 'pa': 'pa'
+    # 球队会从 API teams.json 中动态获取，这里只是默认映射
 }
 
 # 阶段映射

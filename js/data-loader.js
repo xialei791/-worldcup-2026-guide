@@ -5,18 +5,33 @@
 
 let worldCupData = null;
 
-// 从外部数据源加载
-async function loadExternalData() {
+// 同步加载 JSON 数据
+function loadExternalData() {
     try {
-        const response = await fetch('data/data.json');
-        if (!response.ok) throw new Error('无法加载数据');
-        const data = await response.json();
-        console.log('[Data] 从 API 数据加载:', data._last_updated);
-        return data;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'data/data.json', false);
+        xhr.send();
+        if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            console.log('[Data] 从 API 数据加载:', data._last_updated);
+            return data;
+        }
+        return null;
     } catch (e) {
-        console.log('[Data] 无法加载外部数据，使用默认数据');
+        console.log('[Data] 无法加载外部数据，使用默认数据:', e.message);
         return null;
     }
+}
+
+// 立即加载数据
+worldCupData = loadExternalData();
+
+// 如果外部数据加载成功，更新全局变量
+if (worldCupData) {
+    window.teamsData = worldCupData.teamsData;
+    window.matchesData = worldCupData.matchesData;
+    window.groupStandings = worldCupData.groupStandings;
+    window.overallStandings = worldCupData.overallStandings;
 }
 
 // 获取球队
@@ -55,27 +70,28 @@ function getGroupStandings() {
     return {};
 }
 
-// 初始化数据加载
-async function initDataLoader() {
-    const externalData = await loadExternalData();
-    if (externalData) {
-        worldCupData = externalData;
-
-        // 更新全局变量以兼容现有代码
-        window.teamsData = externalData.teamsData;
-        window.matchesData = externalData.matchesData;
-        window.groupStandings = externalData.groupStandings;
+// 刷新数据
+async function refreshData() {
+    try {
+        const response = await fetch('data/data.json?t=' + Date.now());
+        if (!response.ok) throw new Error('无法刷新数据');
+        const data = await response.json();
+        worldCupData = data;
+        window.teamsData = data.teamsData;
+        window.matchesData = data.matchesData;
+        window.groupStandings = data.groupStandings;
+        window.overallStandings = data.overallStandings;
+        console.log('[Data] 数据已刷新:', data._last_updated);
+        location.reload(); // 刷新页面以更新显示
+    } catch (e) {
+        console.log('[Data] 刷新数据失败:', e);
     }
 }
-
-// 页面加载时初始化
-document.addEventListener('DOMContentLoaded', initDataLoader);
 
 // 导出供外部使用
 window.worldCupAPI = {
     getTeam,
     getMatches,
     getGroupStandings,
-    initDataLoader,
-    refreshData: initDataLoader
+    refreshData
 };
