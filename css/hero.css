@@ -1,4 +1,4 @@
-/* 首页 - 高级抽象海报风格 */
+/* 首页 - 高清赛事海报背景 */
 .hero-section {
     position: relative;
     min-height: 100vh;
@@ -10,104 +10,76 @@
     padding: 100px 20px 60px;
 }
 
-/* 底层纹理噪点 */
+/* 高清背景图 */
 .hero-section::before {
     content: '';
     position: absolute;
     inset: 0;
     z-index: 0;
-    opacity: 0.35;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 256px 256px;
-    mix-blend-mode: overlay;
+    background-image: url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    background-repeat: no-repeat;
+    image-rendering: auto;
+    filter: brightness(0.6) saturate(1.1) contrast(1.05);
+    transform: scale(1.02);
+    transition: transform 8s ease;
 }
 
-/* 抽象国旗色块 - 大色块几何构图 */
-.hero-flags {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
+.hero-section:hover::before {
+    transform: scale(1.06);
 }
 
-/* 美国 - 深蓝斜块 */
-.hero-accent-usa {
-    position: absolute;
-    top: -10%;
-    left: -5%;
-    width: 45%;
-    height: 120%;
-    background: linear-gradient(160deg, #0a2240 0%, #1a3a6a 40%, #bf0d3e 100%);
-    transform: skewX(-8deg);
-    opacity: 0.55;
-}
-
-/* 加拿大 - 红色光晕 */
-.hero-accent-canada {
-    position: absolute;
-    top: 20%;
-    right: 25%;
-    width: 50%;
-    height: 60%;
-    background: radial-gradient(ellipse at center, rgba(200,30,30,0.25) 0%, transparent 70%);
-}
-
-/* 墨西哥 - 绿色渐层 */
-.hero-accent-mexico {
-    position: absolute;
-    bottom: -5%;
-    right: -8%;
-    width: 50%;
-    height: 70%;
-    background: linear-gradient(135deg, rgba(0,104,71,0.3) 0%, rgba(206,17,38,0.15) 100%);
-    transform: skewY(5deg);
-    border-radius: 50% 0 0 0;
-}
-
-/* 中央聚光 */
-.hero-accent-spotlight {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    height: 80%;
-    background: radial-gradient(ellipse at center, rgba(255,255,255,0.04) 0%, transparent 60%);
-}
-
-/* 金色线点缀 */
-.hero-accent-line {
-    position: absolute;
-    top: 55%;
-    left: 5%;
-    right: 5%;
-    height: 1px;
-    background: linear-gradient(to right, transparent 0%, rgba(255,215,0,0.15) 20%, rgba(255,215,0,0.25) 50%, rgba(255,215,0,0.15) 80%, transparent 100%);
-    z-index: 0;
-}
-
-.hero-accent-line-2 {
-    position: absolute;
-    top: calc(55% + 6px);
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(to right, transparent 0%, rgba(255,215,0,0.06) 30%, rgba(255,215,0,0.1) 50%, rgba(255,215,0,0.06) 70%, transparent 100%);
-    z-index: 0;
-}
-
-/* 整体深色遮罩 */
+/* 暗角遮罩 */
 .hero-overlay {
     position: absolute;
     inset: 0;
     background:
         linear-gradient(180deg,
-            rgba(0,0,0,0.5) 0%,
-            rgba(0,0,0,0.2) 30%,
-            rgba(0,0,0,0.3) 60%,
-            rgba(0,0,0,0.6) 100%
-        );
+            rgba(0,0,0,0.55) 0%,
+            rgba(0,0,0,0.25) 25%,
+            rgba(0,0,0,0.3) 50%,
+            rgba(0,0,0,0.65) 100%
+        ),
+        radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.3) 100%);
+    z-index: 1;
+}
+
+/* 底部国旗色渐变光晕 */
+.hero-accent-glow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    z-index: 0;
+    background: linear-gradient(0deg,
+        rgba(191,13,62,0.08) 0%,
+        rgba(255,0,0,0.05) 33%,
+        rgba(0,104,71,0.06) 66%,
+        transparent 100%
+    );
+    pointer-events: none;
+}
+
+/* 金色细线装饰 */
+.hero-accent-line {
+    position: absolute;
+    top: 48%;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(to right, transparent 0%, rgba(255,215,0,0.12) 30%, rgba(255,215,0,0.2) 50%, rgba(255,215,0,0.12) 70%, transparent 100%);
+    z-index: 1;
+}
+
+.hero-accent-line-2 {
+    position: absolute;
+    top: calc(48% + 8px);
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(to right, transparent 0%, rgba(255,215,0,0.05) 40%, rgba(255,215,0,0.08) 50%, rgba(255,215,0,0.05) 60%, transparent 100%);
     z-index: 1;
 }
 
@@ -295,11 +267,9 @@
     .hero-stats { gap: 16px; padding: 10px 20px; }
     .hero-stat-num { font-size: 22px; }
     .hero-btn { font-size: 11px; padding: 7px 16px; }
-    .hero-accent-usa { width: 55%; }
 }
 
 @media (max-width: 480px) {
     .hero-badge { font-size: 46px; letter-spacing: 8px; }
     .hero-title { font-size: 22px; letter-spacing: 6px; }
-    .hero-accent-usa { width: 65%; }
 }
