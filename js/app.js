@@ -322,7 +322,7 @@ function initTeams() {
     const container = document.getElementById('teamsGrid');
 
     container.innerHTML = teamsData.map((team, index) => `
-        <div class="team-card" style="animation-delay: ${index * 0.05}s">
+        <div class="team-card" onclick="openTeamModal('${team.id}')" style="animation-delay: ${index * 0.05}s">
             <img src="${team.flag}" alt="${team.name}">
             <h4>${team.name}</h4>
             <span class="group">${team.group}组 · ${team.conf}</span>
@@ -330,11 +330,126 @@ function initTeams() {
     `).join('');
 }
 
-// ==================== 模态框 ====================
+// ==================== 球队详情 ====================
+function openTeamModal(teamId) {
+    const team = teamsData.find(t => t.id === teamId);
+    if (!team) return;
+
+    document.getElementById('teamModalTitle').textContent = team.name + ' - 球队详情';
+
+    const players = team.players || [];
+    const formation = team.formation || '4-3-3';
+    const coach = team.coach || '待定';
+
+    // 生成阵型图
+    const formationHTML = renderFormation(formation, players);
+
+    // 生成球员名单
+    const playerHTML = players.map(p => {
+        const posClass = p.position.toLowerCase();
+        return `
+            <div class="player-item">
+                <img src="${p.photo}" alt="${p.name}" class="player-photo">
+                <span class="player-number">${p.number}</span>
+                <div class="player-info">
+                    <span class="player-name">${p.name}</span>
+                    <span class="player-meta">
+                        <span class="player-pos ${posClass}">${p.position}</span>
+                        <span class="player-age">${p.age}岁</span>
+                    </span>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    document.getElementById('teamModalBody').innerHTML = `
+        <div class="team-detail-header">
+            <img src="${team.flag}" alt="${team.name}" class="team-detail-flag">
+            <div class="team-detail-info">
+                <h2>${team.name}</h2>
+                <span class="team-detail-group">${team.group}组 · ${team.conf}</span>
+                <span class="team-detail-coach"><i class="fas fa-user-tie"></i> 主教练: ${coach}</span>
+                <span class="team-detail-formation"><i class="fas fa-th"></i> 阵型: ${formation}</span>
+            </div>
+        </div>
+
+        <div class="team-section-title"><i class="fas fa-sitemap"></i> 阵型图</div>
+        <div class="formation-container">
+            ${formationHTML}
+        </div>
+
+        <div class="team-section-title"><i class="fas fa-users"></i> 球员名单 (${players.length}人)</div>
+        <div class="player-list">
+            ${playerHTML}
+        </div>
+    `;
+
+    document.getElementById('teamModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeTeamModal() {
+    document.getElementById('teamModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function renderFormation(formation, players) {
+    const parts = formation.split('-').map(Number);
+    // Filter out GK from field players
+    const gk = players.filter(p => p.position === 'GK').slice(0, 1);
+    const fieldPlayers = players.filter(p => p.position !== 'GK');
+
+    // Build rows based on formation
+    let rows = [];
+    let idx = 0;
+    for (let i = parts.length - 1; i >= 0; i--) {
+        const count = parts[i];
+        const rowPlayers = fieldPlayers.slice(idx, idx + count);
+        idx += count;
+        rows.push(rowPlayers);
+    }
+
+    return `
+        <div class="formation-field">
+            <div class="formation-label">${formation}</div>
+            ${rows.map((row, ri) => `
+                <div class="formation-row" style="grid-template-columns: repeat(${row.length}, 1fr)">
+                    ${row.map(p => `
+                        <div class="formation-player">
+                            <div class="formation-circle ${p.position.toLowerCase()}">
+                                <span class="formation-num">${p.number || ''}</span>
+                            </div>
+                            <span class="formation-name">${p.name.split(' ').pop()}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('')}
+            <div class="formation-row single">
+                ${gk.map(p => `
+                    <div class="formation-player">
+                        <div class="formation-circle gk">
+                            <span class="formation-num">${p.number || ''}</span>
+                        </div>
+                        <span class="formation-name">${p.name.split(' ').pop()}</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+
+// ==================== 模态框（比赛）====================
 function initModal() {
+    // 比赛模态框
     document.getElementById('closeModal').addEventListener('click', closeMatchModal);
     document.getElementById('matchModal').addEventListener('click', function(e) {
         if (e.target === this) closeMatchModal();
+    });
+
+    // 球队模态框
+    document.getElementById('closeTeamModal').addEventListener('click', closeTeamModal);
+    document.getElementById('teamModal').addEventListener('click', function(e) {
+        if (e.target === this) closeTeamModal();
     });
 }
 
