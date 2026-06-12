@@ -1,4 +1,4 @@
-/* 首页区域 - 2026世界杯官方海报风格 */
+/* 首页 - 三国国旗平铺背景 */
 .hero-section {
     position: relative;
     min-height: 100vh;
@@ -10,61 +10,35 @@
     padding: 100px 20px 60px;
 }
 
-/* 美加墨三色拼接背景 */
-.hero-tri-colors {
+/* 国旗平铺纹理 */
+.hero-section::before {
+    content: '';
     position: absolute;
     inset: 0;
-    display: flex;
     z-index: 0;
+    background-image:
+        url('https://flagcdn.com/w160/us.png'),
+        url('https://flagcdn.com/w160/ca.png'),
+        url('https://flagcdn.com/w160/mx.png');
+    background-repeat: repeat, repeat, repeat;
+    background-size: 120px auto, 120px auto, 120px auto;
+    background-position:
+        0 0,
+        40px 60px,
+        80px 120px;
+    opacity: 0.12;
+    pointer-events: none;
 }
 
-.hero-color-stripe {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-stripe-canada {
-    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
-}
-
-.hero-stripe-usa {
-    background: linear-gradient(135deg, #002868 0%, #bf0d3e 100%);
-}
-
-.hero-stripe-mexico {
-    background: linear-gradient(135deg, #006847 0%, #ce1126 100%);
-}
-
-/* 每个色块上加文化纹理 */
-.hero-stripe-canada::after {
-    content: '🍁';
+/* 网格柔光 */
+.hero-section::after {
+    content: '';
     position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 120px;
-    opacity: 0.08;
-}
-
-.hero-stripe-usa::after {
-    content: '⭐';
-    position: absolute;
-    top: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 120px;
-    opacity: 0.08;
-}
-
-.hero-stripe-mexico::after {
-    content: '🌮';
-    position: absolute;
-    top: 12%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 120px;
-    opacity: 0.08;
+    inset: 0;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
 }
 
 .hero-overlay {
@@ -72,9 +46,9 @@
     inset: 0;
     background:
         linear-gradient(180deg,
-            rgba(0,0,0,0.7) 0%,
-            rgba(0,0,0,0.3) 30%,
-            rgba(0,0,0,0.5) 60%,
+            rgba(0,0,0,0.75) 0%,
+            rgba(0,0,0,0.35) 25%,
+            rgba(0,0,0,0.45) 60%,
             rgba(0,0,0,0.85) 100%
         );
     z-index: 1;
@@ -85,8 +59,8 @@
     inset: 0;
     z-index: 0;
     background-image:
-        radial-gradient(circle at 30% 40%, rgba(255,255,255,0.05) 0%, transparent 40%),
-        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.03) 0%, transparent 30%);
+        repeating-linear-gradient(0deg, transparent, transparent 120px, rgba(255,255,255,0.02) 120px, rgba(255,255,255,0.02) 121px),
+        repeating-linear-gradient(90deg, transparent, transparent 120px, rgba(255,255,255,0.02) 120px, rgba(255,255,255,0.02) 121px);
 }
 
 .hero-content {
@@ -142,13 +116,13 @@
     align-items: center;
     gap: 6px;
     padding: 6px 16px;
-    background: rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.3);
     border-radius: 20px;
     color: #fff;
     font-size: 13px;
     font-weight: 500;
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.12);
 }
 
 .host-chip img {
@@ -202,6 +176,8 @@
     display: flex;
     gap: 12px;
     margin-top: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .hero-btn {
@@ -263,11 +239,7 @@
     .host-chip { font-size: 11px; padding: 4px 12px; }
     .hero-stats { gap: 14px; padding: 10px 20px; }
     .hero-stat-num { font-size: 22px; }
-    .hero-actions { flex-wrap: wrap; justify-content: center; }
     .hero-btn { font-size: 12px; padding: 8px 18px; }
-    .hero-stripe-canada::after,
-    .hero-stripe-usa::after,
-    .hero-stripe-mexico::after { font-size: 60px; top: 20%; }
 }
 
 @media (max-width: 480px) {
